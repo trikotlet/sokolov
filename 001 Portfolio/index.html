@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Частная пивоварня Obscura — авторские сорта, малые партии, дегустации и тапрум в центре города." />
+    <meta name="keywords" content="частная пивоварня, крафтовое пиво, дегустации, тапрум, Obscura" />
+    <meta name="author" content="Obscura Brewery" />
+    <title>Obscura Brewery — Частная пивоварня</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="logo-mark">OB</span>
+          <div class="logo-text">
+            <span class="logo-title">Obscura Brewery</span>
+            <span class="logo-subtitle">Частная пивоварня</span>
+          </div>
+        </div>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#story" class="nav-link">О пивоварне</a></li>
+          <li><a href="#beers" class="nav-link">Линейка</a></li>
+          <li><a href="#process" class="nav-link">Процесс</a></li>
+          <li><a href="#taproom" class="nav-link">Тапрум</a></li>
+          <li><a href="#events" class="nav-link">События</a></li>
+          <li><a href="#contact" class="nav-link">Контакты</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="#contact" class="btn btn-gold">Заказать дегустацию</a>
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-container">
+        <div class="hero-content reveal">
+          <div class="section-label">00 / Старт</div>
+          <h1 class="hero-title">Частная пивоварня, где вкус — инженерия.</h1>
+          <p class="hero-subtitle">Малые партии, выдержка в дубе, контроль каждой ноты.</p>
+          <p class="hero-description">
+            Obscura — камерная пивоварня для тех, кто ценит текстуру, баланс и чистоту стиля.
+            Мы варим 800 литров в неделю, работаем без компромиссов и открываем двери на дегустации.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#beers">Смотреть линейку</a>
+            <a class="btn btn-secondary" href="#taproom">Забронировать стол</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-label">Партия</span>
+              <span class="stat-value">#041</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Средняя крепость</span>
+              <span class="stat-value">6.2%</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Год основания</span>
+              <span class="stat-value">2016</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-panel reveal" data-delay="0.1s">
+          <div class="panel-header">
+            <span class="panel-title">Текущий релиз</span>
+            <span class="panel-code">OB-11</span>
+          </div>
+          <div class="panel-body">
+            <h2 class="panel-name">Noir Saison</h2>
+            <p class="panel-note">Ферментирован на диких дрожжах, сухой профиль, перец, черный чай.</p>
+            <div class="panel-metrics">
+              <div>
+                <span class="panel-metric-label">ABV</span>
+                <span class="panel-metric-value">6.8%</span>
+              </div>
+              <div>
+                <span class="panel-metric-label">IBU</span>
+                <span class="panel-metric-value">28</span>
+              </div>
+              <div>
+                <span class="panel-metric-label">Партия</span>
+                <span class="panel-metric-value">72 kegs</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a href="#contact" class="btn btn-outline">Запросить кег</a>
+            <span class="panel-tag">Лимитировано</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-marquee" aria-hidden="true">
+        <span>RAW</span>
+        <span>FERMENT</span>
+        <span>BARREL</span>
+        <span>GOLD</span>
+        <span>OBSCURA</span>
+      </div>
+    </header>
+
+    <section id="story" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-number">01</span>
+            <h2 class="section-title">О пивоварне</h2>
+            <p class="section-subtitle">История, где каждое решение — это выбор вкуса.</p>
+          </div>
+          <p class="section-kicker">Малые партии • Ручная ферментация • Чистая вода</p>
+        </div>
+        <div class="story-grid">
+          <div class="story-text reveal">
+            <p>
+              Мы начали с одной варки в гараже и трех сортов, которые раскупили за вечер.
+              Сегодня Obscura — это команда технологов, бочковая программа и дегустационный зал,
+              где подаем пиво в правильной температуре и даем время раскрыться аромату.
+            </p>
+            <p>
+              Наш подход — инженерный: измеряем, тестируем, настраиваем. Но главное — эмоция,
+              которую дарит первый глоток. Никаких шаблонов, только честные стили и выразительные профили.
+            </p>
+          </div>
+          <div class="story-highlights reveal" data-delay="0.1s">
+            <div class="highlight-card">
+              <span class="highlight-title">Философия</span>
+              <p>Сбалансированный вкус важнее трендов.</p>
+            </div>
+            <div class="highlight-card">
+              <span class="highlight-title">Сырье</span>
+              <p>Солод из Баварии, хмель из Новой Зеландии, вода с нулевой минерализацией.</p>
+            </div>
+            <div class="highlight-card">
+              <span class="highlight-title">Команда</span>
+              <p>Технолог, сомелье и дизайнер профиля вкуса.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beers" class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-number">02</span>
+            <h2 class="section-title">Линейка</h2>
+            <p class="section-subtitle">Постоянные сорта и сезонные эксперименты.</p>
+          </div>
+          <div class="section-actions">
+            <a class="btn btn-outline" href="#contact">Запросить прайс</a>
+            <a class="btn btn-primary" href="#contact">Коллаборации</a>
+          </div>
+        </div>
+        <div class="beer-grid">
+          <article class="beer-card reveal">
+            <div class="beer-tag">Signature</div>
+            <h3>Obsidian Porter</h3>
+            <p>Глубокий карамельный профиль, шоколад и сухофрукты, бархатный финиш.</p>
+            <div class="beer-meta">
+              <span>ABV 6.5%</span>
+              <span>IBU 32</span>
+              <span>Дубовый чипс</span>
+            </div>
+          </article>
+          <article class="beer-card reveal" data-delay="0.05s">
+            <div class="beer-tag">Hazy</div>
+            <h3>Aurum IPA</h3>
+            <p>Тропические фрукты, белая смородина, мягкая горечь с долгим послевкусием.</p>
+            <div class="beer-meta">
+              <span>ABV 6.8%</span>
+              <span>IBU 40</span>
+              <span>Сухое охмеление</span>
+            </div>
+          </article>
+          <article class="beer-card reveal" data-delay="0.1s">
+            <div class="beer-tag">Wild</div>
+            <h3>Noir Saison</h3>
+            <p>Дикие дрожжи, перец, черный чай, сухой характер и легкая кислотность.</p>
+            <div class="beer-meta">
+              <span>ABV 6.8%</span>
+              <span>IBU 28</span>
+              <span>Фермация 28 дней</span>
+            </div>
+          </article>
+          <article class="beer-card reveal" data-delay="0.15s">
+            <div class="beer-tag">Barrel</div>
+            <h3>Velvet Stout</h3>
+            <p>Выдержка в бочках из-под бурбона, кофе, какао, ваниль.</p>
+            <div class="beer-meta">
+              <span>ABV 8.4%</span>
+              <span>IBU 36</span>
+              <span>Barrel program</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-number">03</span>
+            <h2 class="section-title">Процесс</h2>
+            <p class="section-subtitle">Три этапа, один результат — чистый стиль.</p>
+          </div>
+          <p class="section-kicker">Контроль температуры • Аналитика • Дегустация каждой партии</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-card reveal">
+            <div class="process-number">01</div>
+            <h3>Затирание</h3>
+            <p>Многоступенчатый температурный профиль для точного тела и цвета.</p>
+          </div>
+          <div class="process-card reveal" data-delay="0.05s">
+            <div class="process-number">02</div>
+            <h3>Ферментация</h3>
+            <p>Танки с микроконтролем, дозирование кислорода и дрожжи под каждый стиль.</p>
+          </div>
+          <div class="process-card reveal" data-delay="0.1s">
+            <div class="process-number">03</div>
+            <h3>Выдержка</h3>
+            <p>Бочки из американского дуба, регулярные замеры и холодная стабилизация.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="taproom" class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-number">04</span>
+            <h2 class="section-title">Тапрум</h2>
+            <p class="section-subtitle">Индустриальный зал на 38 мест с авторским меню.</p>
+          </div>
+          <a class="section-link" href="#contact">Забронировать вечер →</a>
+        </div>
+        <div class="taproom-grid">
+          <div class="taproom-card reveal">
+            <h3>Барная стойка</h3>
+            <p>10 кранов, дегустационные сеты, подбор стекла под стиль.</p>
+            <span class="taproom-meta">Пт–Сб до 01:00</span>
+          </div>
+          <div class="taproom-card reveal" data-delay="0.05s">
+            <h3>Кухня</h3>
+            <p>Собственная коптильня, брутальные закуски, тапас к выдержанным сортам.</p>
+            <span class="taproom-meta">Сезонное меню</span>
+          </div>
+          <div class="taproom-card reveal" data-delay="0.1s">
+            <h3>Дегустации</h3>
+            <p>Закрытые сеты для частных групп, сопровождение сомелье.</p>
+            <span class="taproom-meta">От 6 человек</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-number">05</span>
+            <h2 class="section-title">События</h2>
+            <p class="section-subtitle">Коллаборации, релизы и лабораторные ночи.</p>
+          </div>
+          <div class="section-actions">
+            <a class="btn btn-outline" href="#contact">Записаться</a>
+          </div>
+        </div>
+        <div class="events-list">
+          <div class="event-item reveal">
+            <div class="event-date">14 / 09</div>
+            <div class="event-info">
+              <h3>Слепая дегустация IPA</h3>
+              <p>5 сортов, вертикальная дегустация, лекция по хмелю.</p>
+            </div>
+            <span class="event-tag">Вход по записи</span>
+          </div>
+          <div class="event-item reveal" data-delay="0.05s">
+            <div class="event-date">28 / 09</div>
+            <div class="event-info">
+              <h3>Barrel Night: Stout</h3>
+              <p>Выдержанные стауты, дегустация бочек, гастро-сет от шефа.</p>
+            </div>
+            <span class="event-tag">18+</span>
+          </div>
+          <div class="event-item reveal" data-delay="0.1s">
+            <div class="event-date">12 / 10</div>
+            <div class="event-info">
+              <h3>Коллаборация с Neon Lab</h3>
+              <p>Совместная варка и сет из трёх экспериментальных сортов.</p>
+            </div>
+            <span class="event-tag">Лимит 60 мест</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Контакты</h2>
+            <p class="section-subtitle">Запросы на дегустации, поставки и коллаборации.</p>
+          </div>
+          <p class="section-kicker">Мы отвечаем в течение 24 часов.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="contact-block">
+              <span class="contact-label">Адрес</span>
+              <p>Москва, ул. Солодовая, 7</p>
+            </div>
+            <div class="contact-block">
+              <span class="contact-label">Телефон</span>
+              <p>+7 (495) 000-11-22</p>
+            </div>
+            <div class="contact-block">
+              <span class="contact-label">Почта</span>
+              <p>hello@obscura.brew</p>
+            </div>
+            <div class="contact-block">
+              <span class="contact-label">Часы</span>
+              <p>Вт–Чт 16:00–23:00 • Пт–Сб 16:00–01:00</p>
+            </div>
+          </div>
+          <form class="contact-form reveal" data-delay="0.1s">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" id="name" name="name" placeholder="Ваше имя" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="name@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="topic">Тема</label>
+              <select id="topic" name="topic" required>
+                <option value="">Выберите тему</option>
+                <option value="tasting">Дегустация</option>
+                <option value="wholesale">Поставки</option>
+                <option value="collab">Коллаборация</option>
+                <option value="press">Пресса</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Сообщение</label>
+              <textarea id="message" name="message" rows="4" placeholder="Коротко опишите запрос" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить запрос</button>
+            <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="footer-brand">Obscura Brewery</div>
+          <p>Частная пивоварня и дегустационный зал. Малые партии, большой характер.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#story">О нас</a>
+          <a href="#beers">Линейка</a>
+          <a href="#taproom">Тапрум</a>
+          <a href="#contact">Контакты</a>
+        </div>
+        <div class="footer-meta">
+          <span>© 2024 Obscura Brewery</span>
+          <span>Независимая пивоварня</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
