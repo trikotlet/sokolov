@@ -57,13 +57,17 @@ a:not(.cta):not(.project-card-link) {
   transition: text-decoration-color 0.2s ease, color 0.2s ease;
 }
 
-a:not(.cta):not(.project-card-link)::after {
+.link-with-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.link-with-arrow::after {
   content: "";
   display: inline-block;
   width: 1.6em;
   height: 1.6em;
-  margin-left: 0.4em;
-  vertical-align: -0.2em;
   background-color: currentColor;
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M14.6 10.8H0V8.4h14.6L7.9 1.7 9.6 0l9.6 9.6-9.6 9.6-1.7-1.7z' transform='translate(6.4 6.4) rotate(-45 9.5 9.5)' fill='%23000'/%3E%3C/svg%3E");
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M14.6 10.8H0V8.4h14.6L7.9 1.7 9.6 0l9.6 9.6-9.6 9.6-1.7-1.7z' transform='translate(6.4 6.4) rotate(-45 9.5 9.5)' fill='%23000'/%3E%3C/svg%3E");

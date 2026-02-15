@@ -197,7 +197,12 @@ export default function ProjectsPage({ caseStudies, ui, language }: ProjectsPage
                         {project.resultBlock.items.map((item) => (
                           <li key={item.label}>
                             {item.href ? (
-                              <a href={item.href} target="_blank" rel="noreferrer noopener">
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className={project.id === "exeed" ? "link-with-arrow" : undefined}
+                              >
                                 {item.label}
                               </a>
                             ) : (
