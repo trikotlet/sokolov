@@ -1,123 +1,195 @@
-import "./index.css";
+import { useEffect, useState } from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import HeroLeft from "./components/HeroLeft";
+import HeroMedia from "./components/HeroMedia";
+import ProjectsPage from "./components/ProjectsPage";
+import ProjectsSection from "./components/ProjectsSection";
+import { contentByLanguage, defaultLanguage, type Language } from "./data/portfolio";
 
-const experience = [
-  { years: "2025 →", role: "T-bank / Sr Product Designer" },
-  { years: "2023 → 2025", role: "Positive Technologies / Sr Product Designer" },
-  { years: "2024 → 2025", role: "Soveren / Sr Product Designer" },
-];
+const SITE_URL = "https://sokolovroman.ru";
+const PROJECTS_PATH = "/projects";
 
-const projects = [
-  {
-    title: "Soveren — Data Security Platform",
-    desc: "Behavior graphing, anomaly response workflows, and threat clusters.",
-    img: "/project-1.svg",
-  },
-  {
-    title: "KRIS — Incident Analysis",
-    desc: "High-load investigations for security teams.",
-    img: "/project-2.svg",
-  },
-];
+function normalizePathname(pathname: string): string {
+  if (!pathname || pathname === "/") {
+    return "/";
+  }
+
+  return pathname.replace(/\/+$/, "") || "/";
+}
 
 export default function App() {
+  const [pathname, setPathname] = useState(() => normalizePathname(window.location.pathname));
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = window.localStorage.getItem("portfolio-language");
+    return saved === "ru" || saved === "en" ? saved : defaultLanguage;
+  });
+
+  useEffect(() => {
+    const onPopState = () => setPathname(normalizePathname(window.location.pathname));
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("portfolio-language", language);
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const isProjectsPage = pathname === PROJECTS_PATH;
+  const content = contentByLanguage[language];
+
+  useEffect(() => {
+    const onProjectsPage = pathname === PROJECTS_PATH;
+    const canonicalUrl = `${SITE_URL}/`;
+    const pageUrl = onProjectsPage ? `${SITE_URL}${PROJECTS_PATH}` : canonicalUrl;
+    const locale = language === "ru" ? "ru_RU" : "en_US";
+    const robots = "noindex,nofollow,noarchive";
+
+    const title = onProjectsPage
+      ? language === "ru"
+        ? "Roman Sokolov - Проекты"
+        : "Roman Sokolov - Projects"
+      : "Roman Sokolov - Portfolio";
+
+    const description = onProjectsPage
+      ? language === "ru"
+        ? "Кейсы Романа Соколова: управление цифровыми B2B-проектами, запуск продуктов и измеримый бизнес-результат."
+        : "Roman Sokolov case studies: digital B2B project management, product delivery, and measurable business impact."
+      : language === "ru"
+        ? "Портфолио Романа Соколова. Управление цифровыми B2B-проектами в кибербезопасности, аналитике и операционных продуктах."
+        : "Roman Sokolov portfolio. Project Manager delivering digital B2B products in cybersecurity, analytics, and operations.";
+
+    document.title = title;
+
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+    if (descriptionMeta) {
+      descriptionMeta.setAttribute("content", description);
+    }
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute("content", title);
+    }
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) {
+      ogDescription.setAttribute("content", description);
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute("content", pageUrl);
+    }
+
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) {
+      ogLocale.setAttribute("content", locale);
+    }
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) {
+      twitterTitle.setAttribute("content", title);
+    }
+
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDescription) {
+      twitterDescription.setAttribute("content", description);
+    }
+
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) {
+      canonicalLink.setAttribute("href", canonicalUrl);
+    }
+
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (!robotsMeta) {
+      robotsMeta = document.createElement("meta");
+      robotsMeta.setAttribute("name", "robots");
+      document.head.appendChild(robotsMeta);
+    }
+
+    robotsMeta.setAttribute("content", robots);
+  }, [language, pathname]);
+
+  useEffect(() => {
+    if (pathname !== PROJECTS_PATH) {
+      return;
+    }
+
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) {
+      return;
+    }
+
+    let tries = 0;
+    const maxTries = 20;
+
+    const scrollToAnchor = () => {
+      const target = document.getElementById(hash);
+      if (!target) {
+        return false;
+      }
+
+      const prefersReducedMotion =
+        typeof window.matchMedia === "function" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      target.scrollIntoView({
+        block: "start",
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+      return true;
+    };
+
+    if (scrollToAnchor()) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      tries += 1;
+      if (scrollToAnchor() || tries >= maxTries) {
+        window.clearInterval(timer);
+      }
+    }, 50);
+
+    return () => window.clearInterval(timer);
+  }, [pathname, language]);
+
   return (
-    <div className="page">
-      <header className="topbar">
-        <div className="brand">
-          <span className="brand-icon">☺</span>
-          <span>Alexey Babenkov — Product Designer</span>
-        </div>
-        <nav className="top-links">
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+    <>
+      <div className="page">
+        <Header
+          isProjectsPage={isProjectsPage}
+          profile={content.profile}
+          ui={content.ui}
+          language={language}
+          onToggleLanguage={() => setLanguage((current) => (current === "ru" ? "en" : "ru"))}
+        />
 
-      <main className="layout">
-        <section className="hero" id="top">
-          <div className="hero-left card">
-            <p className="overline">Alexey Babenkov — Product Designer</p>
-            <h1>
-              Specializing in complex interfaces and high-load B2B SaaS solutions in
-              cybersecurity, cloud infrastructure, and analytics
-            </h1>
-            <div className="meta">
-              <a href="#">Telegram</a>
-              <span className="dot">|</span>
-              <a href="#">LinkedIn</a>
-              <span className="dot">|</span>
-              <a href="#">Dribbble</a>
-              <span className="dot">|</span>
-              <a href="mailto:hello@designer.com">Send email</a>
+        {isProjectsPage ? (
+          <ProjectsPage caseStudies={content.caseStudies} ui={content.ui} language={language} />
+        ) : (
+          <main className="layout">
+            <div className="left-col" id="top">
+              <HeroLeft
+                profile={content.profile}
+                experience={content.experience}
+                outcomes={content.outcomes}
+                socialLinks={content.socialLinks}
+                ui={content.ui}
+              />
             </div>
 
-            <button className="cta" id="contact">
-              <span>Book a call</span>
-              <span className="arrow">↗</span>
-            </button>
-
-            <div className="experience" id="experience">
-              {experience.map((item) => (
-                <div className="exp-row" key={item.role}>
-                  <span className="exp-years">{item.years}</span>
-                  <span className="exp-role">{item.role}</span>
-                </div>
-              ))}
+            <div className="right-col">
+              <HeroMedia />
+              <ProjectsSection projects={content.projectCards} />
             </div>
-          </div>
+          </main>
+        )}
+      </div>
 
-          <div className="hero-right card">
-            <div className="media-frame">
-              <img src="/hero.svg" alt="Cybersecurity dashboard preview" />
-            </div>
-            <div className="media-controls">
-              <div className="control-row">
-                <span className="badge">Risk 55%</span>
-                <span className="chip">Response</span>
-              </div>
-              <div className="timeline">
-                <span className="tick" />
-                <span className="tick" />
-                <span className="tick" />
-                <span className="tick" />
-                <span className="tick" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="projects" id="projects">
-          <div className="project-card card">
-            <div>
-              <h2>Soveren — Data Security Platform</h2>
-              <p>
-                Exploration of attack chains, context switching, and analyst tooling
-                for critical systems.
-              </p>
-            </div>
-            <img src="/project-1.svg" alt="Soveren project" />
-          </div>
-
-          <div className="project-grid">
-            {projects.map((proj) => (
-              <article className="project-mini card" key={proj.title}>
-                <img src={proj.img} alt={proj.title} />
-                <div>
-                  <h3>{proj.title}</h3>
-                  <p>{proj.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <span>2025 → · Product design & systems</span>
-        <span className="footer-dot">•</span>
-        <span>Based in EU / available worldwide</span>
-      </footer>
-    </div>
+      <Footer profile={content.profile} ui={content.ui} />
+    </>
   );
 }
