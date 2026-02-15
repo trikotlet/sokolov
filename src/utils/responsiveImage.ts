@@ -1,3 +1,5 @@
+import { toAssetUrl } from "./basePath";
+
 type ResponsiveImageSources = {
   avif: string;
   webp: string;
@@ -7,15 +9,17 @@ type ResponsiveImageSources = {
 const RASTER_EXTENSION = /\.(png|jpe?g)$/i;
 
 export function getResponsiveImageSources(src: string): ResponsiveImageSources | null {
-  if (!RASTER_EXTENSION.test(src)) {
+  const resolvedSrc = toAssetUrl(src);
+
+  if (!RASTER_EXTENSION.test(resolvedSrc)) {
     return null;
   }
 
-  const basePath = src.replace(/\.[^.]+$/, "");
+  const basePath = resolvedSrc.replace(/\.[^.]+$/, "");
 
   return {
     avif: `${basePath}.avif`,
     webp: `${basePath}.webp`,
-    fallback: src,
+    fallback: resolvedSrc,
   };
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { CaseStudy, Language, UiText } from "../data/portfolio";
+import { toAssetUrl } from "../utils/basePath";
 import { getProjectAnchor } from "../utils/projectAnchor";
 import { getResponsiveImageSources } from "../utils/responsiveImage";
 import ViewportVideo from "./ViewportVideo";
@@ -109,7 +110,7 @@ export default function ProjectsPage({ caseStudies, ui, language }: ProjectsPage
                         <img src={fallbackImageSources.fallback} alt={project.title} loading="lazy" />
                       </picture>
                     ) : (
-                      <img src={project.img} alt={project.title} loading="lazy" />
+                      <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
                     )}
                   </button>
                 ) : null}

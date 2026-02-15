@@ -1,4 +1,6 @@
+import type { MouseEvent } from "react";
 import type { Language, Profile, UiText } from "../data/portfolio";
+import { navigateTo, withBasePath } from "../utils/basePath";
 
 type HeaderProps = {
   isProjectsPage: boolean;
@@ -9,11 +11,20 @@ type HeaderProps = {
 };
 
 export default function Header({ isProjectsPage, profile, ui, language, onToggleLanguage }: HeaderProps) {
-  const homeAnchor = (anchor: string) => (isProjectsPage ? `/${anchor}` : anchor);
+  const homeAnchor = (anchor: string) => (isProjectsPage ? `${withBasePath("/")}${anchor}` : anchor);
+
+  const onInternalLinkClick = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    event.preventDefault();
+    navigateTo(path);
+  };
 
   return (
     <header className="topbar">
-      <a className="brand" href="/">
+      <a className="brand" href={withBasePath("/")} onClick={(event) => onInternalLinkClick(event, "/")}>
         <span className="brand-icon" aria-hidden="true">
           ☺
         </span>
@@ -22,7 +33,12 @@ export default function Header({ isProjectsPage, profile, ui, language, onToggle
         </span>
       </a>
       <nav className="top-links" aria-label="Primary">
-        <a href="/projects">{ui.navProjects}</a>
+        <a
+          href={withBasePath("/projects")}
+          onClick={(event) => onInternalLinkClick(event, "/projects")}
+        >
+          {ui.navProjects}
+        </a>
         <a href={homeAnchor("#experience")}>{ui.navExperience}</a>
         <button
           type="button"

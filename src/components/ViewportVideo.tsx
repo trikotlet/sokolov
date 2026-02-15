@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { toAssetUrl } from "../utils/basePath";
 
 type ViewportVideoProps = {
   src: string;
@@ -67,8 +68,8 @@ export default function ViewportVideo({
   return (
     <video
       ref={videoRef}
-      src={shouldLoad ? src : undefined}
-      poster={poster}
+      src={shouldLoad ? toAssetUrl(src) : undefined}
+      poster={poster ? toAssetUrl(poster) : undefined}
       className={className}
       autoPlay={shouldLoad && isInView}
       loop

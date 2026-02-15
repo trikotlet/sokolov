@@ -1,4 +1,6 @@
+import type { MouseEvent } from "react";
 import type { ProjectCard } from "../data/portfolio";
+import { navigateTo, toAssetUrl, withBasePath } from "../utils/basePath";
 import { getProjectAnchor } from "../utils/projectAnchor";
 import { getResponsiveImageSources } from "../utils/responsiveImage";
 import ViewportVideo from "./ViewportVideo";
@@ -8,15 +10,26 @@ type ProjectsSectionProps = {
 };
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
+  const onCaseLinkClick = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+
+    event.preventDefault();
+    navigateTo(path);
+  };
+
   return (
     <section className="projects" id="projects" aria-label="Projects">
       {projects.map((project) => {
         const imageSources = getResponsiveImageSources(project.img);
+        const projectHref = `/projects#${getProjectAnchor(project.caseStudyId)}`;
 
         return (
           <a
             className="project-card card project-card-link"
-            href={`/projects#${getProjectAnchor(project.caseStudyId)}`}
+            href={withBasePath(projectHref)}
+            onClick={(event) => onCaseLinkClick(event, projectHref)}
             key={project.caseStudyId}
           >
             <div>
@@ -45,7 +58,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                 <img src={imageSources.fallback} alt={project.title} loading="lazy" />
               </picture>
             ) : (
-              <img src={project.img} alt={project.title} loading="lazy" />
+              <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
             )}
           </a>
         );

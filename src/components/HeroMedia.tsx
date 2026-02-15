@@ -1,8 +1,10 @@
+import { toAssetUrl } from "../utils/basePath";
+
 export default function HeroMedia() {
   return (
     <div className="hero-right card">
       <div className="media-frame">
-        <img src="/hero.svg" alt="Cybersecurity dashboard preview" />
+        <img src={toAssetUrl("/hero.svg")} alt="Cybersecurity dashboard preview" />
       </div>
       <div className="media-controls">
         <div className="control-row">

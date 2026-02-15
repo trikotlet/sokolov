@@ -6,6 +6,7 @@ import HeroMedia from "./components/HeroMedia";
 import ProjectsPage from "./components/ProjectsPage";
 import ProjectsSection from "./components/ProjectsSection";
 import { contentByLanguage, defaultLanguage, type Language } from "./data/portfolio";
+import { stripBasePath, withBasePath } from "./utils/basePath";
 
 const SITE_URL = "https://sokolovroman.ru";
 const PROJECTS_PATH = "/projects";
@@ -18,17 +19,33 @@ function normalizePathname(pathname: string): string {
   return pathname.replace(/\/+$/, "") || "/";
 }
 
+function getRoutePathname(pathname: string): string {
+  return normalizePathname(stripBasePath(pathname));
+}
+
 export default function App() {
-  const [pathname, setPathname] = useState(() => normalizePathname(window.location.pathname));
+  const [pathname, setPathname] = useState(() => getRoutePathname(window.location.pathname));
   const [language, setLanguage] = useState<Language>(() => {
     const saved = window.localStorage.getItem("portfolio-language");
     return saved === "ru" || saved === "en" ? saved : defaultLanguage;
   });
 
   useEffect(() => {
-    const onPopState = () => setPathname(normalizePathname(window.location.pathname));
+    const onPopState = () => setPathname(getRoutePathname(window.location.pathname));
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirectedPath = params.get("p");
+    if (!redirectedPath) {
+      return;
+    }
+
+    const targetPath = redirectedPath.startsWith("/") ? redirectedPath : `/${redirectedPath}`;
+    window.history.replaceState({}, "", withBasePath(targetPath));
+    setPathname(getRoutePathname(window.location.pathname));
   }, []);
 
   useEffect(() => {
