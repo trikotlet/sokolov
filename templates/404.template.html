@@ -8,7 +8,7 @@
   <body>
     <script>
       (function () {
-        var repoBase = "";
+        var repoBase = "__BASE_PATH__";
         var path = window.location.pathname.startsWith(repoBase)
           ? window.location.pathname.slice(repoBase.length)
           : window.location.pathname;

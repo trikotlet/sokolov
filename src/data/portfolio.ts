@@ -175,6 +175,13 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         tags: ["#risk", "#monitoring", "#ops"],
       },
+      {
+        caseStudyId: "pulse",
+        title: "Pulse - Demo Product Insights",
+        desc: "Демо-кейс по запуску панели продуктовых инсайтов для команд delivery и аналитики.",
+        img: "/project-2.svg",
+        tags: ["#demo", "#analytics", "#delivery"],
+      },
     ],
     socialLinks: [
       { label: "Telegram", href: "https://t.me/SokolovRoma" },
@@ -251,12 +258,6 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        artifactImages: [
-          "/exeed-artifacts/model-comparison.png",
-          "/exeed-artifacts/trade-in-calculator.png",
-          "/exeed-artifacts/vehicle-configurator.png",
-          "/exeed-artifacts/online-shop.png",
-        ],
         role: "Руководитель проекта",
         team: "Команда импортера и дилерская сеть",
         timeline: "Несколько релизов",
@@ -421,6 +422,36 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
             "Критичные риски стали закрываться быстрее, а статус ремедиации стал прозрачным для всех уровней управления.",
         },
       },
+      {
+        id: "pulse",
+        title: "Pulse - Demo Product Insights",
+        subtitle: "Панель продуктовых инсайтов для delivery-команд",
+        summary:
+          "Демо-кейс: собрали единый экран продуктовых метрик и статусов релизов, чтобы быстрее находить узкие места в delivery.",
+        img: "/project-2.svg",
+        role: "Руководитель проекта",
+        team: "PM, аналитик, 3 инженера",
+        timeline: "6 недель",
+        problem:
+          "Команды видели метрики в разных источниках и поздно замечали просадки по воронке и срокам релизов.",
+        solution:
+          "Собрали единый контур показателей, добавили сигналы отклонений и регламент weekly-review по действиям.",
+        impact:
+          "Сократилось время обнаружения проблем, а обсуждение решений стало опираться на единый набор данных.",
+        starBlock: {
+          situation:
+            "Метрики продукта и delivery были разнесены по разным инструментам, из-за чего сигналы проблем приходили слишком поздно.",
+          task:
+            "Собрать единый обзорный контур и сократить время от обнаружения отклонения до согласованного действия команды.",
+          actions: [
+            "Определили единый список продуктовых и релизных метрик для weekly-review.",
+            "Собрали дашборд с приоритизацией отклонений и быстрыми переходами к причинам.",
+            "Встроили ритм обсуждений: сигнал -> гипотеза -> действие -> проверка эффекта.",
+          ],
+          result:
+            "Проблемы стали фиксироваться раньше, а решения по улучшениям принимаются на едином наборе данных.",
+        },
+      },
     ],
     ui: {
       navProjects: "Проекты",
@@ -428,9 +459,9 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       outcomesTitle: "Избранные достижения",
       requestResume: "Запросить резюме",
       resumeAria: "Запросить резюме по email",
-      projectsOverline: "Кейсы",
+      projectsOverline: "",
       projectsTitle: "Избранные проекты",
-      projectsLead: "Практические кейсы по запуску и развитию цифровых B2B-продуктов.",
+      projectsLead: "Практические кейсы по запуску и развитию цифровых продуктов.",
       metaRole: "Роль",
       metaTeam: "Команда",
       metaTimeline: "Срок",
@@ -508,6 +539,13 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         tags: ["#risk", "#monitoring", "#ops"],
       },
+      {
+        caseStudyId: "pulse",
+        title: "Pulse - Demo Product Insights",
+        desc: "Demo case of a product insights dashboard for delivery and analytics teams.",
+        img: "/project-2.svg",
+        tags: ["#demo", "#analytics", "#delivery"],
+      },
     ],
     socialLinks: [
       { label: "Telegram", href: "https://t.me/SokolovRoma" },
@@ -543,12 +581,6 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        artifactImages: [
-          "/exeed-artifacts/model-comparison.png",
-          "/exeed-artifacts/trade-in-calculator.png",
-          "/exeed-artifacts/vehicle-configurator.png",
-          "/exeed-artifacts/online-shop.png",
-        ],
         role: "Project Manager",
         team: "Importer team and dealer network",
         timeline: "Multiple releases",
@@ -612,6 +644,36 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         solution: "Created risk buckets, prioritization cues, and guided remediation workflows.",
         impact: "Faster mitigation of critical drift and clearer executive reporting.",
       },
+      {
+        id: "pulse",
+        title: "Pulse - Demo Product Insights",
+        subtitle: "Product insights dashboard for delivery teams",
+        summary:
+          "Demo case: a unified dashboard for product metrics and release signals to spot delivery bottlenecks faster.",
+        img: "/project-2.svg",
+        role: "Project Manager",
+        team: "PM, Analyst, 3 Engineers",
+        timeline: "6 weeks",
+        problem:
+          "Metrics were scattered across tools, making it hard to detect funnel drops and release slowdowns early.",
+        solution:
+          "Built a single metrics layer with deviation signals and a weekly review loop tied to concrete actions.",
+        impact:
+          "Faster issue detection and more consistent decision-making based on one trusted data view.",
+        starBlock: {
+          situation:
+            "Product and delivery metrics were scattered across multiple tools, so warning signals appeared too late.",
+          task:
+            "Create a unified review surface and reduce time from detecting deviation to aligned team action.",
+          actions: [
+            "Defined a single set of product and release metrics for weekly review.",
+            "Built a dashboard with prioritized deviation signals and quick drill-downs.",
+            "Introduced a working loop: signal -> hypothesis -> action -> effect validation.",
+          ],
+          result:
+            "Teams spot issues earlier and make decisions from one trusted data view.",
+        },
+      },
     ],
     ui: {
       navProjects: "Projects",
@@ -619,9 +681,9 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       outcomesTitle: "Selected outcomes",
       requestResume: "Request resume",
       resumeAria: "Request resume by email",
-      projectsOverline: "Case studies",
+      projectsOverline: "",
       projectsTitle: "Selected projects",
-      projectsLead: "Practical case studies on launching and scaling digital B2B products.",
+      projectsLead: "Practical case studies on launching and scaling digital products.",
       metaRole: "Role",
       metaTeam: "Team",
       metaTimeline: "Timeline",

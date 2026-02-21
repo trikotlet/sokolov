@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroLeft from "./components/HeroLeft";
-import HeroMedia from "./components/HeroMedia";
+import CvPage from "./components/CvPage";
 import ProjectsPage from "./components/ProjectsPage";
 import ProjectsSection from "./components/ProjectsSection";
 import { contentByLanguage, defaultLanguage, type Language } from "./data/portfolio";
@@ -10,6 +10,8 @@ import { stripBasePath, withBasePath } from "./utils/basePath";
 
 const SITE_URL = "https://sokolovroman.ru";
 const PROJECTS_PATH = "/projects";
+const CV_PATH = "/cv";
+type Theme = "dark" | "light";
 
 function normalizePathname(pathname: string): string {
   if (!pathname || pathname === "/") {
@@ -28,6 +30,18 @@ export default function App() {
   const [language, setLanguage] = useState<Language>(() => {
     const saved = window.localStorage.getItem("portfolio-language");
     return saved === "ru" || saved === "en" ? saved : defaultLanguage;
+  });
+  const [theme, setTheme] = useState<Theme>(() => {
+    const saved = window.localStorage.getItem("portfolio-theme");
+    if (saved === "dark" || saved === "light") {
+      return saved;
+    }
+
+    if (typeof window.matchMedia === "function") {
+      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    }
+
+    return "dark";
   });
 
   useEffect(() => {
@@ -53,13 +67,24 @@ export default function App() {
     document.documentElement.lang = language;
   }, [language]);
 
+  useEffect(() => {
+    window.localStorage.setItem("portfolio-theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   const isProjectsPage = pathname === PROJECTS_PATH;
+  const isCvPage = pathname === CV_PATH;
   const content = contentByLanguage[language];
 
   useEffect(() => {
     const onProjectsPage = pathname === PROJECTS_PATH;
-    const canonicalUrl = `${SITE_URL}/`;
-    const pageUrl = onProjectsPage ? `${SITE_URL}${PROJECTS_PATH}` : canonicalUrl;
+    const onCvPage = pathname === CV_PATH;
+    const canonicalUrl = onProjectsPage
+      ? `${SITE_URL}${PROJECTS_PATH}`
+      : onCvPage
+        ? `${SITE_URL}${CV_PATH}`
+        : `${SITE_URL}/`;
+    const pageUrl = canonicalUrl;
     const locale = language === "ru" ? "ru_RU" : "en_US";
     const robots = "noindex,nofollow,noarchive";
 
@@ -67,15 +92,23 @@ export default function App() {
       ? language === "ru"
         ? "Roman Sokolov - Проекты"
         : "Roman Sokolov - Projects"
-      : "Roman Sokolov - Portfolio";
+      : onCvPage
+        ? language === "ru"
+          ? "Roman Sokolov - Опыт"
+          : "Roman Sokolov - Experience"
+        : "Roman Sokolov - Portfolio";
 
     const description = onProjectsPage
       ? language === "ru"
         ? "Кейсы Романа Соколова: управление цифровыми B2B-проектами, запуск продуктов и измеримый бизнес-результат."
         : "Roman Sokolov case studies: digital B2B project management, product delivery, and measurable business impact."
-      : language === "ru"
-        ? "Портфолио Романа Соколова. Управление цифровыми B2B-проектами в кибербезопасности, аналитике и операционных продуктах."
-        : "Roman Sokolov portfolio. Project Manager delivering digital B2B products in cybersecurity, analytics, and operations.";
+      : onCvPage
+        ? language === "ru"
+          ? "Страница опыта Романа Соколова скоро будет опубликована."
+          : "Roman Sokolov experience page will be published soon."
+        : language === "ru"
+          ? "Портфолио Романа Соколова. Управление цифровыми B2B-проектами в кибербезопасности, аналитике и операционных продуктах."
+          : "Roman Sokolov portfolio. Project Manager delivering digital B2B products in cybersecurity, analytics, and operations.";
 
     document.title = title;
 
@@ -177,15 +210,23 @@ export default function App() {
     <>
       <div className="page">
         <Header
-          isProjectsPage={isProjectsPage}
           profile={content.profile}
           ui={content.ui}
           language={language}
           onToggleLanguage={() => setLanguage((current) => (current === "ru" ? "en" : "ru"))}
+          theme={theme}
+          onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
         />
 
         {isProjectsPage ? (
-          <ProjectsPage caseStudies={content.caseStudies} ui={content.ui} language={language} />
+          <ProjectsPage
+            caseStudies={content.caseStudies}
+            ui={content.ui}
+            language={language}
+            profile={content.profile}
+          />
+        ) : isCvPage ? (
+          <CvPage language={language} />
         ) : (
           <main className="layout">
             <div className="left-col" id="top">
@@ -199,8 +240,7 @@ export default function App() {
             </div>
 
             <div className="right-col">
-              <HeroMedia />
-              <ProjectsSection projects={content.projectCards} />
+              <ProjectsSection projects={content.projectCards} ui={content.ui} />
             </div>
           </main>
         )}
