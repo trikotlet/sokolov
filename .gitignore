@@ -3,3 +3,5 @@ dist
 *.tsbuildinfo
 .codex
 .DS_Store
+gpt.3pro.md
+BRIEF.md
