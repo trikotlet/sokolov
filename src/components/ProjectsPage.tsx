@@ -1,9 +1,12 @@
-import { useState } from "react";
+﻿import { useMemo, useState } from "react";
 import type { CaseStudy, Language, Profile, UiText } from "../data/portfolio";
 import { toAssetUrl } from "../utils/basePath";
 import { getProjectAnchor } from "../utils/projectAnchor";
 import { getResponsiveImageSources } from "../utils/responsiveImage";
+import ArrowIcon from "./ArrowIcon";
 import ViewportVideo from "./ViewportVideo";
+import Button from "./ui/button";
+import Dialog from "./ui/dialog";
 
 type ProjectsPageProps = {
   caseStudies: CaseStudy[];
@@ -12,11 +15,27 @@ type ProjectsPageProps = {
   profile: Profile;
 };
 
-const projectTechTags = ["React", "Vue", "Python", "Go", "GitLab", "Docker"];
-
 type StoryProject = CaseStudy & {
   starBlock: NonNullable<CaseStudy["starBlock"]>;
 };
+
+type Artifact = {
+  key: string;
+  kind: "video" | "image";
+  src: string;
+  poster?: string;
+  alt: string;
+  title: string;
+  description: string;
+};
+
+type SelectedArtifactState = {
+  projectTitle: string;
+  artifacts: Artifact[];
+  index: number;
+};
+
+const projectTechTags = ["React", "Vue", "Python", "Go", "GitLab", "Docker"];
 
 type StoryCanvasProps = {
   project: StoryProject;
@@ -28,13 +47,13 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
   const labels = isRu
     ? {
         starTitle: "STAR Story",
-        situation: "Ситуация",
-        task: "Задача",
-        action: "Действия",
-        result: "Результат",
-        roleTitle: "Роль и масштаб",
-        role: "Моя роль",
-        scope: "Масштаб",
+        situation: "\u0421\u0438\u0442\u0443\u0430\u0446\u0438\u044f",
+        task: "\u0417\u0430\u0434\u0430\u0447\u0430",
+        action: "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044f",
+        result: "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442",
+        roleTitle: "\u0420\u043e\u043b\u044c \u0438 \u043c\u0430\u0441\u0448\u0442\u0430\u0431",
+        role: "\u041c\u043e\u044f \u0440\u043e\u043b\u044c",
+        scope: "\u041c\u0430\u0441\u0448\u0442\u0430\u0431",
       }
     : {
         starTitle: "STAR Story",
@@ -61,21 +80,18 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
       <section className="project-oms-star-canvas" aria-label={labels.starTitle}>
         <article className="project-oms-star-card">
           <p className="project-oms-star-head">
-            <span className="project-oms-star-letter">S</span>
             <span className="meta-label">{labels.situation}</span>
           </p>
           <p>{project.starBlock.situation}</p>
         </article>
         <article className="project-oms-star-card">
           <p className="project-oms-star-head">
-            <span className="project-oms-star-letter">T</span>
             <span className="meta-label">{labels.task}</span>
           </p>
           <p>{project.starBlock.task}</p>
         </article>
         <article className="project-oms-star-card">
           <p className="project-oms-star-head">
-            <span className="project-oms-star-letter">A</span>
             <span className="meta-label">{labels.action}</span>
           </p>
           <ul className="project-result-list">
@@ -92,7 +108,6 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
         </article>
         <article className="project-oms-star-card">
           <p className="project-oms-star-head">
-            <span className="project-oms-star-letter">R</span>
             <span className="meta-label">{labels.result}</span>
           </p>
           <p>{project.starBlock.result}</p>
@@ -114,284 +129,478 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
 }
 
 export default function ProjectsPage({ caseStudies, ui, language, profile }: ProjectsPageProps) {
-  const [animatedArtifactKey, setAnimatedArtifactKey] = useState<string | null>(null);
+  const [selectedArtifact, setSelectedArtifact] = useState<SelectedArtifactState | null>(null);
   const isRu = language === "ru";
+  const labels = useMemo(
+    () =>
+      isRu
+        ? {
+            overview: "\u041e\u0431\u0437\u043e\u0440 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
+            expandedCards: "\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044b\u0435 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
+            artifacts: "\u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u044b",
+            teaserVideo: "\u0442\u0438\u0437\u0435\u0440-\u0432\u0438\u0434\u0435\u043e",
+            image: "\u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
+            openArtifact: "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442",
+            artifactGallery: "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u0430",
+            closeArtifact: "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u0430",
+            previous: "\u041d\u0430\u0437\u0430\u0434",
+            next: "\u0414\u0430\u043b\u0435\u0435",
+            item: "\u042d\u043b\u0435\u043c\u0435\u043d\u0442",
+            of: "\u0438\u0437",
+            starSummary: "\u041a\u0440\u0430\u0442\u043a\u043e\u0435 STAR-\u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u0435\u0439\u0441\u0430",
+            technologies: "\u0422\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438",
+            toTop: "\u041d\u0430\u0432\u0435\u0440\u0445",
+            role: "\u0420\u043e\u043b\u044c",
+            context: "\u041a\u043e\u043d\u0442\u0435\u043a\u0441\u0442",
+            goal: "\u0426\u0435\u043b\u044c",
+            situation: "\u0421\u0438\u0442\u0443\u0430\u0446\u0438\u044f",
+            task: "\u0417\u0430\u0434\u0430\u0447\u0430",
+            action: "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u044f",
+            result: "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442",
+            scale: "\u041c\u0430\u0441\u0448\u0442\u0430\u0431",
+            teams: "\u041a\u043e\u043c\u0430\u043d\u0434\u044b",
+            process: "\u041f\u0440\u043e\u0446\u0435\u0441\u0441\u044b",
+            tools: "\u0418\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b",
+          }
+        : {
+            overview: "Projects overview",
+            expandedCards: "Expanded project cards",
+            artifacts: "artifacts",
+            teaserVideo: "teaser video",
+            image: "image",
+            openArtifact: "Open artifact",
+            artifactGallery: "Artifact viewer",
+            closeArtifact: "Close artifact viewer",
+            previous: "Previous",
+            next: "Next",
+            item: "Item",
+            of: "of",
+            starSummary: "STAR case summary",
+            technologies: "Technologies",
+            toTop: "To top",
+            role: "Role",
+            context: "Context",
+            goal: "Goal",
+            situation: "Situation",
+            task: "Task",
+            action: "Action",
+            result: "Result",
+            scale: "Scale",
+            teams: "Teams",
+            process: "Process",
+            tools: "Tools",
+          },
+    [isRu]
+  );
 
-  const triggerArtifactMotion = (artifactKey: string) => {
-    setAnimatedArtifactKey(null);
-    window.requestAnimationFrame(() => {
-      setAnimatedArtifactKey(artifactKey);
-      window.setTimeout(() => {
-        setAnimatedArtifactKey((current) => (current === artifactKey ? null : current));
-      }, 700);
+  const openArtifactDialog = (projectTitle: string, artifacts: Artifact[], index: number) => {
+    setSelectedArtifact({ projectTitle, artifacts, index });
+  };
+
+  const closeArtifactDialog = () => setSelectedArtifact(null);
+
+  const showAdjacentArtifact = (direction: -1 | 1) => {
+    setSelectedArtifact((current) => {
+      if (!current) {
+        return current;
+      }
+
+      const nextIndex = (current.index + direction + current.artifacts.length) % current.artifacts.length;
+      return { ...current, index: nextIndex };
     });
   };
 
+  const currentArtifact = selectedArtifact ? selectedArtifact.artifacts[selectedArtifact.index] : null;
+
   return (
-    <main className="projects-page">
-      <section className="projects-hero card" aria-label="Projects overview">
-        {ui.projectsOverline ? <p className="overline">{ui.projectsOverline}</p> : null}
-        <h1>{ui.projectsTitle}</h1>
-        <p className="projects-lead">{ui.projectsLead}</p>
-      </section>
+    <>
+      <main className="projects-page">
+        <section className="projects-hero card" aria-label={labels.overview}>
+          {ui.projectsOverline ? <p className="overline">{ui.projectsOverline}</p> : null}
+          <h1>{ui.projectsTitle}</h1>
+          <p className="projects-lead">{ui.projectsLead}</p>
+        </section>
 
-      <section className="projects-expanded" aria-label="Expanded project cards">
-        {caseStudies.map((project) => {
-          const hasArtifactImages = Boolean(project.artifactImages?.length);
-          const fallbackImageSources = getResponsiveImageSources(project.img);
-          const hasStoryCanvas = Boolean(project.starBlock);
+        <section className="projects-expanded" aria-label={labels.expandedCards}>
+          {caseStudies.map((project) => {
+            const hasStoryCanvas = Boolean(project.starBlock);
+            const artifacts: Artifact[] = [];
+            const primaryArtifactImage = project.artifactImages?.[0];
 
-          return (
-            <article className="project-expanded card" id={getProjectAnchor(project.id)} key={project.id}>
-              <div className="project-expanded-artifacts artifact-cars" aria-label={`${project.title} artifacts`}>
-                {project.teaserVideo ? (
-                  <button
-                    type="button"
-                    className={`artifact-card artifact-card-main ${animatedArtifactKey === `${project.title}-video` ? "is-animating" : ""}`}
-                    onClick={() => triggerArtifactMotion(`${project.title}-video`)}
-                    aria-label={`Animate ${project.title} teaser video`}
-                  >
-                    <ViewportVideo
-                      src={project.teaserVideo}
-                      poster={project.teaserPoster}
-                      className="project-expanded-media"
-                      ariaLabel={`${project.title} teaser video`}
-                      rootMargin="360px 0px"
-                    />
-                  </button>
-                ) : null}
+            if (project.teaserVideo) {
+              artifacts.push({
+                key: `${project.id}-video`,
+                kind: "video",
+                src: project.teaserVideo,
+                poster: project.teaserPoster,
+                alt: `${project.title} ${labels.teaserVideo}`,
+                title: project.title,
+                description: labels.teaserVideo,
+              });
+            }
 
-                {hasArtifactImages ? (
-                  <div className="project-artifact-grid">
-                    {project.artifactImages?.map((artifactSrc, artifactIndex) => {
-                      const artifactSources = getResponsiveImageSources(artifactSrc);
+            project.artifactImages?.forEach((artifactSrc, artifactIndex) => {
+              artifacts.push({
+                key: `${project.id}-image-${artifactIndex + 1}`,
+                kind: "image",
+                src: artifactSrc,
+                alt: `${project.title} ${labels.image} ${artifactIndex + 1}`,
+                title: project.title,
+                description: `${labels.item} ${artifactIndex + 1}`,
+              });
+            });
 
-                      return (
-                        <button
-                          type="button"
-                          className={`artifact-card ${animatedArtifactKey === artifactSrc ? "is-animating" : ""}`}
-                          key={artifactSrc}
-                          onClick={() => triggerArtifactMotion(artifactSrc)}
-                          aria-label={`Animate ${project.title} artifact ${artifactIndex + 1}`}
-                        >
-                          {artifactSources ? (
-                            <picture>
-                              <source srcSet={artifactSources.avif} type="image/avif" />
-                              <source srcSet={artifactSources.webp} type="image/webp" />
-                              <img
-                                src={artifactSources.fallback}
-                                alt={`${project.title} artifact ${artifactIndex + 1}`}
-                                loading="lazy"
-                              />
-                            </picture>
-                          ) : (
-                            <img
-                              src={artifactSrc}
-                              alt={`${project.title} artifact ${artifactIndex + 1}`}
-                              loading="lazy"
-                            />
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                ) : null}
+            if (artifacts.length === 0) {
+              artifacts.push({
+                key: `${project.id}-fallback`,
+                kind: "image",
+                src: project.img,
+                alt: project.title,
+                title: project.title,
+                description: labels.image,
+              });
+            }
 
-                {!project.teaserVideo && !hasArtifactImages ? (
-                  <button
-                    type="button"
-                    className={`artifact-card artifact-card-main ${animatedArtifactKey === `${project.title}-fallback` ? "is-animating" : ""}`}
-                    onClick={() => triggerArtifactMotion(`${project.title}-fallback`)}
-                    aria-label={`Animate ${project.title} artifact`}
-                  >
-                    {fallbackImageSources ? (
-                      <picture>
-                        <source srcSet={fallbackImageSources.avif} type="image/avif" />
-                        <source srcSet={fallbackImageSources.webp} type="image/webp" />
-                        <img src={fallbackImageSources.fallback} alt={project.title} loading="lazy" />
-                      </picture>
-                    ) : (
-                      <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
-                    )}
-                  </button>
-                ) : null}
-              </div>
+            return (
+              <article className="project-expanded card" id={getProjectAnchor(project.id)} key={project.id}>
+                <div className="project-expanded-artifacts artifact-cars" aria-label={`${project.title} ${labels.artifacts}`}>
+                  {project.teaserVideo ? (
+                    <button
+                      type="button"
+                      className="artifact-card artifact-card-main"
+                      onClick={() => openArtifactDialog(project.title, artifacts, 0)}
+                      aria-label={`${labels.openArtifact}: ${project.title} ${labels.teaserVideo}`}
+                    >
+                      <ViewportVideo
+                        src={project.teaserVideo}
+                        poster={project.teaserPoster}
+                        className="project-expanded-media"
+                        ariaLabel={`${project.title} ${labels.teaserVideo}`}
+                        rootMargin="360px 0px"
+                      />
+                    </button>
+                  ) : primaryArtifactImage ? (
+                    <button
+                      type="button"
+                      className="artifact-card artifact-card-main"
+                      onClick={() => openArtifactDialog(project.title, artifacts, 0)}
+                      aria-label={`${labels.openArtifact}: ${project.title} ${labels.image} 1`}
+                    >
+                      {(() => {
+                        const primaryImageSources = getResponsiveImageSources(primaryArtifactImage);
 
-              <div className="project-expanded-content">
-                <h2>{project.title}</h2>
-                <p className="project-summary">{project.summary}</p>
+                        return primaryImageSources ? (
+                          <picture>
+                            <source srcSet={primaryImageSources.avif} type="image/avif" />
+                            <source srcSet={primaryImageSources.webp} type="image/webp" />
+                            <img src={primaryImageSources.fallback} alt={`${project.title} ${labels.image} 1`} loading="lazy" />
+                          </picture>
+                        ) : (
+                          <img src={toAssetUrl(primaryArtifactImage)} alt={`${project.title} ${labels.image} 1`} loading="lazy" />
+                        );
+                      })()}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="artifact-card artifact-card-main"
+                      onClick={() => openArtifactDialog(project.title, artifacts, 0)}
+                      aria-label={`${labels.openArtifact}: ${project.title}`}
+                    >
+                      {(() => {
+                        const fallbackImageSources = getResponsiveImageSources(project.img);
 
-                {hasStoryCanvas ? (
-                  <StoryCanvas project={project as StoryProject} isRu={isRu} ui={ui} />
-                ) : (
-                  <>
-                    {project.resultBlock && !project.starBlock ? (
-                      <div className="project-meta-grid project-meta-stack">
-                        <div>
-                          <span className="meta-label">{isRu ? "Роль" : "Role"}</span>
-                          <p>{project.resultBlock.roleText}</p>
-                        </div>
-                        <div>
-                          <span className="meta-label">{isRu ? "Контекст" : "Context"}</span>
-                          <p>{project.resultBlock.contextText}</p>
-                        </div>
-                        <div>
-                          <span className="meta-label">{isRu ? "Цель" : "Goal"}</span>
-                          <p>{project.resultBlock.goalText}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="project-meta-grid">
-                        <div>
-                          <span className="meta-label">{ui.metaRole}</span>
-                          <p>{project.role}</p>
-                        </div>
-                        <div>
-                          <span className="meta-label">{ui.metaTeam}</span>
-                          <p>{project.team}</p>
-                        </div>
-                        <div>
-                          <span className="meta-label">{ui.metaTimeline}</span>
-                          <p>{project.timeline}</p>
-                        </div>
-                      </div>
-                    )}
+                        return fallbackImageSources ? (
+                          <picture>
+                            <source srcSet={fallbackImageSources.avif} type="image/avif" />
+                            <source srcSet={fallbackImageSources.webp} type="image/webp" />
+                            <img src={fallbackImageSources.fallback} alt={project.title} loading="lazy" />
+                          </picture>
+                        ) : (
+                          <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
+                        );
+                      })()}
+                    </button>
+                  )}
+                </div>
 
-                    <div className="project-flow">
-                      {project.starBlock ? (
-                        <section className="project-star" aria-label="STAR case summary">
-                          <div className="project-star-item">
-                            <p className="meta-label">{isRu ? "Ситуация" : "Situation"}</p>
-                            <p>{project.starBlock.situation}</p>
+                <div className="project-expanded-content">
+                  <h2>{project.title}</h2>
+                  <p className="project-summary">{project.summary}</p>
+
+                  {hasStoryCanvas ? (
+                    <StoryCanvas project={project as StoryProject} isRu={isRu} ui={ui} />
+                  ) : (
+                    <>
+                      {project.resultBlock && !project.starBlock ? (
+                        <div className="project-meta-grid project-meta-stack">
+                          <div>
+                            <span className="meta-label">{labels.role}</span>
+                            <p>{project.resultBlock.roleText}</p>
                           </div>
-                          <div className="project-star-item">
-                            <p className="meta-label">{isRu ? "Задача" : "Task"}</p>
-                            <p>{project.starBlock.task}</p>
+                          <div>
+                            <span className="meta-label">{labels.context}</span>
+                            <p>{project.resultBlock.contextText}</p>
                           </div>
-                          <div className="project-star-item">
-                            <p className="meta-label">{isRu ? "Действия" : "Action"}</p>
-                            <ul className="project-result-list">
-                              {project.starBlock.actions.map((item) => (
-                                <li key={item}>{item}</li>
-                              ))}
-                            </ul>
+                          <div>
+                            <span className="meta-label">{labels.goal}</span>
+                            <p>{project.resultBlock.goalText}</p>
                           </div>
-                          <div className="project-star-item">
-                            <p className="meta-label">{isRu ? "Результат" : "Result"}</p>
-                            <p>{project.starBlock.result}</p>
-                            {project.starBlock.resultItems?.length ? (
-                              <ul className="project-result-list project-result-links">
-                                {project.starBlock.resultItems.map((item) => (
-                                  <li key={item.label}>
-                                    <a href={item.href} target="_blank" rel="noreferrer noopener">
-                                      {item.label}
-                                    </a>
-                                    {item.note ? ` (${item.note})` : ""}
-                                  </li>
+                        </div>
+                      ) : (
+                        <div className="project-meta-grid">
+                          <div>
+                            <span className="meta-label">{ui.metaRole}</span>
+                            <p>{project.role}</p>
+                          </div>
+                          <div>
+                            <span className="meta-label">{ui.metaTeam}</span>
+                            <p>{project.team}</p>
+                          </div>
+                          <div>
+                            <span className="meta-label">{ui.metaTimeline}</span>
+                            <p>{project.timeline}</p>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="project-flow">
+                        {project.starBlock ? (
+                          <section className="project-star" aria-label={labels.starSummary}>
+                            <div className="project-star-item">
+                              <p className="meta-label">{labels.situation}</p>
+                              <p>{project.starBlock.situation}</p>
+                            </div>
+                            <div className="project-star-item">
+                              <p className="meta-label">{labels.task}</p>
+                              <p>{project.starBlock.task}</p>
+                            </div>
+                            <div className="project-star-item">
+                              <p className="meta-label">{labels.action}</p>
+                              <ul className="project-result-list">
+                                {project.starBlock.actions.map((item) => (
+                                  <li key={item}>{item}</li>
                                 ))}
                               </ul>
-                            ) : null}
-                          </div>
-                        </section>
-                      ) : project.resultBlock ? (
-                        <section className="project-result" aria-label={project.resultBlock.title}>
-                          <p className="meta-label">{project.resultBlock.title}</p>
-                          {project.resultBlock.intro ? <p>{project.resultBlock.intro}</p> : null}
-                          <ul className="project-result-list">
-                            {project.resultBlock.items.map((item) => (
-                              <li key={item.label}>
-                                {item.href ? (
-                                  <a
-                                    href={item.href}
-                                    target="_blank"
-                                    rel="noreferrer noopener"
-                                    className={project.id === "exeed" ? "link-with-arrow" : undefined}
-                                  >
-                                    {item.label}
-                                  </a>
-                                ) : (
-                                  <span>{item.label}</span>
-                                )}
-                                {item.note ? ` (${item.note})` : ""}
-                              </li>
-                            ))}
-                          </ul>
-                          <p><span className="meta-label">{isRu ? "Масштаб" : "Scale"}</span> {project.resultBlock.scaleText}</p>
-                          <p><span className="meta-label">{isRu ? "Команды" : "Teams"}</span> {project.resultBlock.teamsText}</p>
-                          <p><span className="meta-label">{isRu ? "Процессы" : "Process"}</span> {project.resultBlock.processText}</p>
-                          <p><span className="meta-label">{isRu ? "Инструменты" : "Tools"}</span> {project.resultBlock.toolsText}</p>
-                          <div>
-                            <p className="meta-label">{project.resultBlock.challengesTitle}</p>
+                            </div>
+                            <div className="project-star-item">
+                              <p className="meta-label">{labels.result}</p>
+                              <p>{project.starBlock.result}</p>
+                              {project.starBlock.resultItems?.length ? (
+                                <ul className="project-result-list project-result-links">
+                                  {project.starBlock.resultItems.map((item) => (
+                                    <li key={item.label}>
+                                      <a href={item.href} target="_blank" rel="noreferrer noopener">
+                                        {item.label}
+                                      </a>
+                                      {item.note ? ` (${item.note})` : ""}
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </div>
+                          </section>
+                        ) : project.resultBlock ? (
+                          <section className="project-result" aria-label={project.resultBlock.title}>
+                            <p className="meta-label">{project.resultBlock.title}</p>
+                            {project.resultBlock.intro ? <p>{project.resultBlock.intro}</p> : null}
                             <ul className="project-result-list">
-                              {project.resultBlock.challengesItems.map((item) => (
-                                <li key={item}>{item}</li>
+                              {project.resultBlock.items.map((item) => (
+                                <li key={item.label}>
+                                  {item.href ? (
+                                    <a
+                                      href={item.href}
+                                      target="_blank"
+                                      rel="noreferrer noopener"
+                                      className={project.id === "exeed" ? "link-with-arrow" : undefined}
+                                    >
+                                      {item.label}
+                                    </a>
+                                  ) : (
+                                    <span>{item.label}</span>
+                                  )}
+                                  {item.note ? ` (${item.note})` : ""}
+                                </li>
                               ))}
                             </ul>
-                          </div>
-                        </section>
+                            <p>
+                              <span className="meta-label">{labels.scale}</span> {project.resultBlock.scaleText}
+                            </p>
+                            <p>
+                              <span className="meta-label">{labels.teams}</span> {project.resultBlock.teamsText}
+                            </p>
+                            <p>
+                              <span className="meta-label">{labels.process}</span> {project.resultBlock.processText}
+                            </p>
+                            <p>
+                              <span className="meta-label">{labels.tools}</span> {project.resultBlock.toolsText}
+                            </p>
+                            <div>
+                              <p className="meta-label">{project.resultBlock.challengesTitle}</p>
+                              <ul className="project-result-list">
+                                {project.resultBlock.challengesItems.map((item) => (
+                                  <li key={item}>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </section>
+                        ) : (
+                          <>
+                            <p>
+                              <span className="meta-label">{ui.metaProblem}:</span> {project.problem}
+                            </p>
+                            <p>
+                              <span className="meta-label">{ui.metaSolution}:</span> {project.solution}
+                            </p>
+                            <p>
+                              <span className="meta-label">{ui.metaImpact}:</span> {project.impact}
+                            </p>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+
+                  <section className="project-tech-cloud" aria-label={labels.technologies}>
+                    {projectTechTags.map((tag) => (
+                      <span className="project-tag" key={`${project.title}-${tag}`}>
+                        {tag}
+                      </span>
+                    ))}
+                  </section>
+                </div>
+              </article>
+            );
+          })}
+        </section>
+
+        <section className="projects-actions">
+          <button
+            type="button"
+            className="projects-to-top card"
+            onClick={() => {
+              const prefersReducedMotion =
+                typeof window.matchMedia === "function" &&
+                window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+              window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+            }}
+          >
+            <span>{labels.toTop}</span>
+            <ArrowIcon direction="up" />
+          </button>
+
+          <a
+            className="projects-to-top projects-to-call card"
+            href={profile.callLink}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span>{profile.callToAction}</span>
+            <ArrowIcon direction="up-right" />
+          </a>
+        </section>
+      </main>
+
+      <Dialog
+        open={Boolean(currentArtifact)}
+        onOpenChange={(open) => {
+          if (!open) {
+            closeArtifactDialog();
+          }
+        }}
+        title={currentArtifact?.title || labels.artifactGallery}
+        description={
+          currentArtifact && selectedArtifact
+            ? `${currentArtifact.description} - ${labels.item} ${selectedArtifact.index + 1} ${labels.of} ${selectedArtifact.artifacts.length}`
+            : undefined
+        }
+        closeLabel={labels.closeArtifact}
+        footer={
+          selectedArtifact && selectedArtifact.artifacts.length > 1 ? (
+            <>
+              <Button
+                as="button"
+                type="button"
+                variant="outline"
+                size="sm"
+                className="artifact-dialog__nav-button"
+                onClick={() => showAdjacentArtifact(-1)}
+              >
+                {labels.previous}
+              </Button>
+              <Button
+                as="button"
+                type="button"
+                variant="outline"
+                size="sm"
+                className="artifact-dialog__nav-button"
+                onClick={() => showAdjacentArtifact(1)}
+              >
+                {labels.next}
+              </Button>
+            </>
+          ) : undefined
+        }
+      >
+        {currentArtifact ? (
+          <div className="artifact-dialog__content">
+            <div className="artifact-dialog__media-shell">
+              {currentArtifact.kind === "video" ? (
+                <video
+                  className="artifact-dialog__media"
+                  src={toAssetUrl(currentArtifact.src)}
+                  poster={currentArtifact.poster ? toAssetUrl(currentArtifact.poster) : undefined}
+                  controls
+                  autoPlay
+                  muted
+                  playsInline
+                />
+              ) : (() => {
+                  const imageSources = getResponsiveImageSources(currentArtifact.src);
+
+                  return imageSources ? (
+                    <picture>
+                      <source srcSet={imageSources.avif} type="image/avif" />
+                      <source srcSet={imageSources.webp} type="image/webp" />
+                      <img className="artifact-dialog__media" src={imageSources.fallback} alt={currentArtifact.alt} />
+                    </picture>
+                  ) : (
+                    <img className="artifact-dialog__media" src={toAssetUrl(currentArtifact.src)} alt={currentArtifact.alt} />
+                  );
+                })()}
+            </div>
+            {selectedArtifact && selectedArtifact.artifacts.length > 1 ? (
+              <div className="artifact-dialog__thumbs" aria-label={labels.artifactGallery}>
+                {selectedArtifact.artifacts.map((artifact, index) => {
+                  const isActive = index === selectedArtifact.index;
+
+                  return (
+                    <button
+                      key={artifact.key}
+                      type="button"
+                      className={`artifact-dialog__thumb${isActive ? " is-active" : ""}`}
+                      onClick={() => setSelectedArtifact((current) => (current ? { ...current, index } : current))}
+                      aria-label={`${labels.openArtifact}: ${artifact.title} ${index + 1}`}
+                    >
+                      {artifact.kind === "video" ? (
+                        artifact.poster ? (
+                          <img src={toAssetUrl(artifact.poster)} alt={artifact.alt} />
+                        ) : (
+                          <span className="artifact-dialog__thumb-fallback">Video</span>
+                        )
                       ) : (
-                        <>
-                          <p>
-                            <span className="meta-label">{ui.metaProblem}:</span> {project.problem}
-                          </p>
-                          <p>
-                            <span className="meta-label">{ui.metaSolution}:</span> {project.solution}
-                          </p>
-                          <p>
-                            <span className="meta-label">{ui.metaImpact}:</span> {project.impact}
-                          </p>
-                        </>
+                        <img src={toAssetUrl(artifact.src)} alt={artifact.alt} />
                       )}
-                    </div>
-                  </>
-                )}
-
-                <section className="project-tech-cloud" aria-label="Technologies">
-                  {projectTechTags.map((tag) => (
-                    <span className="project-tag" key={`${project.title}-${tag}`}>
-                      {tag}
-                    </span>
-                  ))}
-                </section>
+                    </button>
+                  );
+                })}
               </div>
-            </article>
-          );
-        })}
-      </section>
-
-      <section className="projects-actions">
-        <button
-          type="button"
-          className="projects-to-top card"
-          onClick={() => {
-            const prefersReducedMotion =
-              typeof window.matchMedia === "function" &&
-              window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-          }}
-        >
-          <span>{isRu ? "Наверх" : "To top"}</span>
-          <svg className="arrow-icon" viewBox="0 0 32 32" aria-hidden="true">
-            <path
-              d="M 14.6 10.8 L 0 10.8 L 0 8.4 L 14.6 8.4 L 7.9 1.7 L 9.6 0 L 19.2 9.6 L 9.6 19.2 L 7.9 17.5 Z"
-              transform="translate(6.4 6.4) rotate(-90 9.5 9.5)"
-              fill="currentColor"
-            />
-          </svg>
-        </button>
-
-        <a className="projects-to-top projects-to-call card" href={profile.callLink} target="_blank" rel="noreferrer noopener">
-          <span>{profile.callToAction}</span>
-          <svg className="arrow-icon" viewBox="0 0 32 32" aria-hidden="true">
-            <path
-              d="M 14.6 10.8 L 0 10.8 L 0 8.4 L 14.6 8.4 L 7.9 1.7 L 9.6 0 L 19.2 9.6 L 9.6 19.2 L 7.9 17.5 Z"
-              transform="translate(6.4 6.4) rotate(-45 9.5 9.5)"
-              fill="currentColor"
-            />
-          </svg>
-        </a>
-      </section>
-    </main>
+            ) : null}
+          </div>
+        ) : null}
+      </Dialog>
+    </>
   );
 }
+

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroLeft from "./components/HeroLeft";
@@ -231,11 +231,12 @@ export default function App() {
                 outcomes={content.outcomes}
                 socialLinks={content.socialLinks}
                 ui={content.ui}
+                language={language}
               />
             </div>
 
             <div className="right-col">
-              <ProjectsSection projects={content.projectCards} ui={content.ui} />
+              <ProjectsSection projects={content.projectCards} ui={content.ui} language={language} />
             </div>
           </main>
         )}

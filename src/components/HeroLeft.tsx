@@ -1,4 +1,6 @@
-import type { ExperienceItem, Outcome, Profile, SocialLink, UiText } from "../data/portfolio";
+import type { ExperienceItem, Language, Outcome, Profile, SocialLink, UiText } from "../data/portfolio";
+import ArrowIcon from "./ArrowIcon";
+import Button from "./ui/button";
 
 type HeroLeftProps = {
   profile: Profile;
@@ -6,15 +8,29 @@ type HeroLeftProps = {
   outcomes: Outcome[];
   socialLinks: SocialLink[];
   ui: UiText;
+  language: Language;
 };
 
-export default function HeroLeft({ profile, experience, outcomes, socialLinks, ui }: HeroLeftProps) {
+export default function HeroLeft({ profile, experience, outcomes, socialLinks, ui, language }: HeroLeftProps) {
+  const labels =
+    language === "ru"
+      ? {
+          intro: "\u0418\u043d\u0442\u0440\u043e",
+          socialLinks: "\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438",
+          experience: "\u041e\u043f\u044b\u0442",
+        }
+      : {
+          intro: "Intro",
+          socialLinks: "Social links",
+          experience: "Experience",
+        };
+
   return (
-    <section className="hero-left card" aria-label="Intro">
+    <section className="hero-left card" aria-label={labels.intro}>
       <h1>{profile.headline}</h1>
       {profile.descriptor ? <p className="hero-about">{profile.descriptor}</p> : null}
 
-      <div className="meta" id="contact" aria-label="Social links" tabIndex={-1}>
+      <div className="meta" id="contact" aria-label={labels.socialLinks} tabIndex={-1}>
         {socialLinks.map((social, index) => (
           <span key={social.label}>
             {index > 0 && <span className="dot">|</span>} {" "}
@@ -29,18 +45,12 @@ export default function HeroLeft({ profile, experience, outcomes, socialLinks, u
         ))}
       </div>
 
-      <a className="cta" href={profile.callLink} target="_blank" rel="noreferrer noopener">
+      <Button as="a" className="cta" variant="outline" size="lg" href={profile.callLink} target="_blank" rel="noreferrer noopener">
         <span>{profile.callToAction}</span>
-        <svg className="arrow-icon" viewBox="0 0 32 32" aria-hidden="true">
-          <path
-            d="M 14.6 10.8 L 0 10.8 L 0 8.4 L 14.6 8.4 L 7.9 1.7 L 9.6 0 L 19.2 9.6 L 9.6 19.2 L 7.9 17.5 Z"
-            transform="translate(6.4 6.4) rotate(-45 9.5 9.5)"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
+        <ArrowIcon direction="up-right" />
+      </Button>
 
-      <section className="experience" id="experience" aria-label="Experience">
+      <section className="experience" id="experience" aria-label={labels.experience}>
         {experience.map((item) => (
           <div className="exp-row" key={`${item.company}-${item.years}`}>
             <span className="exp-years">{item.years}</span>
@@ -63,20 +73,17 @@ export default function HeroLeft({ profile, experience, outcomes, socialLinks, u
         ))}
       </section>
 
-      <a
+      <Button
+        as="a"
         className="cta"
+        variant="outline"
+        size="lg"
         href={`mailto:${profile.email}?subject=${encodeURIComponent(ui.resumeSubject)}`}
         aria-label={ui.resumeAria}
       >
         <span>{ui.requestResume}</span>
-        <svg className="arrow-icon" viewBox="0 0 32 32" aria-hidden="true">
-          <path
-            d="M 14.6 10.8 L 0 10.8 L 0 8.4 L 14.6 8.4 L 7.9 1.7 L 9.6 0 L 19.2 9.6 L 9.6 19.2 L 7.9 17.5 Z"
-            transform="translate(6.4 6.4)"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
+        <ArrowIcon />
+      </Button>
     </section>
   );
 }

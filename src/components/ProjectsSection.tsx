@@ -1,17 +1,33 @@
 import { useState, type MouseEvent } from "react";
-import type { ProjectCard, UiText } from "../data/portfolio";
+import type { Language, ProjectCard, UiText } from "../data/portfolio";
 import { navigateTo, toAssetUrl, withBasePath } from "../utils/basePath";
 import { getProjectAnchor } from "../utils/projectAnchor";
 import { getResponsiveImageSources } from "../utils/responsiveImage";
 import ViewportVideo from "./ViewportVideo";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 type ProjectsSectionProps = {
   projects: ProjectCard[];
   ui: UiText;
+  language: Language;
 };
 
-export default function ProjectsSection({ projects, ui }: ProjectsSectionProps) {
+export default function ProjectsSection({ projects, ui, language }: ProjectsSectionProps) {
   const [hoveredCaseId, setHoveredCaseId] = useState<string | null>(null);
+  const labels =
+    language === "ru"
+      ? {
+          section: "\u041f\u0440\u043e\u0435\u043a\u0442\u044b",
+          openProjectsPage: "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
+          projectTags: "\u0422\u0435\u0433\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u0430",
+          teaserVideo: "\u0442\u0438\u0437\u0435\u0440-\u0432\u0438\u0434\u0435\u043e",
+        }
+      : {
+          section: "Projects",
+          openProjectsPage: "Open projects page",
+          projectTags: "Project tags",
+          teaserVideo: "teaser video",
+        };
 
   const onCaseLinkClick = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
@@ -23,23 +39,27 @@ export default function ProjectsSection({ projects, ui }: ProjectsSectionProps) 
   };
 
   return (
-    <section className="projects" id="projects" aria-label="Projects">
-      <a
-        className="projects-hero projects-hero-link-card card project-card-link"
+    <section className="projects" id="projects" aria-label={labels.section}>
+      <Card
+        as="a"
+        className="projects-hero projects-hero-link-card project-card-link"
         href={withBasePath("/projects")}
         onClick={(event) => onCaseLinkClick(event, "/projects")}
-        aria-label="Open projects page"
+        aria-label={labels.openProjectsPage}
       >
-        <h2 className="projects-hero-title">{ui.projectsTitle}</h2>
-        <p className="projects-lead">{ui.projectsLead}</p>
-      </a>
+        <CardHeader className="projects-hero-header">
+          <CardTitle className="projects-hero-title">{ui.projectsTitle}</CardTitle>
+          <CardDescription className="projects-lead">{ui.projectsLead}</CardDescription>
+        </CardHeader>
+      </Card>
       {projects.map((project) => {
         const imageSources = getResponsiveImageSources(project.img);
         const projectHref = `/projects#${getProjectAnchor(project.caseStudyId)}`;
 
         return (
-          <a
-            className="project-card card project-card-link"
+          <Card
+            as="a"
+            className="project-card project-card-link"
             href={withBasePath(projectHref)}
             onClick={(event) => onCaseLinkClick(event, projectHref)}
             onMouseEnter={() => setHoveredCaseId(project.caseStudyId)}
@@ -51,7 +71,7 @@ export default function ProjectsSection({ projects, ui }: ProjectsSectionProps) 
             <div>
               <h2>{project.title}</h2>
               <p>{project.desc}</p>
-              <div className="project-tags" aria-label="Project tags">
+              <div className="project-tags" aria-label={labels.projectTags}>
                 {project.tags.map((tag) => (
                   <span className="project-tag" key={tag}>
                     {tag}
@@ -64,7 +84,7 @@ export default function ProjectsSection({ projects, ui }: ProjectsSectionProps) 
                 src={project.teaserVideo}
                 poster={project.teaserPoster}
                 className="project-card-media"
-                ariaLabel={`${project.title} teaser video`}
+                ariaLabel={`${project.title} ${labels.teaserVideo}`}
                 rootMargin="320px 0px"
                 playOnHover
                 isHovered={hoveredCaseId === project.caseStudyId}
@@ -78,7 +98,7 @@ export default function ProjectsSection({ projects, ui }: ProjectsSectionProps) 
             ) : (
               <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
             )}
-          </a>
+          </Card>
         );
       })}
     </section>

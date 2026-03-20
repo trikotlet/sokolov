@@ -1,4 +1,4 @@
-import type { Language } from "../data/portfolio";
+﻿import type { Language } from "../data/portfolio";
 import TextShimmer from "./TextShimmer";
 
 type CvPageProps = {

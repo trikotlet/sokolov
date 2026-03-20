@@ -1,4 +1,4 @@
-import type { Profile, UiText } from "../data/portfolio";
+﻿import type { Profile, UiText } from "../data/portfolio";
 
 type FooterProps = {
   profile: Profile;

@@ -1,4 +1,4 @@
-export type Language = "ru" | "en";
+﻿export type Language = "ru" | "en";
 
 export type ExperienceItem = {
   years: string;
@@ -258,6 +258,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
+        artifactImages: [
+          "/exeed-artifacts/trade-in-calculator.png",
+          "/exeed-artifacts/model-comparison.png",
+        ],
         role: "Руководитель проекта",
         team: "Команда импортера и дилерская сеть",
         timeline: "Несколько релизов",
@@ -581,6 +585,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
+        artifactImages: [
+          "/exeed-artifacts/trade-in-calculator.png",
+          "/exeed-artifacts/model-comparison.png",
+        ],
         role: "Project Manager",
         team: "Importer team and dealer network",
         timeline: "Multiple releases",
