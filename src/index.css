@@ -1671,7 +1671,7 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
   }
 
   .topbar {
-    padding: 10px 12px;
+    padding: 8px 9px;
   }
 
   .topbar-main {
@@ -1718,7 +1718,142 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
   }
 
   .page {
-    padding: 20px 16px 40px;
+    width: 100%;
+    padding: 12px 4px 24px;
+  }
+
+  .projects-hero {
+    padding: 18px 14px;
+  }
+
+  .project-expanded {
+    padding: 14px 12px;
+  }
+
+  .hero-left {
+    padding: 20px 14px 16px;
+    gap: 14px;
+  }
+
+  .meta {
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .meta > span {
+    gap: 6px;
+  }
+
+  .cta {
+    min-height: 46px;
+  }
+
+  .experience {
+    padding-top: 8px;
+  }
+
+  .exp-row {
+    gap: 6px;
+    padding: 10px 0;
+  }
+
+  .exp-role {
+    font-size: 18px;
+    line-height: 1.28;
+  }
+
+  .outcomes {
+    padding-top: 12px;
+    gap: 8px;
+  }
+
+  .outcome-row {
+    gap: 8px;
+  }
+
+  .outcome-metric {
+    font-size: 16px;
+    min-width: 48px;
+  }
+
+  .outcome-details {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .projects-expanded {
+    gap: 14px;
+  }
+
+  .project-expanded-content {
+    gap: 12px;
+  }
+
+  .project-expanded-content h2 {
+    font-size: 26px;
+    line-height: 1.05;
+  }
+
+  .project-summary,
+  .projects-lead {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .project-meta-grid {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .meta-label {
+    margin-bottom: 5px;
+  }
+
+  .project-meta-grid p,
+  .project-flow,
+  .project-result,
+  .project-result-list {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .project-flow,
+  .project-flow-oms {
+    gap: 10px;
+  }
+
+  .project-oms-star-canvas,
+  .project-star,
+  .project-oms-role {
+    gap: 8px;
+  }
+
+  .project-oms-star-card,
+  .project-oms-role-card,
+  .project-star-item,
+  .project-result {
+    padding: 12px;
+  }
+
+  .project-oms-star-card p,
+  .project-oms-star-card .project-result-list,
+  .project-oms-star-card .project-result-list li {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .project-oms-star-note {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .project-result-list {
+    gap: 6px;
+  }
+
+  .project-tech-cloud {
+    gap: 6px;
   }
 
   .project-star-item .meta-label {
@@ -1727,7 +1862,7 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
 
   .project-star-item p:not(.meta-label),
   .project-star .project-result-list {
-    font-size: 17px;
+    font-size: 15px;
   }
 
   .project-oms-star-card,
@@ -1736,13 +1871,13 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
   }
 
   .ui-overlay {
-    padding: 12px;
+    padding: 4px;
     align-items: flex-end;
   }
 
   .ui-dialog {
     width: 100%;
-    max-height: min(100vh - 24px, 100%);
+    max-height: min(100vh - 8px, 100%);
     border-radius: 18px 18px 0 0;
   }
 
@@ -1760,6 +1895,89 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
     font-size: 26px;
   }
 
+  .page {
+    padding: 10px 2px 20px;
+  }
+
+  .projects-hero {
+    padding: 16px 12px;
+  }
+
+  .project-expanded {
+    padding: 12px 10px;
+  }
+
+  .hero-left {
+    padding: 16px 12px 14px;
+    gap: 12px;
+  }
+
+  .meta {
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .experience {
+    padding-top: 6px;
+  }
+
+  .exp-row {
+    padding: 8px 0;
+  }
+
+  .exp-role {
+    font-size: 16px;
+    line-height: 1.24;
+  }
+
+  .outcomes {
+    padding-top: 10px;
+    gap: 6px;
+  }
+
+  .outcome-metric {
+    min-width: 44px;
+    font-size: 15px;
+  }
+
+  .outcome-details {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .projects-expanded {
+    gap: 12px;
+  }
+
+  .project-expanded-content {
+    gap: 10px;
+  }
+
+  .project-expanded-content h2 {
+    font-size: 22px;
+  }
+
+  .project-summary,
+  .projects-lead,
+  .project-meta-grid p,
+  .project-flow,
+  .project-result,
+  .project-result-list {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .project-meta-grid {
+    padding: 10px;
+  }
+
+  .project-oms-star-card,
+  .project-oms-role-card,
+  .project-star-item,
+  .project-result {
+    padding: 10px;
+  }
+
   .exp-row {
     flex-direction: column;
     gap: 4px;
@@ -1775,7 +1993,7 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
 
   .project-star-item p:not(.meta-label),
   .project-star .project-result-list {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .project-oms-star-canvas {
