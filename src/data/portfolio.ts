@@ -1,4 +1,4 @@
-﻿export type Language = "ru" | "en";
+export type Language = "ru" | "en";
 
 export type ExperienceItem = {
   years: string;
@@ -139,7 +139,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         caseStudyId: "evraz-oms",
         title: "Система управления заказами (OMS)",
-        desc: "Автоматизировали исполнение заказов и разгрузили 1С ERP.",
+        desc: "OMS — это система управления заказами, которая ведёт заказ от оформления до исполнения и снимает с менеджеров рутинные операции. В этом проекте мы перевели исполнение из ручного контура в систему и снизили зависимость процесса от 1С ERP.",
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
@@ -192,9 +192,9 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         id: "evraz-oms",
         title: "Система управления заказами (OMS)",
-        subtitle: "Автоматизировали исполнение заказов и разгрузили 1С ERP",
+        subtitle: "Перевели OMS из наблюдающей модели в реально исполняющую",
         summary:
-          "OMS уже работал, но операционный контур всё ещё держался на людях и логике в 1С. Мы перевели исполнение в систему и снизили нагрузку на 1С ERP.",
+          "OMS — это система управления заказами, которая ведёт заказ от оформления до исполнения и снимает с менеджеров рутинные операции. В этом проекте мы перевели исполнение из ручного контура в систему и снизили зависимость процесса от 1С ERP.",
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
@@ -202,50 +202,51 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         team: "Бизнес-заказчики, ИТ-команды, подрядчики",
         timeline: "2024 -> настоящее время",
         problem:
-          "Автоматизация оставалась частичной: ключевые этапы зависели от ручных действий, а 1С ERP получал лишнюю операционную нагрузку.",
+          "Значимая часть исполнения заказов оставалась в ручном контуре и логике 1С, из-за чего скорость сделки зависела от количества ручных действий, качества статусной модели и согласованности между командами.",
         solution:
-          "Зафиксировали критерии автоисполнения, приоритизировали сценарии, стабилизировали релизный контур и усилили эксплуатацию (мониторинг, алерты, инциденты).",
+          "Зафиксировали критерии автоисполнения и источники истины по статусам, разложили поток заказов на сценарии, расширяли исполнительную модель OMS и параллельно усиливали релизный и эксплуатационный контур.",
         impact:
-          "12.01.2025 вышли в опытную эксплуатацию и подтвердили эффект на реальных объёмах: меньше ручных касаний, выше доля автоисполнения OMS и ниже зависимость от 1С.",
+          "OMS начал обрабатывать практически весь создаваемый поток заказов, а подавляющая часть сценариев была хотя бы частично автоматизирована. Система стала рабочим исполнительным контуром, а не надстройкой над 1С.",
         starBlock: {
           situation:
-            "OMS уже был внедрён, но значимая часть исполнения заказов оставалась в ручном контуре и логике 1С.",
+            "OMS уже был внедрён, но значимая часть исполнения заказов всё ещё жила в ручном контуре и логике 1С. Из-за этого скорость сделки зависела не только от системы, но и от количества ручных действий, качества статусной модели и согласованности между продажами, логистикой и операционными командами. Проекту нужен был переход от наблюдающей модели к реально исполняющей.",
           task:
-            "Увеличить долю автоисполнения, снизить ручные касания и зависимость операционного контура от 1С.",
+            "Моя задача была не просто доделать OMS, а увеличить долю заказов, которые система способна доводить до результата без постоянного участия менеджера. Параллельно нужно было снизить нагрузку на 1С, сократить ручные касания и ускорить цикл исполнения заказа без поломки действующего бизнес-процесса.",
           actions: [
-            "Зафиксировали критерии успеха, источники статусов и набор метрик автоисполнения.",
-            "Разложили поток заказов на сценарии и приоритизировали их по влиянию и зависимостям.",
-            "Стабилизировали delivery и эксплуатацию: релизы, мониторинг, алерты, разбор инцидентов.",
+            "Сначала зафиксировали критерии успеха: что именно считаем автоисполнением, какие статусы являются источником истины и по каким метрикам оцениваем эффект.",
+            "Затем разложили поток заказов на сценарии, приоритизировали их по влиянию на бизнес и последовательно расширяли исполнительную модель OMS.",
+            "Параллельно усилили релизный и эксплуатационный контур: мониторинг, алерты, работу со статусной моделью и стабилизировали интеграционный контур под рост нагрузки.",
           ],
           result:
-            "12.01.2025 вышли в опытную эксплуатацию: подтвердили снижение ручных касаний и рост доли автоисполнения OMS.",
+            "В итоге в обработку OMS начал попадать практически весь создаваемый поток заказов, а подавляющая часть сценариев была хотя бы частично автоматизирована. Доля операций без участия менеджера вышла примерно на уровень пятой части процесса, а производительность на менеджера выросла на этапе оформления и заметно улучшилась на этапе отгрузки.",
         },
         resultBlock: {
           title: "Что сделали",
           intro:
-            "Сфокусировались на измеримом операционном эффекте и предсказуемой работе в проде.",
+            "Сфокусировались на бизнес-эффекте, автоисполнении и устойчивой эксплуатации под рост нагрузки.",
           roleText:
-            "Отвечал за цели и критерии успеха, roadmap, синхронизацию бизнеса и IT, релизы и риски интеграций, эксплуатационную готовность.",
+            "Я отвечал за то, чтобы проект давал результат в бизнесе: цели и KPI, roadmap по сценариям, синхронизацию бизнеса и ИТ, управление приоритетами, статусами, релизами и интеграционными рисками.",
           contextText:
-            "OMS был внедрён, но значимая часть потока заказов оставалась в ручном контуре и логике 1С. Это замедляло цикл сделки и повышало стоимость процесса при росте объёма.",
+            "OMS уже был внедрён, но значимая часть исполнения заказов всё ещё жила в ручном контуре и логике 1С. Из-за этого система не была полноценным исполнительным контуром и слишком сильно зависела от ручных действий и 1С.",
           goalText:
-            "Увеличить долю автоисполнения OMS, сократить ручные касания и зависимость от 1С, выйти в опытную эксплуатацию 12.01.2025.",
+            "Увеличить долю автоисполнения, сократить ручные касания, снизить нагрузку на 1С и ускорить цикл исполнения без поломки действующего бизнес-процесса.",
           items: [
-            { label: "Определили успех: что считаем автоисполнением, какие статусы берём из системы и какими метриками меряем результат." },
-            { label: "Разложили поток заказов на сценарии: типы, условия, исключения и зависимости; проставили приоритеты «сейчас/позже/зависит от вендора»." },
-            { label: "Стабилизировали delivery: релизный график, контроль интеграционных рисков, предсказуемые изменения в проде." },
-            { label: "Усилили эксплуатацию: мониторинг, алерты, наблюдаемость и регулярный разбор инцидентов." },
-            { label: "Зафиксировали границы этапа: сценарий «1 заказ -> несколько машин» вынесли в следующую волну как зависимость от релиза вендора." },
+            { label: "Зафиксировали критерии успеха: что считаем автоисполнением, какие статусы являются источником истины и какими метриками меряем эффект." },
+            { label: "Разложили поток заказов на сценарии, приоритизировали их по влиянию на бизнес и последовательно расширяли исполнительную модель OMS." },
+            { label: "Усилили релизный контур: управление изменениями, контроль интеграционных рисков и предсказуемый вывод изменений в прод." },
+            { label: "Усилили эксплуатацию: мониторинг, алерты, наблюдаемость и работу со статусной моделью." },
+            { label: "Стабилизировали интеграционный контур под рост нагрузки, чтобы ошибка в одном звене не ломала операционный поток целиком." },
           ],
-          scaleText: "Запуск в опытную эксплуатацию: 12.01.2025.",
-          teamsText: "Бизнес, операционный контур, команды OMS, 1С ERP и интеграций.",
-          processText: "Итерационная приоритизация сценариев + релизный контур с управлением рисками.",
-          toolsText: "OMS, 1С ERP, интеграционные сервисы, мониторинг и алертинг.",
+          scaleText:
+            "Ключевой операционный слой: OMS, 1С ERP, Bitrix24, логистические и уведомительные сценарии, статусная модель, мониторинг и процессный контур. Работа шла итерационно, несколькими волнами, в интеграционном и микросервисном ландшафте.",
+          teamsText: "Бизнес, продажи, логистика, операционные команды, OMS, 1С ERP, Bitrix24 и интеграционные сервисы.",
+          processText: "Итерационная работа волнами: расширение типов заказов, усложнение исполнительных сценариев и постоянная доработка релизного контура.",
+          toolsText: "OMS, 1С ERP, Bitrix24, логистические и уведомительные сценарии, мониторинг, алертинг и статусная модель.",
           challengesTitle: "Ключевые ограничения",
           challengesItems: [
-            "Статусы и исполнение заказов зависели от дисциплины людей.",
-            "1С ERP получал лишнюю операционную нагрузку.",
-            "Релизы и инциденты могли превращаться в непредсказуемые сюрпризы.",
+            "Скорость сделки зависела не только от системы, но и от количества ручных действий.",
+            "Качество исполнения упиралось в статусную модель и согласованность между командами.",
+            "Ошибка в одном интеграционном звене быстро становилась сюрпризом для всего контура.",
           ],
         },
       },
@@ -506,47 +507,47 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
     projectCards: [
       {
         caseStudyId: "evraz-oms",
-        title: "EVRAZ",
-        desc: "Ensuring operation and development of production, sales, and corporate IT infrastructure management systems.",
+        title: "Order Management System (OMS)",
+        desc: "OMS takes an order from creation through fulfillment and removes routine work from managers. In this project, we moved execution out of a manual workflow and into the system, reducing the dependency on 1C ERP.",
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
-        tags: ["1С ERP", "MES", "Camunda", "Kafka"],
+        tags: ["#EVRAZ", "1С ERP", "MES", "Camunda", "Kafka"],
       },
       {
         caseStudyId: "exeed",
         title: "EXEED",
-        desc: "Delivered 7 projects of varying complexity for exeed.ru and its network of 150 dealers.",
+        desc: "Delivered 7 projects for exeed.ru and its 150-dealer network.",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        tags: ["#Perx", "Automotive", "UI/UX", "Web", "Business Analyze", "Product"],
+        tags: ["#Perx", "Automotive", "UI/UX", "Web", "Business Analysis", "Product"],
       },
       {
         caseStudyId: "cortex",
         title: "Cortex - Threat Intelligence Hub",
-        desc: "Unified analyst workspace with correlation, triage, and alert tuning.",
+        desc: "A unified workspace for signal correlation, triage, and alert optimization.",
         img: "/project-1.svg",
         tags: ["#threat-intel", "#enterprise", "#product"],
       },
       {
         caseStudyId: "atlas",
         title: "Atlas - Compliance Control Center",
-        desc: "Policy evidence mapping and workflow automation for audits.",
+        desc: "A control center for requirements, evidence, and audit workflows.",
         img: "/project-2.svg",
         tags: ["#compliance", "#automation", "#saas"],
       },
       {
         caseStudyId: "lumen",
         title: "Lumen - Risk Posture Monitor",
-        desc: "Realtime posture visibility, drift detection, and remediation flow.",
+        desc: "Real-time monitoring of deviations, risks, and mitigation progress.",
         img: "/project-1.svg",
         tags: ["#risk", "#monitoring", "#ops"],
       },
       {
         caseStudyId: "pulse",
         title: "Pulse - Demo Product Insights",
-        desc: "Demo case of a product insights dashboard for delivery and analytics teams.",
+        desc: "A demo case for launching a product insights dashboard for delivery and analytics teams.",
         img: "/project-2.svg",
         tags: ["#demo", "#analytics", "#delivery"],
       },
@@ -559,10 +560,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
     caseStudies: [
       {
         id: "evraz-oms",
-        title: "EVRAZ",
-        subtitle: "Development of production, sales, and corporate IT systems",
+        title: "Order Management System (OMS)",
+        subtitle: "Turned OMS from a monitoring layer into an execution engine",
         summary:
-          "Ensuring operation and development of production, sales, and corporate IT infrastructure management systems.",
+          "OMS takes an order from creation through fulfillment and removes routine work from managers. In this project, we moved execution out of a manual workflow and into the system, reducing the dependency on 1C ERP.",
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
@@ -570,18 +571,60 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         team: "Business stakeholders, IT teams, external vendors",
         timeline: "2024 -> present",
         problem:
-          "Critical systems had to remain stable while multiple cross-domain changes were delivered in parallel for production and sales processes.",
+          "A significant part of order execution remained in a manual workflow and in 1C logic, so deal speed still depended on manual actions, status quality, and cross-team coordination.",
         solution:
-          "Established a predictable delivery setup with initiative prioritization, cross-team alignment, dependency tracking, and risk control.",
+          "We defined auto-execution criteria and system-of-record statuses, mapped the order flow into scenarios, expanded the OMS execution model, and strengthened release and operational stability.",
         impact:
-          "Sustained reliability of key IT services and improved speed of rolling out business-critical changes.",
+          "OMS started handling almost the entire incoming order flow, most scenarios became at least partially automated, and the system became a true execution layer rather than an add-on to 1C.",
+        starBlock: {
+          situation:
+            "OMS had already been implemented, but a significant part of order execution still lived in a manual workflow and in 1C logic. Deal speed depended not only on the system, but also on manual steps, status quality, and alignment across sales, logistics, and operations teams. The project needed to shift from a monitoring layer to a true execution engine.",
+          task:
+            "My task was not just to finish OMS, but to increase the share of orders the system could complete without constant manager involvement. In parallel, we had to reduce the load on 1C, cut manual touchpoints, and speed up execution without breaking the existing business process.",
+          actions: [
+            "First, we defined the success criteria: what exactly counts as auto-execution, which statuses are the source of truth, and which metrics we use to measure impact.",
+            "Then we broke the order flow down into scenarios, prioritized them by business impact, and expanded the OMS execution model step by step.",
+            "In parallel, we strengthened the release and operations loop: monitoring, alerting, work on the status model, and stabilization of the integration layer under growing load.",
+          ],
+          result:
+            "OMS started handling almost the entire incoming order flow, and most scenarios became at least partially automated. The share of operations completed without a manager reached roughly one fifth of the process, while per-manager productivity improved at both order creation and shipment stages.",
+        },
+        resultBlock: {
+          title: "What we did",
+          intro:
+            "We focused on business impact, auto-execution, and stable operations under growing load.",
+          roleText:
+            "I was responsible for business outcomes: goals and KPIs, the scenario roadmap, business and IT alignment, priority management, status model decisions, releases, and integration risks.",
+          contextText:
+            "OMS had already been implemented, but a significant part of order execution still lived in a manual workflow and in 1C logic. The system was not yet a full execution layer and still depended too much on manual work and 1C.",
+          goalText:
+            "Increase the share of auto-execution, cut manual touchpoints, reduce the load on 1C, and accelerate execution without breaking the existing business process.",
+          items: [
+            { label: "Defined success criteria: what counts as auto-execution, which statuses are the source of truth, and which metrics are used to measure impact." },
+            { label: "Mapped the order flow into scenarios, prioritized them by business impact, and step by step expanded the OMS execution model." },
+            { label: "Strengthened the release loop: change management, control of integration risks, and predictable production rollout." },
+            { label: "Strengthened operations: monitoring, alerts, observability, and work on the status model." },
+            { label: "Stabilized the integration layer under higher load so that one weak point would not break the whole operational flow." },
+          ],
+          scaleText:
+            "A core operational layer: OMS, 1C ERP, Bitrix24, logistics and notification scenarios, the status model, monitoring, and the surrounding process layer. The work moved in several waves across an integration-heavy microservice landscape.",
+          teamsText: "Business, sales, logistics, operations teams, OMS, 1C ERP, Bitrix24, and integration services.",
+          processText: "Iterative waves of work: expanding order types, increasing execution complexity, and continuously refining the release loop.",
+          toolsText: "OMS, 1C ERP, Bitrix24, logistics and notification scenarios, monitoring, alerting, and the status model.",
+          challengesTitle: "Key constraints",
+          challengesItems: [
+            "Deal speed depended not only on the system, but also on the number of manual actions.",
+            "Execution quality depended on the status model and coordination between teams.",
+            "An error in one integration point quickly became a surprise for the whole landscape.",
+          ],
+        },
       },
       {
         id: "exeed",
         title: "EXEED",
         subtitle: "7 projects for exeed.ru and a 150-dealer network",
         summary:
-          "Delivered 7 projects of varying complexity for exeed.ru and its network of 150 dealers.",
+          "Delivered 7 projects for exeed.ru and its 150-dealer network.",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
@@ -592,94 +635,195 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         role: "Project Manager",
         team: "Importer team and dealer network",
         timeline: "Multiple releases",
-        problem: "Initiatives of different complexity had to be delivered consistently across the importer website and dealers.",
-        solution: "Set up a predictable delivery flow from initiative to release with cross-team coordination.",
-        impact: "7 shipped projects and faster rollout of changes across the network.",
+        problem: "Initiatives of different scale and complexity had to be launched for both the central website and dealers.",
+        solution: "Built a delivery flow from initiative to release with coordination of teams, requirements, and deadlines.",
+        impact: "7 delivered projects and faster rollout of changes across the entire dealer network.",
+        starBlock: {
+          situation:
+            "The importer website and a network of about 150 dealers needed coordinated launches of initiatives of different complexity.",
+          task:
+            "Ensure predictable delivery of digital services and integrations without slipping on schedule or quality.",
+          actions: [
+            "Organized the delivery flow: requirements, task setup, team synchronization, and delivery control.",
+            "Aligned the integration work for feeds, APIs, and lead generation and reduced release risks.",
+            "Launched a series of product initiatives for the funnel of selection, calculation, and lead capture.",
+          ],
+          result:
+            "All 7 projects were shipped to production, and the speed of rolling out changes across the dealer network increased.",
+          resultItems: [
+            { label: "Trade-in calculator", href: "https://exeed.ru/calculate-trade-in/" },
+            { label: "Lead generation service from forms", href: "https://autocrm.ru/" },
+            { label: "Cars in stock service", href: "https://exeed.ru/cars/" },
+            { label: "Maintenance cost calculator", href: "https://exeed.ru/maintenance_calculator/" },
+            { label: "Trim comparison widget", href: "https://exeed.ru/compare/" },
+            { label: "Model Range widget", href: "https://services.platform.prod.exeed.perx.ru/widgets/modelrange/" },
+            { label: "Online store", href: "https://exeed.ru/cars/" },
+          ],
+        },
+        resultBlock: {
+          title: "What I did",
+          roleText:
+            "Project / Delivery Manager (web and integrations): requirements -> specification -> task setup -> development oversight -> API verification -> launch -> content rollout.",
+          contextText:
+            "exeed.ru plus about 150 dealer websites. The same functionality had to work under different conditions, with different content versions, integrations, and local exceptions. At the same time, up to 4 projects were running in parallel.",
+          goalText:
+            "Strengthen the digital funnel from vehicle selection to calculation to lead capture, and do it at scale for both the importer and dealers without turning every release into chaos.",
+          items: [
+            { label: "Trade-in calculator", href: "https://exeed.ru/calculate-trade-in/", note: "with Avito" },
+            { label: "Lead generation service from forms", href: "https://autocrm.ru/", note: "with Autocrm.ru" },
+            { label: "Cars in stock service", href: "https://exeed.ru/cars/", note: "based on Auto.ru feed standard" },
+            { label: "Maintenance cost calculator", href: "https://exeed.ru/maintenance_calculator/" },
+            { label: "Trim comparison widget", href: "https://exeed.ru/compare/" },
+            { label: "Model Range widget", href: "https://services.platform.prod.exeed.perx.ru/widgets/modelrange/" },
+          ],
+          scaleText: "7 projects, duration: 250 hours (about 2 months) -> 800 hours (about 5 months)",
+          teamsText: "Teams of 2-5 people: development, design, frontend, content, QA",
+          processText: "Waterfall / Kanban",
+          toolsText: "Wiki + Yandex Tracker / Redmine / YouGile",
+          challengesTitle: "Challenges",
+          challengesItems: [
+            "Dealer network: same requirements, very different on-the-ground realities.",
+            "Integrations and feeds: data quality determines whether a feature works at all.",
+            "Changing requirements: about 50% of projects shifted because of clarifications, changes, and early estimates.",
+          ],
+        },
       },
       {
         id: "kris",
         title: "KRIS - Incident Analysis",
-        subtitle: "High-load investigation workspace",
+        subtitle: "Workspace for high-load investigations",
         summary:
-          "A case management interface for parallel incident analysis with clear ownership and evidence tracking.",
+          "A case management interface with clear ownership, evidence tracking, and smooth handoffs between shifts.",
         img: "/project-2.svg",
         role: "Project Manager",
-        team: "PM, 4 Engineers, QA",
+        team: "PM, 4 engineers, QA",
         timeline: "4 months",
-        problem: "Critical incidents stalled due to fragmented data and unclear ownership.",
-        solution: "Introduced timeline-driven cases, role visibility, and structured investigation states.",
-        impact: "Shorter case resolution cycle and improved shift-to-shift continuity.",
+        problem: "Critical incidents stalled because data was fragmented and ownership was unclear.",
+        solution: "Introduced an investigation timeline, participant roles, and structured case statuses.",
+        impact: "The case closure cycle was reduced, and continuity between shifts improved.",
+        starBlock: {
+          situation:
+            "Investigations were running under high load, data was fragmented, and ownership between shifts was getting lost.",
+          task:
+            "Reduce the incident closure cycle and make case handoff between shifts predictable.",
+          actions: [
+            "Built a single investigation timeline and standardized case statuses.",
+            "Defined participant roles and escalation rules for critical stages.",
+            "Added structured evidence capture and shift handoff mechanics.",
+          ],
+          result:
+            "Case closure time went down, and handoff continuity between shifts became stable and transparent.",
+        },
       },
       {
         id: "cortex",
         title: "Cortex - Threat Intelligence Hub",
         subtitle: "Correlation, triage, and signal quality tuning",
         summary:
-          "A central console for signal enrichment, IOC correlation, and tuning alert relevance.",
+          "A central console for signal enrichment, IOC correlation, and alert relevance control.",
         img: "/project-1.svg",
         role: "Project Manager",
-        team: "2 PMs, 6 Engineers, Data Analyst",
+        team: "2 PMs, 6 engineers, data analyst",
         timeline: "8 months",
-        problem: "Alert fatigue reduced analyst trust and delayed response actions.",
-        solution: "Built confidence indicators, explainable correlations, and in-flow tuning controls.",
-        impact: "Higher analyst trust and improved actionable alert ratio.",
+        problem: "Alert noise reduced trust and delayed SOC decision-making.",
+        solution: "Added confidence indicators, explainable correlations, and in-flow relevance controls.",
+        impact: "Signal quality improved and response decisions became faster.",
+        starBlock: {
+          situation:
+            "The SOC team worked in a stream of noisy alerts, which reduced trust in signals and slowed down response.",
+          task:
+            "Improve signal quality and speed up decisions without making analysts daily work more complex.",
+          actions: [
+            "Introduced confidence indicators and explainable IOC correlation.",
+            "Added a triage flow and alert relevance controls directly into the analyst workflow.",
+            "Set up a feedback loop to tune rules and improve signal quality.",
+          ],
+          result:
+            "The share of useful signals increased, and the SOC team started making response decisions faster and with more confidence.",
+        },
       },
       {
         id: "atlas",
         title: "Atlas - Compliance Control Center",
-        subtitle: "Policy evidence mapping for audits",
+        subtitle: "Connecting policies and evidence for audits",
         summary:
-          "A compliance cockpit connecting controls, owners, and evidence with recurring audit automation.",
+          "A compliance layer connecting requirements, owners, and supporting evidence.",
         img: "/project-2.svg",
         role: "Project Manager",
-        team: "PM, 5 Engineers",
+        team: "PM, 5 engineers",
         timeline: "5 months",
-        problem: "Audit preparation was manual, repetitive, and difficult to track.",
-        solution: "Mapped policy-to-evidence flows and introduced reusable collection templates.",
-        impact: "Reduced manual effort and improved audit readiness visibility.",
+        problem: "Audit preparation was manual, slow, and lacked clear status visibility.",
+        solution: "Built reusable evidence templates and automated task routing to owners.",
+        impact: "Manual effort decreased, and audit preparation became more predictable.",
+        starBlock: {
+          situation:
+            "Audit preparation was handled manually: data and evidence were collected slowly and without transparent status.",
+          task:
+            "Make audit preparation manageable, repeatable, and less dependent on manual coordination.",
+          actions: [
+            "Connected requirements, owners, and evidence in one workflow.",
+            "Prepared artifact templates and rules for checking evidence completeness.",
+            "Automated task routing and owner status control.",
+          ],
+          result:
+            "Manual workload decreased, and audit preparation became more predictable in both timing and quality.",
+        },
       },
       {
         id: "lumen",
         title: "Lumen - Risk Posture Monitor",
-        subtitle: "Realtime drift and remediation tracking",
+        subtitle: "Monitoring deviations and remediation control",
         summary:
-          "A monitoring surface for posture deviations with clear prioritization and remediation pathways.",
+          "A risk posture view with prioritized deviations and action paths for operations teams.",
         img: "/project-1.svg",
         role: "Project Manager",
-        team: "PM, 4 Engineers, Security Expert",
+        team: "PM, 4 engineers, security expert",
         timeline: "5 months",
-        problem: "Teams lacked clear priorities and ownership for drift remediation.",
-        solution: "Created risk buckets, prioritization cues, and guided remediation workflows.",
-        impact: "Faster mitigation of critical drift and clearer executive reporting.",
+        problem: "Teams could see a snapshot of posture, but lacked clear priorities and ownership.",
+        solution: "Introduced risk buckets, priorities, and remediation workflows for resolving critical deviations.",
+        impact: "Remediation of critical risks accelerated, and management visibility improved.",
+        starBlock: {
+          situation:
+            "Teams could see posture deviations, but lacked a shared prioritization system and clear ownership.",
+          task:
+            "Give operations teams a clear sequence of actions and accelerate remediation of critical risks.",
+          actions: [
+            "Grouped deviations into risk buckets and introduced remediation priorities.",
+            "Defined remediation routes and ownership areas by risk type.",
+            "Set up monitoring of mitigation actions and progress visibility for management.",
+          ],
+          result:
+            "Critical risks started closing faster, and remediation status became transparent across all management levels.",
+        },
       },
       {
         id: "pulse",
         title: "Pulse - Demo Product Insights",
         subtitle: "Product insights dashboard for delivery teams",
         summary:
-          "Demo case: a unified dashboard for product metrics and release signals to spot delivery bottlenecks faster.",
+          "Demo case: a single view of product metrics and release status for faster delivery bottleneck detection.",
         img: "/project-2.svg",
         role: "Project Manager",
-        team: "PM, Analyst, 3 Engineers",
+        team: "PM, analyst, 3 engineers",
         timeline: "6 weeks",
         problem:
-          "Metrics were scattered across tools, making it hard to detect funnel drops and release slowdowns early.",
+          "Teams tracked metrics across different sources and spotted funnel drops and release delays too late.",
         solution:
-          "Built a single metrics layer with deviation signals and a weekly review loop tied to concrete actions.",
+          "Built a single metrics layer, added deviation signals, and introduced a weekly review routine tied to actions.",
         impact:
-          "Faster issue detection and more consistent decision-making based on one trusted data view.",
+          "Time to detect issues dropped, and decisions started from one shared set of data.",
         starBlock: {
           situation:
-            "Product and delivery metrics were scattered across multiple tools, so warning signals appeared too late.",
+            "Product and delivery metrics were spread across different tools, so problem signals arrived too late.",
           task:
-            "Create a unified review surface and reduce time from detecting deviation to aligned team action.",
+            "Build a single overview layer and reduce the time from detecting a deviation to an aligned team action.",
           actions: [
-            "Defined a single set of product and release metrics for weekly review.",
-            "Built a dashboard with prioritized deviation signals and quick drill-downs.",
-            "Introduced a working loop: signal -> hypothesis -> action -> effect validation.",
+            "Defined one shared set of product and release metrics for weekly review.",
+            "Built a dashboard with prioritized deviations and quick drill-downs to causes.",
+            "Introduced a working rhythm: signal -> hypothesis -> action -> effect validation.",
           ],
           result:
-            "Teams spot issues earlier and make decisions from one trusted data view.",
+            "Problems started surfacing earlier, and improvement decisions are now made from one trusted data source.",
         },
       },
     ],

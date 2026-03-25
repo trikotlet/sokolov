@@ -788,6 +788,7 @@ html[data-theme="light"] .project-tag {
 }
 
 .overline {
+  font-family: var(--font-accent);
   color: var(--muted);
   font-size: 12px;
   letter-spacing: 0.08em;
@@ -908,6 +909,7 @@ h1 {
 
 .exp-company {
   color: #f2f2f2;
+  font-family: var(--font-accent);
 }
 
 .exp-sep,
@@ -1158,6 +1160,7 @@ h1 {
 
 .project-card h2 {
   font-size: clamp(26px, 2.5vw, 30px);
+  font-family: var(--font-accent);
   font-weight: 500;
   margin-bottom: 10px;
   line-height: 1.12;
@@ -1165,7 +1168,7 @@ h1 {
 }
 
 .project-card p {
-  font-family: var(--font-accent);
+  font-family: "PT Sans", sans-serif;
   color: var(--muted);
   max-width: 420px;
   font-size: 16px;
@@ -1182,6 +1185,7 @@ h1 {
 .project-tag {
   border: 1px solid #2d3032;
   background: #161719;
+  font-family: var(--font-accent);
   border-radius: 500px;
   padding: 6px 10px;
   font-size: 12px;
@@ -1221,7 +1225,7 @@ h1 {
 }
 
 .projects-hero-title {
-  font-family: "PT Sans", sans-serif;
+  font-family: var(--font-accent);
   font-size: clamp(28px, 3.2vw, 36px);
   font-weight: 400;
   line-height: 1.12;
@@ -1230,7 +1234,7 @@ h1 {
 }
 
 .projects-lead {
-  font-family: var(--font-accent);
+  font-family: "PT Sans", sans-serif;
   color: var(--muted);
   margin-top: 12px;
   max-width: 760px;
@@ -1371,6 +1375,7 @@ h1 {
   font-size: clamp(30px, 4vw, 44px);
   font-weight: 500;
   line-height: 1.08;
+  font-family: var(--font-accent);
   letter-spacing: -0.01em;
 }
 
@@ -1382,7 +1387,7 @@ h1 {
 }
 
 .project-summary {
-  font-family: var(--font-accent);
+  font-family: "PT Sans", sans-serif;
   color: #aeb4bc;
   font-size: 16px;
   line-height: 1.65;
@@ -1408,6 +1413,7 @@ h1 {
   color: #8f969f;
   font-size: 10px;
   letter-spacing: 0.08em;
+  font-family: var(--font-accent);
   text-transform: uppercase;
   margin-bottom: 8px;
   font-weight: 500;
