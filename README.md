@@ -17,6 +17,21 @@ Notes:
 - The container builds the Vite app and serves `dist/` with `nginx`.
 - SPA routes are handled via `try_files`, so direct opens like `/cv` and `/projects` work in Docker.
 
+## Run In Docker Dev Mode
+
+Start Vite with hot reload:
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+Then open [http://localhost:5173](http://localhost:5173).
+
+Notes:
+
+- The source tree is mounted into the container, so local edits are reflected immediately.
+- Dependencies are installed inside the container on startup with `npm ci`.
+
 ## GitHub Pages Quick Check
 
 1. Open `Settings -> Pages`.
