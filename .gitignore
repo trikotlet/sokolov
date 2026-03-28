@@ -5,3 +5,6 @@ dist
 .DS_Store
 gpt.3pro.md
 BRIEF.md
+playwright-report/
+test-results/
+artifacts-*.png
