@@ -1,0 +1,12 @@
+.git
+.github
+node_modules
+dist
+playwright-report
+test-results
+artifacts-mobile-home.png
+artifacts-mobile-projects.png
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

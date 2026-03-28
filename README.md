@@ -2,6 +2,21 @@
 
 Portfolio site on Vite + React, deployed to GitHub Pages.
 
+## Run In Docker
+
+Build and start:
+
+```bash
+docker compose up --build
+```
+
+Then open [http://localhost:8080](http://localhost:8080).
+
+Notes:
+
+- The container builds the Vite app and serves `dist/` with `nginx`.
+- SPA routes are handled via `try_files`, so direct opens like `/cv` and `/projects` work in Docker.
+
 ## GitHub Pages Quick Check
 
 1. Open `Settings -> Pages`.
