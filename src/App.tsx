@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroLeft from "./components/HeroLeft";
@@ -38,6 +38,8 @@ export default function App() {
     }
     return "dark";
   });
+  const [homeScrollProgress, setHomeScrollProgress] = useState(0);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onPopState = () => setPathname(getRoutePathname(window.location.pathname));
@@ -69,6 +71,7 @@ export default function App() {
 
   const isProjectsPage = pathname === PROJECTS_PATH;
   const isCvPage = pathname === CV_PATH;
+  const isHomePage = !isProjectsPage && !isCvPage;
   const content = contentByLanguage[language];
 
   useEffect(() => {
@@ -201,6 +204,53 @@ export default function App() {
     return () => window.clearInterval(timer);
   }, [pathname, language]);
 
+  useEffect(() => {
+    if (!isHomePage) {
+      setHomeScrollProgress(0);
+      return;
+    }
+
+    let frameId = 0;
+
+    const updateProgress = () => {
+      frameId = 0;
+
+      const footer = footerRef.current;
+      if (!footer) {
+        setHomeScrollProgress(0);
+        return;
+      }
+
+      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+      const fillDistance = Math.max(footerTop - window.innerHeight, 1);
+      const nextProgress = Math.max(0, Math.min(1, window.scrollY / fillDistance));
+
+      setHomeScrollProgress((current) =>
+        Math.abs(current - nextProgress) > 0.002 ? nextProgress : current,
+      );
+    };
+
+    const requestUpdate = () => {
+      if (frameId !== 0) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(updateProgress);
+    };
+
+    requestUpdate();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frameId !== 0) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [isHomePage, language]);
+
   return (
     <>
       <div className="page">
@@ -211,6 +261,7 @@ export default function App() {
           onToggleLanguage={() => setLanguage((current) => (current === "ru" ? "en" : "ru"))}
           theme={theme}
           onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+          scrollProgress={homeScrollProgress}
         />
 
         {isProjectsPage ? (
@@ -242,7 +293,7 @@ export default function App() {
         )}
       </div>
 
-      <Footer profile={content.profile} ui={content.ui} />
+      <Footer profile={content.profile} ui={content.ui} shellRef={footerRef} />
     </>
   );
 }

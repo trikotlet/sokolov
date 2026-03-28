@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useState, type CSSProperties, type MouseEvent } from "react";
 import type { Language, Profile, UiText } from "../data/portfolio";
 import { navigateTo, withBasePath } from "../utils/basePath";
 import Button from "./ui/button";
@@ -12,6 +12,7 @@ type HeaderProps = {
   onToggleLanguage: () => void;
   theme: "dark" | "light";
   onToggleTheme: () => void;
+  scrollProgress?: number;
 };
 
 function ThemeIcon({ theme }: { theme: "dark" | "light" }) {
@@ -47,6 +48,7 @@ export default function Header({
   onToggleLanguage,
   theme,
   onToggleTheme,
+  scrollProgress = 0,
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const labels =
@@ -94,13 +96,16 @@ export default function Header({
     { href: "/cv", label: ui.navExperience },
   ];
   const desktopLinks = navLinks.filter((link) => link.href !== "/");
+  const brandIconStyle = {
+    "--brand-fill-progress": Math.max(0, Math.min(1, scrollProgress)).toFixed(4),
+  } as CSSProperties;
 
   return (
     <>
       <header className="topbar">
         <div className="topbar-main">
           <a className="brand" href={withBasePath("/")} onClick={(event) => onInternalLinkClick(event, "/")}>
-            <span className="brand-icon" aria-hidden="true" />
+            <span className="brand-icon" aria-hidden="true" style={brandIconStyle} />
             <span className="brand-copy">
               <span className="brand-name">{profile.fullName}</span>
               <span className="brand-role">{profile.role}</span>

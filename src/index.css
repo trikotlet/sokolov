@@ -134,17 +134,83 @@ button:focus-visible,
 }
 
 .brand-icon {
+  --brand-fill-progress: 0;
   width: 36px;
   height: 36px;
   display: inline-flex;
+  position: relative;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, rgba(102, 131, 168, 0.24), rgba(20, 21, 22, 0.9));
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)),
+    linear-gradient(160deg, rgba(56, 63, 71, 0.9), rgba(20, 21, 22, 0.98));
   border: 1px solid var(--stroke);
   border-radius: 12px;
   color: var(--accent);
   font-size: 12px;
   letter-spacing: 0.14em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.brand-icon::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: calc(var(--brand-fill-progress) * 100%);
+  background: rgb(156, 164, 173);
+  transition: height 0.14s linear;
+  z-index: 0;
+}
+
+.brand-icon::after {
+  content: "";
+  position: absolute;
+  left: -18%;
+  width: 136%;
+  bottom: calc((var(--brand-fill-progress) * 100%) - 5px);
+  height: 12px;
+  border-radius: 48% 52% 58% 42% / 42% 40% 60% 58%;
+  background: rgb(156, 164, 173);
+  opacity: clamp(0, calc(var(--brand-fill-progress) * 1.8), 1);
+  transform: translate3d(0, 0, 0) scaleX(calc(0.84 + (var(--brand-fill-progress) * 0.2)));
+  transform-origin: center;
+  transition: bottom 0.14s linear, opacity 0.18s ease;
+  pointer-events: none;
+  filter: blur(0.35px);
+  z-index: 1;
+  animation: brand-liquid-sway 3.8s ease-in-out infinite;
+}
+
+.brand-icon:hover::after {
+  animation-duration: 2.6s;
+}
+
+@keyframes brand-liquid-sway {
+  0% {
+    transform: translate3d(-3%, 1px, 0) scaleX(calc(0.84 + (var(--brand-fill-progress) * 0.2))) rotate(-1.8deg);
+    border-radius: 44% 56% 58% 42% / 44% 36% 64% 56%;
+  }
+
+  25% {
+    transform: translate3d(1%, -1px, 0) scaleX(calc(0.85 + (var(--brand-fill-progress) * 0.2))) rotate(1.2deg);
+    border-radius: 56% 44% 46% 54% / 38% 56% 44% 62%;
+  }
+
+  50% {
+    transform: translate3d(4%, 0, 0) scaleX(calc(0.86 + (var(--brand-fill-progress) * 0.2))) rotate(-0.8deg);
+    border-radius: 48% 52% 60% 40% / 52% 40% 60% 48%;
+  }
+
+  75% {
+    transform: translate3d(0, -1px, 0) scaleX(calc(0.85 + (var(--brand-fill-progress) * 0.2))) rotate(1.6deg);
+    border-radius: 58% 42% 48% 52% / 40% 60% 40% 60%;
+  }
+
+  100% {
+    transform: translate3d(-3%, 1px, 0) scaleX(calc(0.84 + (var(--brand-fill-progress) * 0.2))) rotate(-1.8deg);
+    border-radius: 44% 56% 58% 42% / 44% 36% 64% 56%;
+  }
 }
 
 .brand-copy {
@@ -661,8 +727,18 @@ html[data-theme="light"] .brand-icon,
 html[data-theme="light"] .ui-button--default,
 html[data-theme="light"] .ui-button--outline {
   border-color: #cfd8e7;
-  background: #f7fafe;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)),
+    linear-gradient(160deg, #eef3f8, #dde5ef);
   color: #1f2630;
+}
+
+html[data-theme="light"] .brand-icon::before {
+  background: rgb(145, 154, 164);
+}
+
+html[data-theme="light"] .brand-icon::after {
+  background: rgb(145, 154, 164);
 }
 
 html[data-theme="light"] .ui-button--ghost {
