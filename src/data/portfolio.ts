@@ -34,8 +34,14 @@ export type CaseStudy = {
   starBlock?: {
     situation: string;
     task: string;
+    taskIntro?: string;
+    taskItems?: string[];
+    actionIntro?: string;
+    actionItems?: string[];
+    actionNotes?: string[];
     actions: string[];
     result: string;
+    resultNotes?: string[];
     resultItems?: Array<{ label: string; href: string; note?: string }>;
   };
   resultBlock?: {
@@ -43,9 +49,12 @@ export type CaseStudy = {
     intro?: string;
     items: Array<{ label: string; href?: string; note?: string }>;
     roleText: string;
-    contextText: string;
-    goalText: string;
+    roleIntro?: string;
+    roleItems?: string[];
+    contextText?: string;
+    goalText?: string;
     scaleText: string;
+    scaleNotes?: string[];
     teamsText: string;
     processText: string;
     toolsText: string;
@@ -148,7 +157,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         caseStudyId: "exeed",
         title: "EXEED",
-        desc: "Реализовал 7 проектов различной сложности на сайте импортера exeed.ru и его 150 дилеров.",
+        desc: "Развитие цифровых сервисов для сайта импортера и сети из 150 дилеров",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
@@ -253,9 +262,9 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         id: "exeed",
         title: "EXEED",
-        subtitle: "7 проектов для exeed.ru и сети из 150 дилеров",
+        subtitle: "Развитие цифровых сервисов для сайта импортера и сети из 150 дилеров",
         summary:
-          "Реализовал 7 проектов различной сложности на сайте импортера exeed.ru и его 150 дилеров.",
+          "Развитие цифровых сервисов для сайта импортера и сети из 150 дилеров",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
@@ -271,16 +280,43 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         impact: "7 реализованных проектов и ускоренный вывод изменений в продакшн по всей сети.",
         starBlock: {
           situation:
-            "Импортерский сайт и сеть из ~150 дилеров требовали синхронного запуска инициатив разной сложности.",
+            "Сайт импортера EXEED уже приводил клиентов, но их путь к покупке был разрозненным. Некоторые сценарии — от выбора машины и оценки трейд-ин до записи на сервис — работали плохо или не были связаны между собой. Бизнесу требовались не просто новые страницы, а рабочие цифровые сервисы, которые помогают пользователю быстрее определиться с выбором, собирают заявки, поддерживают дилеров и легко встраиваются в текущую ИТ-инфраструктуру.",
           task:
-            "Обеспечить предсказуемый выпуск цифровых сервисов и интеграций без срывов по срокам и качеству.",
+            "Запускать новые сервисы для exeed.ru и дилерской сети, координировать внутреннюю команду и подрядчиков, интегрироваться с внешними платформами и API и держать под контролем требования, сроки и качество сразу по нескольким проектам в параллели.",
+          taskIntro:
+            "Моей задачей было не просто выпускать отдельные веб-фичи, а последовательно собирать на сайте импортера рабочий сервисный слой, который поддерживает продажи и послепродажный сценарий. Нужно было одновременно:",
+          taskItems: [
+            "запускать новые сервисы для exeed.ru и дилерской сети,",
+            "координировать внутреннюю команду и подрядчиков,",
+            "интегрироваться с внешними платформами и API,",
+            "держать под контролем требования, сроки и качество сразу по нескольким проектам в параллели.",
+          ],
+          actionIntro:
+            "Вел проекты как менеджер, погружаясь в аналитику: от идеи до запуска и приемки. Что именно делал:",
+          actionItems: [
+            "собирал и уточнял требования с бизнесом;",
+            "формализовывал их в ТЗ;",
+            "проектировал пользовательские сценарии и прототипы в Miro и Moqups;",
+            "декомпозировал задачи для внутренней команды и подрядчиков;",
+            "тестировал API и интеграционные сценарии в Postman;",
+            "вел документацию во внутренней Wiki;",
+            "обучал контент-специалистов работе с новыми сервисами после запуска.",
+          ],
+          actionNotes: [
+            "Работа шла в гибридной модели: где-то ближе к waterfall, где-то ближе к kanban. Часть задач требовала жесткой фиксации объема, часть приходилось вести итерационно из-за изменения требований и внешних зависимостей.",
+            "Фокус был на том, чтобы сервисы не жили каждый в своем аквариуме.",
+          ],
           actions: [
             "Организовали delivery-поток: требования, постановка, синхронизация команд и контроль выполнения.",
             "Согласовали работу по интеграциям (фиды, API, лидогенерация) и снизили риски релизов.",
             "Запустили серию продуктовых инициатив для воронки выбора, расчёта и заявки.",
           ],
           result:
-            "7 проектов выведены в продакшн, скорость внедрения изменений по сети дилеров выросла.",
+            "За время работы вывел в прод 7 проектов различной сложности для сайта импортера EXEED и дилерской сети из 150 дилеров:",
+          resultNotes: [
+            "Примерно в половине случаев сроки сдвигались из-за неточных оценок на старте или новых требований заказчика. Несмотря на это, мне удалось сохранить качество, довести все решения до запуска и удержать доверие клиента.",
+            "Итог: заказчик доволен результатом и готов рекомендовать компанию.",
+          ],
           resultItems: [
             { label: "Трейд-ин калькулятор", href: "https://exeed.ru/calculate-trade-in/" },
             { label: "Сервис лидогенерации из форм", href: "https://autocrm.ru/" },
@@ -288,17 +324,21 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
             { label: "Калькулятор технического обслуживания", href: "https://exeed.ru/maintenance_calculator/" },
             { label: "Виджет сравнения комплектаций", href: "https://exeed.ru/compare/" },
             { label: "Виджет Model Range", href: "https://services.platform.prod.exeed.perx.ru/widgets/modelrange/" },
-            { label: "Онлайн-магазин", href: "https://exeed.ru/cars/" },
           ],
         },
         resultBlock: {
           title: "Что сделал",
           roleText:
-            "Project / Delivery Manager (веб + интеграции): требования -> ТЗ -> постановка -> контроль разработки -> проверка API -> запуск -> обучение контента.",
-          contextText:
-            "exeed.ru + ~150 дилерских сайтов. Один и тот же функционал должен жить в разных условиях, с разными версиями контента, интеграций и «а у нас тут особенный дилер, его трогать нельзя». И да, параллельно до 4 проектов.",
-          goalText:
-            "Усилить цифровую воронку: выбор авто -> расчёт -> заявка, и сделать это массово (импортёр + дилеры), не превратив релиз в сериал на 12 сезонов.",
+            "Отвечал за весь цикл ведения проектов как менеджер и аналитик.",
+          roleIntro:
+            "Отвечал за весь цикл ведения проектов как менеджер и аналитик:",
+          roleItems: [
+            "собирал требования и писал ТЗ;",
+            "управлял бюджетом и распределял ресурсы;",
+            "ставил задачи разработчикам и подрядчикам;",
+            "контролировал разработку и тестировал API;",
+            "принимал готовые решения, запускал их и обучал пользователей.",
+          ],
           items: [
             { label: "Трейд-ин калькулятор", href: "https://exeed.ru/calculate-trade-in/", note: "совместно с Авито" },
             { label: "Сервис лидогенерации из форм", href: "https://autocrm.ru/", note: "совместно с Autocrm.ru" },
@@ -307,8 +347,12 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
             { label: "Виджет сравнения комплектаций", href: "https://exeed.ru/compare/" },
             { label: "Виджет «Model Range»", href: "https://services.platform.prod.exeed.perx.ru/widgets/modelrange/" },
           ],
-          scaleText: "7 проектов, длительность: 250 ч/ч (~2 месяца) -> 800 ч/ч (~5 месяцев)",
-          teamsText: "Команды 2–5 человек: dev, design, frontend, content, QA",
+          scaleText: "Ключевой контур проекта: сайт импортера EXEED + сеть из 150 дилеров.",
+          scaleNotes: [
+            "Работа велась сразу по нескольким цифровым сервисам, которые влияли на клиентский путь от первого интереса к автомобилю до сервисного взаимодействия.",
+            "Вел до четырех проектов на разных стадиях одновременно. Команды состояли из 2–7 специалистов, реализация занимала от 2 до 5 месяцев при трудозатратах от 250 до 800 человеко-часов на каждый проект.",
+          ],
+          teamsText: "Команды 2–7 человек: dev, design, frontend, content, QA",
           processText: "Waterfall / Kanban",
           toolsText: "Wiki + Yandex Tracker / Redmine / YouGile",
           challengesTitle: "Сложности",
@@ -622,7 +666,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         id: "exeed",
         title: "EXEED",
-        subtitle: "7 projects for exeed.ru and a 150-dealer network",
+        subtitle: "Digital services for the importer website and a 150-dealer network",
         summary:
           "Delivered 7 projects for exeed.ru and its 150-dealer network.",
         img: "/project-1.svg",
@@ -677,7 +721,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
             { label: "Model Range widget", href: "https://services.platform.prod.exeed.perx.ru/widgets/modelrange/" },
           ],
           scaleText: "7 projects, duration: 250 hours (about 2 months) -> 800 hours (about 5 months)",
-          teamsText: "Teams of 2-5 people: development, design, frontend, content, QA",
+          teamsText: "Teams of 2-7 people: development, design, frontend, content, QA",
           processText: "Waterfall / Kanban",
           toolsText: "Wiki + Yandex Tracker / Redmine / YouGile",
           challengesTitle: "Challenges",

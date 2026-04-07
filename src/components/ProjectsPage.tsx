@@ -44,6 +44,8 @@ type StoryCanvasProps = {
 };
 
 function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
+  const isOmsCase = project.id === "evraz-oms";
+  const isExeedCase = project.id === "exeed";
   const labels = isRu
     ? {
         starTitle: "STAR Story",
@@ -76,52 +78,109 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
   const showActionContext = Boolean(processText || toolsText);
 
   return (
-    <div className="project-flow project-flow-oms">
+    <div
+      className={`project-flow project-flow-oms${isOmsCase ? " project-flow-oms-bento" : ""}${isExeedCase ? " project-flow-exeed-bento" : ""}`}
+    >
       <section className="project-oms-star-canvas" aria-label={labels.starTitle}>
-        <article className="project-oms-star-card">
+        <article className="project-oms-star-card project-oms-star-card--situation">
           <p className="project-oms-star-head">
             <span className="meta-label">{labels.situation}</span>
           </p>
           <p>{project.starBlock.situation}</p>
         </article>
-        <article className="project-oms-star-card">
+        <article className="project-oms-star-card project-oms-star-card--task">
           <p className="project-oms-star-head">
             <span className="meta-label">{labels.task}</span>
           </p>
-          <p>{project.starBlock.task}</p>
+          {project.starBlock.taskIntro ? <p>{project.starBlock.taskIntro}</p> : null}
+          {project.starBlock.taskItems?.length ? (
+            <ul className="project-result-list project-bullet-list">
+              {project.starBlock.taskItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>{project.starBlock.task}</p>
+          )}
         </article>
-        <article className="project-oms-star-card">
+        <article className="project-oms-star-card project-oms-star-card--action">
           <p className="project-oms-star-head">
             <span className="meta-label">{labels.action}</span>
           </p>
-          <ul className="project-result-list">
-            {project.starBlock.actions.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          {showActionContext ? (
+          {project.starBlock.actionIntro ? <p>{project.starBlock.actionIntro}</p> : null}
+          {project.starBlock.actionItems?.length ? (
+            <ul className="project-result-list project-bullet-list">
+              {project.starBlock.actionItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="project-result-list">
+              {project.starBlock.actions.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
+          {project.starBlock.actionNotes?.length ? (
+            <>
+              {project.starBlock.actionNotes.map((item) => (
+                <p key={item} className="project-oms-star-note">
+                  {item}
+                </p>
+              ))}
+            </>
+          ) : showActionContext ? (
             <>
               {processText ? <p className="project-oms-star-note">{processText}</p> : null}
               {toolsText ? <p className="project-oms-star-note">{toolsText}</p> : null}
             </>
           ) : null}
         </article>
-        <article className="project-oms-star-card">
+        <article className="project-oms-star-card project-oms-star-card--result">
           <p className="project-oms-star-head">
             <span className="meta-label">{labels.result}</span>
           </p>
           <p>{project.starBlock.result}</p>
+          {project.starBlock.resultItems?.length ? (
+            <ul
+              className={`project-result-list project-result-links${project.starBlock.resultNotes?.length ? " project-bullet-list" : ""}`}
+            >
+              {project.starBlock.resultItems.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} target="_blank" rel="noreferrer noopener">
+                    {item.label}
+                  </a>
+                  {item.note ? ` (${item.note})` : ""}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {project.starBlock.resultNotes?.map((item) => (
+            <p key={item} className="project-oms-star-note">
+              {item}
+            </p>
+          ))}
         </article>
       </section>
 
       <section className="project-oms-role" aria-label={labels.roleTitle}>
         <article className="project-oms-role-card">
           <p className="meta-label">{labels.role}</p>
-          <p>{roleText}</p>
+          {project.resultBlock?.roleIntro ? <p>{project.resultBlock.roleIntro}</p> : <p>{roleText}</p>}
+          {project.resultBlock?.roleItems?.length ? (
+            <ul className="project-result-list project-bullet-list">
+              {project.resultBlock.roleItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          ) : null}
         </article>
         <article className="project-oms-role-card">
           <p className="meta-label">{labels.scope}</p>
           <p>{scopeText}</p>
+          {project.resultBlock?.scaleNotes?.map((item) => (
+            <p key={item}>{item}</p>
+          ))}
         </article>
       </section>
     </div>
@@ -338,14 +397,18 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                             <span className="meta-label">{labels.role}</span>
                             <p>{project.resultBlock.roleText}</p>
                           </div>
-                          <div>
-                            <span className="meta-label">{labels.context}</span>
-                            <p>{project.resultBlock.contextText}</p>
-                          </div>
-                          <div>
-                            <span className="meta-label">{labels.goal}</span>
-                            <p>{project.resultBlock.goalText}</p>
-                          </div>
+                          {project.resultBlock.contextText ? (
+                            <div>
+                              <span className="meta-label">{labels.context}</span>
+                              <p>{project.resultBlock.contextText}</p>
+                            </div>
+                          ) : null}
+                          {project.resultBlock.goalText ? (
+                            <div>
+                              <span className="meta-label">{labels.goal}</span>
+                              <p>{project.resultBlock.goalText}</p>
+                            </div>
+                          ) : null}
                         </div>
                       ) : (
                         <div className="project-meta-grid">
@@ -373,21 +436,44 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                             </div>
                             <div className="project-star-item">
                               <p className="meta-label">{labels.task}</p>
-                              <p>{project.starBlock.task}</p>
+                              {project.starBlock.taskIntro ? <p>{project.starBlock.taskIntro}</p> : null}
+                              {project.starBlock.taskItems?.length ? (
+                                <ul className="project-result-list project-bullet-list">
+                                  {project.starBlock.taskItems.map((item) => (
+                                    <li key={item}>{item}</li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p>{project.starBlock.task}</p>
+                              )}
                             </div>
                             <div className="project-star-item">
                               <p className="meta-label">{labels.action}</p>
-                              <ul className="project-result-list">
-                                {project.starBlock.actions.map((item) => (
-                                  <li key={item}>{item}</li>
-                                ))}
-                              </ul>
+                              {project.starBlock.actionIntro ? <p>{project.starBlock.actionIntro}</p> : null}
+                              {project.starBlock.actionItems?.length ? (
+                                <ul className="project-result-list project-bullet-list">
+                                  {project.starBlock.actionItems.map((item) => (
+                                    <li key={item}>{item}</li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <ul className="project-result-list">
+                                  {project.starBlock.actions.map((item) => (
+                                    <li key={item}>{item}</li>
+                                  ))}
+                                </ul>
+                              )}
+                              {project.starBlock.actionNotes?.map((item) => (
+                                <p key={item}>{item}</p>
+                              ))}
                             </div>
                             <div className="project-star-item">
                               <p className="meta-label">{labels.result}</p>
                               <p>{project.starBlock.result}</p>
                               {project.starBlock.resultItems?.length ? (
-                                <ul className="project-result-list project-result-links">
+                                <ul
+                                  className={`project-result-list project-result-links${project.starBlock.resultNotes?.length ? " project-bullet-list" : ""}`}
+                                >
                                   {project.starBlock.resultItems.map((item) => (
                                     <li key={item.label}>
                                       <a href={item.href} target="_blank" rel="noreferrer noopener">
@@ -398,6 +484,9 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                                   ))}
                                 </ul>
                               ) : null}
+                              {project.starBlock.resultNotes?.map((item) => (
+                                <p key={item}>{item}</p>
+                              ))}
                             </div>
                           </section>
                         ) : project.resultBlock ? (
