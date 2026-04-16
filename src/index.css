@@ -808,8 +808,6 @@ html[data-theme="light"] .project-result {
   color: #1f2630;
 }
 
-html[data-theme="light"] .project-star-item,
-html[data-theme="light"] .project-oms-star-card,
 html[data-theme="light"] .project-oms-role-card {
   background: transparent;
 }
@@ -837,7 +835,7 @@ html[data-theme="light"] .outcome-metric {
 html[data-theme="light"] .meta-label,
 html[data-theme="light"] .project-oms-star-note .meta-label,
 html[data-theme="light"] .project-star-item .meta-label {
-  color: #556274;
+  color: #8f969f;
 }
 
 html[data-theme="light"] .project-star-item p:not(.meta-label),
@@ -847,7 +845,7 @@ html[data-theme="light"] .project-oms-star-card p:not(.meta-label),
 html[data-theme="light"] .project-oms-star-card .project-result-list,
 html[data-theme="light"] .project-oms-star-card .project-result-list li,
 html[data-theme="light"] .project-oms-star-note {
-  color: #25303c;
+  color: #d2d8df;
 }
 
 html[data-theme="light"] .project-tag {
@@ -1527,47 +1525,64 @@ h1 {
 .project-oms-star-card {
   border: 1px solid #2a2e33;
   border-radius: 10px;
-  background:
-    radial-gradient(120% 140% at 0% 0%, rgba(70, 86, 108, 0.12), transparent 48%),
-    linear-gradient(180deg, rgba(20, 22, 25, 0.82), rgba(15, 17, 19, 0.72));
+  background: #141516;
   padding: 16px;
 }
 
 .project-flow-oms-bento .project-oms-star-canvas {
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.project-flow-oms-bento .project-oms-star-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #141516;
+}
+
+.project-flow-oms-bento .project-oms-star-card--situation,
+.project-flow-oms-bento .project-oms-star-card--action {
+  background: #141516;
 }
 
 .project-flow-oms-bento .project-oms-star-card--situation {
   grid-column: 1 / span 7;
+  grid-row: 1;
 }
 
 .project-flow-oms-bento .project-oms-star-card--task {
   grid-column: 8 / span 5;
+  grid-row: 1;
 }
 
 .project-flow-oms-bento .project-oms-star-card--action {
-  grid-column: 1 / span 8;
+  grid-column: 1 / span 7;
   grid-row: 2;
 }
 
 .project-flow-oms-bento .project-oms-star-card--result {
-  grid-column: 9 / span 4;
+  grid-column: 8 / span 5;
   grid-row: 2;
 }
 
 .project-flow-exeed-bento .project-oms-star-canvas {
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
+  gap: 10px;
 }
 
 .project-flow-exeed-bento .project-oms-star-card--situation {
-  grid-column: 1 / span 6;
+  grid-column: 1 / span 5;
   grid-row: 1;
 }
 
 .project-flow-exeed-bento .project-oms-star-card--task {
-  grid-column: 7 / span 6;
+  grid-column: 6 / span 7;
   grid-row: 1;
 }
 
@@ -1579,6 +1594,45 @@ h1 {
 .project-flow-exeed-bento .project-oms-star-card--action {
   grid-column: 1 / span 8;
   grid-row: 2;
+}
+
+.project-flow-exeed-bento .project-oms-star-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  background: #141516;
+}
+
+.project-flow-exeed-bento .project-oms-star-card--situation {
+  background: #141516;
+}
+
+.project-flow-exeed-bento .project-oms-star-card--action {
+  gap: 10px;
+}
+
+.project-flow-exeed-bento .project-oms-star-card--result .project-result-links {
+  gap: 10px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.project-flow-exeed-bento .project-oms-star-card--result .project-result-links li {
+  position: relative;
+  display: block;
+  padding-left: 22px;
+}
+
+.project-flow-exeed-bento .project-oms-star-card--result .project-result-links li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .project-oms-star-card p,
@@ -1639,7 +1693,7 @@ h1 {
 .project-star-item {
   border: 1px solid #2a2e33;
   border-radius: 7px;
-  background: transparent;
+  background: #141516;
   padding: 16px;
 }
 
@@ -1809,10 +1863,14 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .project-oms-star-card--situation,
-  .project-oms-star-card--task,
-  .project-oms-star-card--action,
-  .project-oms-star-card--result {
+  .project-flow-exeed-bento .project-oms-star-card--situation,
+  .project-flow-exeed-bento .project-oms-star-card--task,
+  .project-flow-exeed-bento .project-oms-star-card--action,
+  .project-flow-exeed-bento .project-oms-star-card--result,
+  .project-flow-oms-bento .project-oms-star-card--situation,
+  .project-flow-oms-bento .project-oms-star-card--task,
+  .project-flow-oms-bento .project-oms-star-card--action,
+  .project-flow-oms-bento .project-oms-star-card--result {
     grid-column: auto;
     grid-row: auto;
   }
