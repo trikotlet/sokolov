@@ -31,6 +31,7 @@ export type CaseStudy = {
   problem: string;
   solution: string;
   impact: string;
+  techTags?: string[];
   starBlock?: {
     situation: string;
     task: string;
@@ -148,7 +149,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         caseStudyId: "evraz-oms",
         title: "Система управления заказами (OMS)",
-        desc: "OMS — это система управления заказами, которая ведёт заказ от оформления до исполнения и снимает с менеджеров рутинные операции. В этом проекте мы перевели исполнение из ручного контура в систему и снизили зависимость процесса от 1С ERP.",
+        desc: "OMS — это система управления заказами, которая ведёт заказ от\u00A0оформления до\u00A0исполнения и снимает с\u00A0менеджеров рутинные операции.",
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
@@ -165,10 +166,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         caseStudyId: "cortex",
-        title: "Cortex - Threat Intelligence Hub",
-        desc: "Единое рабочее место для корреляции сигналов, триажа и настройки алертов.",
+        title: "Подсказчик веса пачки: как цифровой сервис помог сократить недогруз вагонов",
+        desc: "Цифровой сервис для операторов, который подсказывает, сколько пачек, слоев и какого веса нужно собрать, чтобы точнее закрывать вагонную норму.",
         img: "/project-1.svg",
-        tags: ["#threat-intel", "#enterprise", "#product"],
+        tags: ["#ЕВРАЗ", "Operations", "Digital Service", "Logistics"],
       },
       {
         caseStudyId: "atlas",
@@ -391,30 +392,31 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         id: "cortex",
-        title: "Cortex - Threat Intelligence Hub",
-        subtitle: "Корреляция, триаж и настройка качества сигналов",
+        title: "Подсказчик веса пачки: как цифровой сервис помог сократить недогруз вагонов",
+        subtitle: "Цифровая подсказка для точного закрытия вагонной нормы",
         summary:
-          "Центральная консоль для обогащения сигналов, корреляции IOC и управления релевантностью оповещений.",
+          "Внедрил цифровой сервис для операторов, который подсказывает, сколько пачек, слоев и какого веса нужно собрать, чтобы точнее закрывать вагонную норму.",
         img: "/project-1.svg",
-        role: "Руководитель проекта",
-        team: "2 PM, 6 инженеров, дата-аналитик",
-        timeline: "8 месяцев",
-        problem: "Шум в алертах снижал доверие и задерживал принятие решений командой SOC.",
-        solution: "Добавлены показатели доверия, объяснимые корреляции и управление настройками прямо в потоке работы.",
-        impact: "Повышено качество сигналов и ускорено принятие решений по реагированию.",
+        role: "Руководитель проекта. Параллельно приходилось закрывать часть аналитической и тестовой работы внутри команды.",
+        team: "Бизнес-заказчики, операторы, ИТ-команда",
+        timeline: "Проектная поставка",
+        problem: "Операторам было сложно вручную подобрать комбинацию пачек, слоев и веса так, чтобы точно закрыть вагонную норму без недогруза.",
+        solution: "Внедрили подсказчик, который рассчитывает рекомендуемую конфигурацию погрузки и помогает оператору быстрее принять решение в рабочем процессе.",
+        impact: "Средняя загрузка вагонов выросла на 3%, что помогло сократить недогруз и снизить транспортные расходы.",
         starBlock: {
           situation:
-            "SOC-команда работала в потоке шумных алертов, что снижало доверие к сигналам и замедляло реагирование.",
+            "На участке упаковки и отгрузки металлопроката операторы полагались на ручной расчет и личный опыт. Из-за этого вагоны в среднем загружались только на 94% от целевой нормы: возникал недогруз, требовалось больше подвижного состава, росли транспортные затраты. Бизнесу нужен был инструмент, который помогал бы добирать вагонную норму прямо в процессе погрузки, а не разбирать отклонения уже после.",
           task:
-            "Повысить качество сигналов и ускорить принятие решений без усложнения ежедневной работы аналитиков.",
+            "Нужно было внедрить сервис-подсказчик, который в реальном времени показывает оператору, сколько полных пачек осталось собрать, сколько слоев и штанг должно быть в пачке, какой должна быть закрывающая пачка, какой вес уже набран и какой результат получится при выполнении инструкции. Дополнительно требовалось предупреждать пользователя при попытке закрытия вагонной нормы с отклонением и дать справочную информацию по схемам погрузки.",
           actions: [
-            "Внедрили показатели доверия и объяснимую корреляцию IOC.",
-            "Добавили triage-поток и управление релевантностью алертов внутри рабочего контура.",
-            "Настроили цикл обратной связи для корректировки правил и качества сигналов.",
+            "Мы начали с разбора реального сценария работы оператора на текущем экране погрузки и собрали CJM: в какой момент принимается решение, каких данных не хватает и где ручной расчет чаще всего дает ошибку. На этой основе спроектировали логику подсказчика и подготовили алгоритм расчета количества пачек, слоев, штанг и целевого веса для закрытия вагонной нормы. С технической стороны это был не виджет, а полноценный интеграционный сервис.",
+            "Подсказчик встроили в интерфейс текущего экрана оператора, чтобы рекомендации появлялись прямо в рабочем контуре, без переключения между окнами. Данные он получал из производственного контура через WCF, работал с backend на Python, frontend на React, использовал RabbitMQ для событийного обмена, REST API для взаимодействия компонентов и контур хранения и отчетности на стороне БД. Дополнительно интегрировали решение с данными участка упаковки и сигналами от перекладывающих устройств, добавили предупреждения.",
+            "Отдельная сложность была в том, что проект пришлось адаптировать под реальную цеховую среду, а не под идеальный интерфейс на макете. Команда пересобирала визуальные акценты и подачу информации так, чтобы оператору было удобно работать с подсказчиком на производственном экране: крупные числовые значения, простая визуальная логика.",
           ],
           result:
-            "Доля полезных сигналов выросла, а команда SOC стала быстрее принимать решения по реагированию.",
+            "Мы внедрили сервис, который подсказывает оператору нужный вес пачки. Систему встроили прямо в рабочее место и связали с производственным контуром. Теперь оператор получает понятные рекомендации: как набирать основные и закрывающие пачки и сколько продукции еще можно добавить с учетом ограничений по весу. Сервис показывает текущую и прогнозируемую массу, следит за наполнением вагонной нормы и собирает статистику. Благодаря проекту средняя загрузка вагонов выросла на 3%, что помогло сократить недогруз и снизить транспортные расходы. Кроме того, автоматический контроль отклонений приучил сотрудников строже соблюдать регламенты на участке.",
         },
+        techTags: ["React", "Python", "C#/WCF", "RabbitMQ", "REST API", "OpenShift", "MES", "Wonderware"],
       },
       {
         id: "atlas",
@@ -568,10 +570,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         caseStudyId: "cortex",
-        title: "Cortex - Threat Intelligence Hub",
-        desc: "A unified workspace for signal correlation, triage, and alert optimization.",
+        title: "Pack Weight Assistant",
+        desc: "A digital service for operators that suggests how many packs and layers to assemble, and what target weight to use, to close the wagon loading norm more accurately.",
         img: "/project-1.svg",
-        tags: ["#threat-intel", "#enterprise", "#product"],
+        tags: ["#EVRAZ", "Operations", "Digital Service", "Logistics"],
       },
       {
         caseStudyId: "atlas",
@@ -760,30 +762,31 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         id: "cortex",
-        title: "Cortex - Threat Intelligence Hub",
-        subtitle: "Correlation, triage, and signal quality tuning",
+        title: "Pack Weight Assistant",
+        subtitle: "How a digital service helped reduce wagon underloading",
         summary:
-          "A central console for signal enrichment, IOC correlation, and alert relevance control.",
+          "Implemented a digital service for operators that suggests how many packs and layers to assemble, and what target weight to use, to close the wagon loading norm more accurately.",
         img: "/project-1.svg",
-        role: "Project Manager",
-        team: "2 PMs, 6 engineers, data analyst",
-        timeline: "8 months",
-        problem: "Alert noise reduced trust and delayed SOC decision-making.",
-        solution: "Added confidence indicators, explainable correlations, and in-flow relevance controls.",
-        impact: "Signal quality improved and response decisions became faster.",
+        role: "Project Manager. In parallel, I had to cover part of the analytical and testing work inside the team.",
+        team: "Business stakeholders, operators, IT team",
+        timeline: "Project delivery",
+        problem: "Operators had to manually choose a combination of packs, layers, and weight to close the wagon loading norm, which increased the risk of underloading.",
+        solution: "We implemented an assistant that calculates the recommended loading configuration and helps the operator make a faster decision in the working process.",
+        impact: "Average wagon loading increased by 3%, helping reduce underloading and lower transportation costs.",
         starBlock: {
           situation:
-            "The SOC team worked in a stream of noisy alerts, which reduced trust in signals and slowed down response.",
+            "At the metal products packing and shipment area, operators relied on manual calculation and personal experience. As a result, wagons were loaded to only 94% of the target norm on average: underloading occurred, more rolling stock was required, and transportation costs increased. The business needed a tool that would help reach the wagon norm during loading, instead of analyzing deviations after the fact.",
           task:
-            "Improve signal quality and speed up decisions without making analysts daily work more complex.",
+            "The task was to implement an assistant service that shows the operator in real time how many full packs still need to be assembled, how many layers and bars should be in a pack, what the closing pack should look like, what weight has already been accumulated, and what result will be reached if the instruction is followed. The service also had to warn the user when they tried to close the wagon loading norm with a deviation and provide reference information on loading schemes.",
           actions: [
-            "Introduced confidence indicators and explainable IOC correlation.",
-            "Added a triage flow and alert relevance controls directly into the analyst workflow.",
-            "Set up a feedback loop to tune rules and improve signal quality.",
+            "We started by analyzing the operator's real workflow on the current loading screen and mapped the CJM: when the decision is made, which data is missing, and where manual calculation most often creates errors. Based on this, we designed the assistant logic and prepared the algorithm for calculating the number of packs, layers, bars, and target weight needed to close the wagon loading norm. Technically, this was not a widget, but a full integration service.",
+            "We embedded the assistant into the current operator screen so recommendations appeared directly in the working flow, without switching between windows. The service received data from the production environment through WCF, used a Python backend and React frontend, RabbitMQ for event exchange, REST API for component interaction, and a database layer for storage and reporting. We also integrated it with packing area data and signals from transfer equipment, and added warnings.",
+            "A separate challenge was adapting the project to the real shop-floor environment, not to an ideal mockup interface. The team rebuilt visual emphasis and information hierarchy so the operator could comfortably use the assistant on a production screen: large numeric values and simple visual logic.",
           ],
           result:
-            "The share of useful signals increased, and the SOC team started making response decisions faster and with more confidence.",
+            "We implemented a service that suggests the required pack weight to the operator. The system was embedded directly into the workplace and connected to the production environment. The operator now receives clear recommendations: how to assemble main and closing packs, and how much more product can be added while respecting weight limits. The service shows current and forecast mass, tracks wagon norm fill, and collects statistics. As a result, average wagon loading increased by 3%, helping reduce underloading and lower transportation costs. In addition, automatic deviation control helped employees follow shop-floor regulations more strictly.",
         },
+        techTags: ["React", "Python", "C#/WCF", "RabbitMQ", "REST API", "OpenShift", "MES", "Wonderware"],
       },
       {
         id: "atlas",

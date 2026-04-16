@@ -285,6 +285,7 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
             const hasStoryCanvas = Boolean(project.starBlock);
             const artifacts: Artifact[] = [];
             const primaryArtifactImage = project.artifactImages?.[0];
+            const techTags = project.techTags ?? projectTechTags;
 
             if (project.teaserVideo) {
               artifacts.push({
@@ -551,7 +552,7 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                   )}
 
                   <section className="project-tech-cloud" aria-label={labels.technologies}>
-                    {projectTechTags.map((tag) => (
+                    {techTags.map((tag) => (
                       <span className="project-tag" key={`${project.title}-${tag}`}>
                         {tag}
                       </span>
