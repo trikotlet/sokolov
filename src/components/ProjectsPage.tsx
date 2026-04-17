@@ -46,6 +46,7 @@ type StoryCanvasProps = {
 function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
   const isOmsCase = project.id === "evraz-oms";
   const isExeedCase = project.id === "exeed";
+  const isPackWeightCase = project.id === "prompter";
   const labels = isRu
     ? {
         starTitle: "STAR Story",
@@ -80,7 +81,7 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
 
   return (
     <div
-      className={`project-flow project-flow-oms${isOmsCase ? " project-flow-oms-bento" : ""}${isExeedCase ? " project-flow-exeed-bento" : ""}`}
+      className={`project-flow project-flow-oms${isOmsCase ? " project-flow-oms-bento" : ""}${isExeedCase ? " project-flow-exeed-bento" : ""}${isPackWeightCase ? " project-flow-pack-bento" : ""}`}
     >
       <section className="project-oms-star-canvas" aria-label={labels.starTitle}>
         <article className="project-oms-star-card project-oms-star-card--situation">

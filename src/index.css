@@ -1614,6 +1614,42 @@ h1 {
   gap: 10px;
 }
 
+.project-flow-pack-bento .project-oms-star-canvas {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 10px;
+}
+
+.project-flow-pack-bento .project-oms-star-card {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #141516;
+}
+
+.project-flow-pack-bento .project-oms-star-card--situation {
+  grid-column: 1 / span 6;
+  grid-row: 1;
+}
+
+.project-flow-pack-bento .project-oms-star-card--task {
+  grid-column: 7 / span 6;
+  grid-row: 1;
+}
+
+.project-flow-pack-bento .project-oms-star-card--action {
+  grid-column: 1 / span 7;
+  grid-row: 2;
+}
+
+.project-flow-pack-bento .project-oms-star-card--result {
+  grid-column: 8 / span 5;
+  grid-row: 2;
+}
+
 .project-flow-exeed-bento .project-oms-star-card--result .project-result-links {
   gap: 10px;
   padding-left: 0;
@@ -1893,11 +1929,16 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
     grid-auto-rows: auto;
   }
 
+  .project-flow-pack-bento .project-oms-star-canvas,
   .project-flow-exeed-bento .project-oms-star-canvas,
   .project-flow-oms-bento .project-oms-star-canvas {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .project-flow-pack-bento .project-oms-star-card--situation,
+  .project-flow-pack-bento .project-oms-star-card--task,
+  .project-flow-pack-bento .project-oms-star-card--action,
+  .project-flow-pack-bento .project-oms-star-card--result,
   .project-flow-exeed-bento .project-oms-star-card--situation,
   .project-flow-exeed-bento .project-oms-star-card--task,
   .project-flow-exeed-bento .project-oms-star-card--action,
@@ -2258,6 +2299,7 @@ html[data-theme="light"] .project-tech-cloud .project-tag:first-child {
     grid-template-columns: 1fr;
   }
 
+  .project-flow-pack-bento .project-oms-star-canvas,
   .project-flow-exeed-bento .project-oms-star-canvas,
   .project-flow-oms-bento .project-oms-star-canvas {
     grid-template-columns: 1fr;

@@ -171,10 +171,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         tags: ["#Perx", "Automotive", "UI/UX", "Web", "Business Analyze", "Product"],
       },
       {
-        caseStudyId: "cortex",
+        caseStudyId: "prompter",
         title: "Подсказчик веса пачки: как цифровой сервис помог сократить недогруз вагонов",
         desc: "Цифровой сервис для операторов, который подсказывает, сколько пачек, слоев и какого веса нужно собрать, чтобы точнее закрывать вагонную норму.",
-        img: "/project-1.svg",
+        img: "/prompter.webp",
         tags: ["#ЕВРАЗ", "Operations", "Digital Service", "Logistics"],
       },
       {
@@ -397,12 +397,12 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
       },
       {
-        id: "cortex",
+        id: "prompter",
         title: "Подсказчик веса пачки: как цифровой сервис помог сократить недогруз вагонов",
         subtitle: "Цифровая подсказка для точного закрытия вагонной нормы",
         summary:
           "Внедрил цифровой сервис для операторов, который подсказывает, сколько пачек, слоев и какого веса нужно собрать, чтобы точнее закрывать вагонную норму.",
-        img: "/project-1.svg",
+        img: "/prompter.webp",
         role: "Руководитель ИТ-части проекта",
         roleDetails: [
           "Я руководил ИТ-частью проекта. Организовал запуск и рабочий процесс, координировал разработчиков и инженеров. Управлял всеми этапами — от проверки концепции (PoC) до полноценного релиза. Контролировал сроки, риски и синхронизировал работу команды с заказчиком и производственными цехами. В итоге довел решение до опытной эксплуатации и подготовил проектную документацию.",
@@ -598,10 +598,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         tags: ["#Perx", "Automotive", "UI/UX", "Web", "Business Analysis", "Product"],
       },
       {
-        caseStudyId: "cortex",
+        caseStudyId: "prompter",
         title: "Pack Weight Assistant",
         desc: "A digital service for operators that suggests how many packs and layers to assemble, and what target weight to use, to close the wagon loading norm more accurately.",
-        img: "/project-1.svg",
+        img: "/prompter.webp",
         tags: ["#EVRAZ", "Operations", "Digital Service", "Logistics"],
       },
       {
@@ -790,12 +790,12 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
       },
       {
-        id: "cortex",
+        id: "prompter",
         title: "Pack Weight Assistant",
         subtitle: "How a digital service helped reduce wagon underloading",
         summary:
           "Implemented a digital service for operators that suggests how many packs and layers to assemble, and what target weight to use, to close the wagon loading norm more accurately.",
-        img: "/project-1.svg",
+        img: "/prompter.webp",
         role: "IT Project Lead",
         roleDetails: [
           "I led the IT part of the project. I organized the launch and working process, coordinated developers and engineers, and managed all stages from proof of concept (PoC) to full release. I controlled timelines and risks, and synchronized the team with the customer and production shops. As a result, I brought the solution to pilot operation and prepared the project documentation.",
