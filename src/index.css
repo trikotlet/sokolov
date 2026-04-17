@@ -1668,10 +1668,45 @@ h1 {
 }
 
 .project-oms-role-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   border: 1px solid #2a2e33;
   border-radius: 7px;
   background: transparent;
   padding: 14px;
+}
+
+.project-scope-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-scope-title {
+  color: #f2f5f8;
+  font-weight: 700;
+}
+
+.project-check-list {
+  gap: 10px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.project-check-list li {
+  position: relative;
+  display: block;
+  padding-left: 22px;
+}
+
+.project-check-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .project-result {

@@ -69,6 +69,7 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
       };
 
   const roleText = project.resultBlock?.roleText || project.role;
+  const roleParagraphs = project.roleDetails ?? (project.resultBlock?.roleIntro ? [project.resultBlock.roleIntro] : [roleText]);
   const scopeText = project.resultBlock
     ? project.resultBlock.scaleText
     : `${ui.metaTeam}: ${project.team}. ${ui.metaTimeline}: ${project.timeline}.`;
@@ -166,7 +167,9 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
       <section className="project-oms-role" aria-label={labels.roleTitle}>
         <article className="project-oms-role-card">
           <p className="meta-label">{labels.role}</p>
-          {project.resultBlock?.roleIntro ? <p>{project.resultBlock.roleIntro}</p> : <p>{roleText}</p>}
+          {roleParagraphs.map((item) => (
+            <p key={item}>{item}</p>
+          ))}
           {project.resultBlock?.roleItems?.length ? (
             <ul className="project-result-list project-bullet-list">
               {project.resultBlock.roleItems.map((item) => (
@@ -177,10 +180,36 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
         </article>
         <article className="project-oms-role-card">
           <p className="meta-label">{labels.scope}</p>
-          <p>{scopeText}</p>
-          {project.resultBlock?.scaleNotes?.map((item) => (
-            <p key={item}>{item}</p>
-          ))}
+          {project.scopeDetails?.length ? (
+            project.scopeDetails.map((section) => (
+              <div className="project-scope-section" key={`${section.title ?? "scope"}-${section.text ?? "items"}`}>
+                {section.title ? <p className="project-scope-title">{section.title}</p> : null}
+                {section.text ? <p>{section.text}</p> : null}
+                {section.items?.length ? (
+                  <ul className="project-result-list project-check-list">
+                    {section.items.map((item) => (
+                      <li key={`${item.label ?? ""}-${item.text}`}>
+                        {item.label ? (
+                          <>
+                            <span className="meta-label">{item.label}:</span> {item.text}
+                          </>
+                        ) : (
+                          item.text
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ))
+          ) : (
+            <>
+              <p>{scopeText}</p>
+              {project.resultBlock?.scaleNotes?.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
+            </>
+          )}
         </article>
       </section>
     </div>

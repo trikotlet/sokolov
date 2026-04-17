@@ -26,6 +26,12 @@ export type CaseStudy = {
   teaserPoster?: string;
   artifactImages?: string[];
   role: string;
+  roleDetails?: string[];
+  scopeDetails?: Array<{
+    title?: string;
+    text?: string;
+    items?: Array<{ label?: string; text: string }>;
+  }>;
   team: string;
   timeline: string;
   problem: string;
@@ -397,7 +403,30 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         summary:
           "Внедрил цифровой сервис для операторов, который подсказывает, сколько пачек, слоев и какого веса нужно собрать, чтобы точнее закрывать вагонную норму.",
         img: "/project-1.svg",
-        role: "Руководитель проекта. Параллельно приходилось закрывать часть аналитической и тестовой работы внутри команды.",
+        role: "Руководитель ИТ-части проекта",
+        roleDetails: [
+          "Я руководил ИТ-частью проекта. Организовал запуск и рабочий процесс, координировал разработчиков и инженеров. Управлял всеми этапами — от проверки концепции (PoC) до полноценного релиза. Контролировал сроки, риски и синхронизировал работу команды с заказчиком и производственными цехами. В итоге довел решение до опытной эксплуатации и подготовил проектную документацию.",
+          "При этом я не ограничивался только управлением. Часть задач по аналитике и тестированию взял на себя: проектировал решение, прорабатывал пользовательские сценарии и логику подсказчика. Сам участвовал в тестах, собирал отзывы пользователей и превращал их в задачи для команды.",
+          "По сути, я работал на стыке управления, аналитики и проектирования. Мне нужно было не просто следить за графиком, а помогать команде создавать продукт, который реально впишется в производственный процесс.",
+        ],
+        scopeDetails: [
+          {
+            text: "Проект охватывал участок упаковки и отгрузки металлопроката и длился около 8 месяцев активной реализации, от PoC до опытной эксплуатации в реальной цеховой среде.",
+          },
+          {
+            items: [
+              { text: "Внедрение затронуло четыре весовые линии и рабочие места операторов." },
+              { text: "Сервис встроили в действующий интерфейс оператора и связали с MES/Wonderware." },
+              { text: "Проект потребовал доработки ИТ-инфраструктуры и прямого подключения оборудования к системе." },
+            ],
+          },
+          {
+            text: "Решение в реальном времени обрабатывает данные о погрузке, сигналы от перекладывающих устройств и рассчитывает вагонную норму с учетом параметров пачек, слоев, штанг и совместимости плавок.",
+          },
+          {
+            text: "Для реализации собрали кросс-функциональную команду: от Python и React-разработчиков до инженеров MES/C#, DevOps-специалистов и экспертов со стороны производства.",
+          },
+        ],
         team: "Бизнес-заказчики, операторы, ИТ-команда",
         timeline: "Проектная поставка",
         problem: "Операторам было сложно вручную подобрать комбинацию пачек, слоев и веса так, чтобы точно закрыть вагонную норму без недогруза.",
@@ -410,7 +439,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
             "Нужно было внедрить сервис-подсказчик, который в реальном времени показывает оператору, сколько полных пачек осталось собрать, сколько слоев и штанг должно быть в пачке, какой должна быть закрывающая пачка, какой вес уже набран и какой результат получится при выполнении инструкции. Дополнительно требовалось предупреждать пользователя при попытке закрытия вагонной нормы с отклонением и дать справочную информацию по схемам погрузки.",
           actions: [
             "Мы начали с разбора реального сценария работы оператора на текущем экране погрузки и собрали CJM: в какой момент принимается решение, каких данных не хватает и где ручной расчет чаще всего дает ошибку. На этой основе спроектировали логику подсказчика и подготовили алгоритм расчета количества пачек, слоев, штанг и целевого веса для закрытия вагонной нормы. С технической стороны это был не виджет, а полноценный интеграционный сервис.",
-            "Подсказчик встроили в интерфейс текущего экрана оператора, чтобы рекомендации появлялись прямо в рабочем контуре, без переключения между окнами. Данные он получал из производственного контура через WCF, работал с backend на Python, frontend на React, использовал RabbitMQ для событийного обмена, REST API для взаимодействия компонентов и контур хранения и отчетности на стороне БД. Дополнительно интегрировали решение с данными участка упаковки и сигналами от перекладывающих устройств, добавили предупреждения.",
+            "Подсказчик встроили в интерфейс текущего экрана оператора, чтобы рекомендации появлялись прямо в рабочем контуре, без переключения между окнами. Дополнительно интегрировали решение с данными участка упаковки и сигналами от перекладывающих устройств, добавили предупреждения.",
             "Отдельная сложность была в том, что проект пришлось адаптировать под реальную цеховую среду, а не под идеальный интерфейс на макете. Команда пересобирала визуальные акценты и подачу информации так, чтобы оператору было удобно работать с подсказчиком на производственном экране: крупные числовые значения, простая визуальная логика.",
           ],
           result:
@@ -767,7 +796,30 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         summary:
           "Implemented a digital service for operators that suggests how many packs and layers to assemble, and what target weight to use, to close the wagon loading norm more accurately.",
         img: "/project-1.svg",
-        role: "Project Manager. In parallel, I had to cover part of the analytical and testing work inside the team.",
+        role: "IT Project Lead",
+        roleDetails: [
+          "I led the IT part of the project. I organized the launch and working process, coordinated developers and engineers, and managed all stages from proof of concept (PoC) to full release. I controlled timelines and risks, and synchronized the team with the customer and production shops. As a result, I brought the solution to pilot operation and prepared the project documentation.",
+          "At the same time, I did not limit myself to management only. I took on part of the analytical and testing work: designed the solution, worked through user scenarios, and shaped the assistant logic. I also participated in testing, collected user feedback, and translated it into tasks for the team.",
+          "In practice, I worked at the intersection of management, analysis, and solution design. My job was not just to watch the schedule, but to help the team create a product that would actually fit into the production process.",
+        ],
+        scopeDetails: [
+          {
+            text: "The project covered the metal products packing and shipment area and lasted about 8 months of active implementation, from PoC to pilot operation in a real shop-floor environment.",
+          },
+          {
+            items: [
+              { text: "The implementation covered four weighing lines and operator workplaces." },
+              { text: "The service was embedded into the existing operator interface and connected to MES/Wonderware." },
+              { text: "The project required IT infrastructure changes and direct equipment connection to the system." },
+            ],
+          },
+          {
+            text: "The solution processes loading data and signals from transfer equipment in real time, calculating the wagon loading norm based on pack, layer, bar parameters, and heat compatibility.",
+          },
+          {
+            text: "A cross-functional team was assembled for delivery: from Python and React developers to MES/C# engineers, DevOps specialists, and production-side experts.",
+          },
+        ],
         team: "Business stakeholders, operators, IT team",
         timeline: "Project delivery",
         problem: "Operators had to manually choose a combination of packs, layers, and weight to close the wagon loading norm, which increased the risk of underloading.",
@@ -780,7 +832,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
             "The task was to implement an assistant service that shows the operator in real time how many full packs still need to be assembled, how many layers and bars should be in a pack, what the closing pack should look like, what weight has already been accumulated, and what result will be reached if the instruction is followed. The service also had to warn the user when they tried to close the wagon loading norm with a deviation and provide reference information on loading schemes.",
           actions: [
             "We started by analyzing the operator's real workflow on the current loading screen and mapped the CJM: when the decision is made, which data is missing, and where manual calculation most often creates errors. Based on this, we designed the assistant logic and prepared the algorithm for calculating the number of packs, layers, bars, and target weight needed to close the wagon loading norm. Technically, this was not a widget, but a full integration service.",
-            "We embedded the assistant into the current operator screen so recommendations appeared directly in the working flow, without switching between windows. The service received data from the production environment through WCF, used a Python backend and React frontend, RabbitMQ for event exchange, REST API for component interaction, and a database layer for storage and reporting. We also integrated it with packing area data and signals from transfer equipment, and added warnings.",
+            "We embedded the assistant into the current operator screen so recommendations appeared directly in the working flow, without switching between windows. We also integrated it with packing area data and signals from transfer equipment, and added warnings.",
             "A separate challenge was adapting the project to the real shop-floor environment, not to an ideal mockup interface. The team rebuilt visual emphasis and information hierarchy so the operator could comfortably use the assistant on a production screen: large numeric values and simple visual logic.",
           ],
           result:
