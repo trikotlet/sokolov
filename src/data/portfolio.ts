@@ -159,7 +159,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
-        tags: ["#ЕВРАЗ", "1С ERP", "MES", "Camunda", "Kafka"],
+        tags: ["#ЕВРАЗ", "2025", "1С ERP", "Starfish24", "Microservices"],
       },
       {
         caseStudyId: "exeed",
@@ -168,35 +168,28 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        tags: ["#Perx", "Automotive", "UI/UX", "Web", "Business Analyze", "Product"],
+        tags: ["#Perx", "2023", "Automotive", "UI/UX", "Web", "Business Analyze", "Product"],
       },
       {
         caseStudyId: "prompter",
         title: "Подсказчик веса пачки: как цифровой сервис помог сократить недогруз вагонов",
         desc: "Цифровой сервис для операторов, который подсказывает, сколько пачек, слоев и какого веса нужно собрать, чтобы точнее закрывать вагонную норму.",
         img: "/prompter.webp",
-        tags: ["#ЕВРАЗ", "Operations", "Digital Service", "Logistics"],
+        tags: ["#ЕВРАЗ", "2024", "Operations", "Digital Service", "Logistics"],
       },
       {
-        caseStudyId: "atlas",
-        title: "Atlas - Compliance Control Center",
-        desc: "Управление контрольными требованиями, доказательствами и аудитными процессами.",
-        img: "/project-2.svg",
-        tags: ["#compliance", "#automation", "#saas"],
+        caseStudyId: "dotherapy",
+        title: "DO Therapy - онлайн-сервис психологической помощи",
+        desc: "Запустили сервис подбора психологов с записью, оплатой, онлайн-консультациями и регистрацией специалистов.",
+        img: "/dotherapy-artifacts/dotherapy-main.webp",
+        tags: ["#Nerve.AI", "2021-2022", "Healthcare", "CustDev", "Web"],
       },
       {
-        caseStudyId: "lumen",
-        title: "Lumen - Risk Posture Monitor",
-        desc: "Мониторинг отклонений, рисков и выполнения мер по их снижению в реальном времени.",
-        img: "/project-1.svg",
-        tags: ["#risk", "#monitoring", "#ops"],
-      },
-      {
-        caseStudyId: "pulse",
-        title: "Pulse - Demo Product Insights",
-        desc: "Демо-кейс по запуску панели продуктовых инсайтов для команд delivery и аналитики.",
-        img: "/project-2.svg",
-        tags: ["#demo", "#analytics", "#delivery"],
+        caseStudyId: "charge-cars",
+        title: "Charge Cars - промо-сайт премиум электрокаров",
+        desc: "Запуск иммерсивного сайта для электрокара на базе Ford Mustang Fastback 1967 с анимацией, видео и адаптацией под разные устройства.",
+        img: "/chargecars-artifacts/chargecars-main.webp",
+        tags: ["#Nerve.AI", "2021-2022", "Automotive", "3D", "Web"],
       },
     ],
     socialLinks: [
@@ -214,6 +207,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
+        techTags: ["Camunda BPM", "Kafka", "Event-Driven Architecture", "PostgreSQL", "Grafana"],
         role: "Руководитель проектов",
         team: "Бизнес-заказчики, ИТ-команды, подрядчики",
         timeline: "2024 -> настоящее время",
@@ -229,9 +223,9 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           task:
             "Моя задача была не просто доделать OMS, а увеличить долю заказов, которые система способна доводить до результата без постоянного участия менеджера. Параллельно нужно было снизить нагрузку на 1С, сократить ручные касания и ускорить цикл исполнения заказа без поломки действующего бизнес-процесса.",
           actions: [
-            "Сначала зафиксировали критерии успеха: что именно считаем автоисполнением, какие статусы являются источником истины и по каким метрикам оцениваем эффект.",
-            "Затем разложили поток заказов на сценарии, приоритизировали их по влиянию на бизнес и последовательно расширяли исполнительную модель OMS.",
-            "Параллельно усилили релизный и эксплуатационный контур: мониторинг, алерты, работу со статусной моделью и стабилизировали интеграционный контур под рост нагрузки.",
+            "Сначала договорились, что считать успехом: какое исполнение называть автоматическим, какие статусы брать за эталон и как мерить эффект.",
+            "Разделили заказы на сценарии, выбрали приоритетные для бизнеса и шаг за шагом дорабатывали логику OMS. Одновременно настроили мониторинг и оповещения, навели порядок в статусах и подготовили систему к росту нагрузки.",
+            "Двигались итерациями: добавляли новые типы заказов, усложняли сценарии и отлаживали выпуск обновлений.",
           ],
           result:
             "В итоге в обработку OMS начал попадать практически весь создаваемый поток заказов, а подавляющая часть сценариев была хотя бы частично автоматизирована. Доля операций без участия менеджера вышла примерно на уровень пятой части процесса, а производительность на менеджера выросла на этапе оформления и заметно улучшилась на этапе отгрузки.",
@@ -256,8 +250,8 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           scaleText:
             "Ключевой операционный слой: OMS, 1С ERP, Bitrix24, логистические и уведомительные сценарии, статусная модель, мониторинг и процессный контур. Работа шла итерационно, несколькими волнами, в интеграционном и микросервисном ландшафте.",
           teamsText: "Бизнес, продажи, логистика, операционные команды, OMS, 1С ERP, Bitrix24 и интеграционные сервисы.",
-          processText: "Итерационная работа волнами: расширение типов заказов, усложнение исполнительных сценариев и постоянная доработка релизного контура.",
-          toolsText: "OMS, 1С ERP, Bitrix24, логистические и уведомительные сценарии, мониторинг, алертинг и статусная модель.",
+          processText: "",
+          toolsText: "",
           challengesTitle: "Ключевые ограничения",
           challengesItems: [
             "Скорость сделки зависела не только от системы, но и от количества ручных действий.",
@@ -370,33 +364,6 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
       },
       {
-        id: "kris",
-        title: "KRIS - Incident Analysis",
-        subtitle: "Рабочее пространство для high-load расследований",
-        summary:
-          "Интерфейс ведения кейсов с прозрачной ответственностью, фиксацией доказательств и удобной передачей задач между сменами.",
-        img: "/project-2.svg",
-        role: "Руководитель проекта",
-        team: "PM, 4 инженера, QA",
-        timeline: "4 месяца",
-        problem: "Критичные инциденты зависали из-за разрозненности данных и неочевидной ответственности.",
-        solution: "Введены таймлайн расследования, роли участников и структурированные статусы кейса.",
-        impact: "Сократился цикл закрытия кейсов и улучшилась преемственность между сменами.",
-        starBlock: {
-          situation:
-            "Расследования шли в условиях high-load, данные были разрознены, а ответственность между сменами терялась.",
-          task:
-            "Сократить цикл закрытия инцидентов и сделать передачу кейсов между сменами предсказуемой.",
-          actions: [
-            "Собрали единый таймлайн расследования и стандартизировали статусы кейса.",
-            "Зафиксировали роли участников и правила эскалации на критичных этапах.",
-            "Добавили структурированную фиксацию доказательств и handoff между сменами.",
-          ],
-          result:
-            "Время закрытия кейсов сократилось, а преемственность между сменами стала стабильной и прозрачной.",
-        },
-      },
-      {
         id: "prompter",
         title: "Подсказчик веса пачки: как цифровой сервис помог сократить недогруз вагонов",
         subtitle: "Цифровая подсказка для точного закрытия вагонной нормы",
@@ -445,90 +412,71 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           result:
             "Мы внедрили сервис, который подсказывает оператору нужный вес пачки. Систему встроили прямо в рабочее место и связали с производственным контуром. Теперь оператор получает понятные рекомендации: как набирать основные и закрывающие пачки и сколько продукции еще можно добавить с учетом ограничений по весу. Сервис показывает текущую и прогнозируемую массу, следит за наполнением вагонной нормы и собирает статистику. Благодаря проекту средняя загрузка вагонов выросла на 3%, что помогло сократить недогруз и снизить транспортные расходы. Кроме того, автоматический контроль отклонений приучил сотрудников строже соблюдать регламенты на участке.",
         },
-        techTags: ["React", "Python", "C#/WCF", "RabbitMQ", "REST API", "OpenShift", "MES", "Wonderware"],
+        techTags: ["Python", "C#/WCF", "RabbitMQ", "REST API", "OpenShift", "MES", "Wonderware"],
       },
       {
-        id: "atlas",
-        title: "Atlas - Compliance Control Center",
-        subtitle: "Связка политик и доказательств для аудита",
+        id: "dotherapy",
+        title: "DO Therapy - онлайн-сервис психологической помощи",
+        subtitle: "Запуск маркетплейса психологов с подбором, записью, оплатой и онлайн-консультациями",
         summary:
-          "Контур управления комплаенсом, который связывает требования, владельцев и подтверждающие артефакты.",
-        img: "/project-2.svg",
+          "Проект для Московского института психоанализа: мы запустили клиентский путь от подбора специалиста до онлайн-сессии и параллельно собрали контур регистрации и проверки психологов.",
+        img: "/dotherapy-artifacts/dotherapy-main.webp",
+        artifactImages: ["/dotherapy-artifacts/dotherapy-main.webp"],
         role: "Руководитель проекта",
-        team: "PM, 5 инженеров",
-        timeline: "5 месяцев",
-        problem: "Подготовка к аудитам была ручной, долгой и не прозрачной по статусу.",
-        solution: "Собраны шаблоны доказательств и автоматизирована маршрутизация задач по владельцам.",
-        impact: "Снижены ручные затраты и повышена предсказуемость подготовки к проверкам.",
+        team: "Заказчик, продуктовая команда, разработка, QA и интеграционные подрядчики",
+        timeline: "Ноябрь 2021 -> апрель 2022",
+        problem: "Проект стартовал с высокой неопределенностью: клиент ожидал предсказуемый запуск, но не были выбраны платежи, видеосвязь и SMS-регистрация, а требования к административной панели появились уже по ходу работы.",
+        solution: "Перевел работу в прозрачный Time & Material-контур: фиксировал влияние изменений на сроки и бюджет, помогал доуточнять сценарии и держал команду сфокусированной на запуске ключевого пользовательского пути.",
+        impact: "Сервис довели до завершения по первоначальным целям: подбор специалиста, запись, оплата, онлайн-консультации и регистрация психологов были собраны в один рабочий продукт.",
+        techTags: ["Healthcare", "Marketplace", "CloudPayments", "Voximplant", "CustDev", "Web"],
         starBlock: {
           situation:
-            "Подготовка к аудитам шла вручную: данные и доказательства собирались долго и без прозрачного статуса.",
+            "Московский институт психоанализа запускал DO Therapy - сервис психологической помощи, где клиент подбирает специалиста под свой запрос, записывается на консультацию и получает помощь онлайн.",
           task:
-            "Сделать процесс подготовки к проверкам управляемым, повторяемым и менее зависимым от ручной координации.",
+            "Нужно было собрать не просто сайт, а рабочий сервис с многоступенчатым подбором, бронированием, оплатой, видеосвязью, чат-поддержкой, регистрацией специалистов и административной частью.",
           actions: [
-            "Связали требования, владельцев и доказательства в единый контур.",
-            "Подготовили шаблоны артефактов и правила проверки полноты доказательной базы.",
-            "Автоматизировали маршрутизацию задач и контроль статусов по владельцам.",
+            "Зафиксировал Time & Material как управленческую модель проекта и сделал изменения прозрачными: каждое уточнение связывали со сроками, бюджетом и рисками.",
+            "Разобрал с заказчиком ключевые сценарии: подбор специалиста, запись на сеанс, оплата, онлайн-консультация, чат-поддержка, регистрация и проверка психологов.",
+            "Скоординировал интеграции CloudPayments и Voximplant, а также включил новые требования к административной панели в общий план без потери контроля над ожиданиями клиента.",
           ],
           result:
-            "Ручная нагрузка снизилась, а подготовка к аудитам стала предсказуемой по срокам и качеству.",
+            "Команда довела сервис до завершения: ключевые клиентские и административные сценарии были реализованы, а заказчик получил управляемый процесс с понятной логикой изменений, рисков, сроков и бюджета.",
         },
       },
       {
-        id: "lumen",
-        title: "Lumen - Risk Posture Monitor",
-        subtitle: "Мониторинг отклонений и контроль ремедиации",
+        id: "charge-cars",
+        title: "Charge Cars - промо-сайт премиум электрокаров",
+        subtitle: "Иммерсивный сайт для британского электрокара с видео, scroll-анимацией и премиальной подачей продукта",
         summary:
-          "Экран риск-позиции с приоритизацией отклонений и маршрутами действий для операционных команд.",
-        img: "/project-1.svg",
+          "Charge Cars переосмыслил Ford Mustang Fastback 1967 как премиальный электрокар. Команде нужно было превратить готовый дизайн в технологичный промо-сайт с большим количеством видео, сложной анимации и одинаково сильным впечатлением на desktop и mobile.",
+        img: "/chargecars-artifacts/chargecars-main.webp",
+        artifactImages: [
+          "/chargecars-artifacts/chargecars-main.webp",
+          "/chargecars-artifacts/chargecars-detail-1.webp",
+          "/chargecars-artifacts/chargecars-detail-2.webp",
+        ],
         role: "Руководитель проекта",
-        team: "PM, 4 инженера, эксперт по ИБ",
-        timeline: "5 месяцев",
-        problem: "Команды видели только снимок состояния, но не понимали приоритеты и ответственность.",
-        solution: "Внедрены риск-бакеты, приоритеты и сценарии работы по устранению критичных отклонений.",
-        impact: "Ускорена ремедиация критичных рисков и улучшена прозрачность для руководства.",
-        starBlock: {
-          situation:
-            "Команды видели отклонения в posture, но не имели единой системы приоритетов и закреплённой ответственности.",
-          task:
-            "Дать операционным командам понятный порядок действий и ускорить ремедиацию критичных рисков.",
-          actions: [
-            "Сгруппировали отклонения по риск-бакетам и ввели приоритеты устранения.",
-            "Определили маршруты ремедиации и зоны ответственности по типам рисков.",
-            "Настроили мониторинг выполнения мер и видимость прогресса для руководства.",
-          ],
-          result:
-            "Критичные риски стали закрываться быстрее, а статус ремедиации стал прозрачным для всех уровней управления.",
-        },
-      },
-      {
-        id: "pulse",
-        title: "Pulse - Demo Product Insights",
-        subtitle: "Панель продуктовых инсайтов для delivery-команд",
-        summary:
-          "Демо-кейс: собрали единый экран продуктовых метрик и статусов релизов, чтобы быстрее находить узкие места в delivery.",
-        img: "/project-2.svg",
-        role: "Руководитель проекта",
-        team: "PM, аналитик, 3 инженера",
-        timeline: "6 недель",
+        team: "Клиент, проектная команда, frontend-разработка, дизайн-эксперты",
+        timeline: "Декабрь 2021 -> апрель 2022",
         problem:
-          "Команды видели метрики в разных источниках и поздно замечали просадки по воронке и срокам релизов.",
+          "После реализации первых экранов клиент понял, что сайт формально соответствует требованиям, но не дает ожидаемого уровня эффектности и премиальности.",
         solution:
-          "Собрали единый контур показателей, добавили сигналы отклонений и регламент weekly-review по действиям.",
+          "Перевел проект в режим управляемых экспериментов: согласовал перенос рисков по срокам, организовал регулярные брейнштормы, синхронизировал дизайн и разработку вокруг анимаций, видео и производительности.",
         impact:
-          "Сократилось время обнаружения проблем, а обсуждение решений стало опираться на единый набор данных.",
+          "Финальная версия сайта удовлетворила клиента: продукт получил технологичную, элегантную и дорогую по восприятию digital-презентацию.",
+        techTags: ["Automotive", "3D", "Scroll Animation", "Video", "UI/UX", "Web"],
         starBlock: {
           situation:
-            "Метрики продукта и delivery были разнесены по разным инструментам, из-за чего сигналы проблем приходили слишком поздно.",
+            "Charge Cars - британский стартап, выпускающий премиальные электрокары на базе классического Ford Mustang Fastback 1967. Для запуска нужен был промо-сайт по готовому дизайну, с анимацией и видео в духе продуктовых страниц Apple.",
           task:
-            "Собрать единый обзорный контур и сократить время от обнаружения отклонения до согласованного действия команды.",
+            "Нужно было реализовать сайт, который выглядит дорого, быстро загружается для пользователей из разных регионов и одинаково хорошо работает на desktop и mobile. При этом часть технических решений по видео и scroll-анимации требовала экспериментов.",
           actions: [
-            "Определили единый список продуктовых и релизных метрик для weekly-review.",
-            "Собрали дашборд с приоритизацией отклонений и быстрыми переходами к причинам.",
-            "Встроили ритм обсуждений: сигнал -> гипотеза -> действие -> проверка эффекта.",
+            "После первых экранов согласовал с клиентом переход в экспериментальный режим и зафиксировал, что задержки по новым материалам, согласованиям и гипотезам продлевают сроки проекта.",
+            "Организовал проработку нескольких моделей анимации: привязка к скроллу, секции-истории с проигрыванием фрагментов видео и гибридный сценарий, который в итоге приняли.",
+            "Синхронизировал техническую команду вокруг кастомной логики видео без готовых библиотек и подключил дизайн-экспертизу для переработки меню, акцентов и восприятия главной страницы.",
           ],
           result:
-            "Проблемы стали фиксироваться раньше, а решения по улучшениям принимаются на едином наборе данных.",
+            "Команда трансформировала исходную идею и довела сайт до результата, который совпал с ожиданиями клиента: технологичный, элегантный и премиальный digital-образ автомобиля.",
         },
       },
     ],
@@ -586,7 +534,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
-        tags: ["#EVRAZ", "1С ERP", "MES", "Camunda", "Kafka"],
+        tags: ["#EVRAZ", "2025", "1С ERP", "Starfish24", "Microservices"],
       },
       {
         caseStudyId: "exeed",
@@ -595,35 +543,28 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        tags: ["#Perx", "Automotive", "UI/UX", "Web", "Business Analysis", "Product"],
+        tags: ["#Perx", "2023", "Automotive", "UI/UX", "Web", "Business Analysis", "Product"],
       },
       {
         caseStudyId: "prompter",
         title: "Pack Weight Assistant",
         desc: "A digital service for operators that suggests how many packs and layers to assemble, and what target weight to use, to close the wagon loading norm more accurately.",
         img: "/prompter.webp",
-        tags: ["#EVRAZ", "Operations", "Digital Service", "Logistics"],
+        tags: ["#EVRAZ", "2024", "Operations", "Digital Service", "Logistics"],
       },
       {
-        caseStudyId: "atlas",
-        title: "Atlas - Compliance Control Center",
-        desc: "A control center for requirements, evidence, and audit workflows.",
-        img: "/project-2.svg",
-        tags: ["#compliance", "#automation", "#saas"],
+        caseStudyId: "dotherapy",
+        title: "DO Therapy - Online Mental Health Service",
+        desc: "Launched a psychologist matching service with booking, payments, online sessions, and specialist onboarding.",
+        img: "/dotherapy-artifacts/dotherapy-main.webp",
+        tags: ["#Nerve.AI", "2021-2022", "Healthcare", "CustDev", "Web"],
       },
       {
-        caseStudyId: "lumen",
-        title: "Lumen - Risk Posture Monitor",
-        desc: "Real-time monitoring of deviations, risks, and mitigation progress.",
-        img: "/project-1.svg",
-        tags: ["#risk", "#monitoring", "#ops"],
-      },
-      {
-        caseStudyId: "pulse",
-        title: "Pulse - Demo Product Insights",
-        desc: "A demo case for launching a product insights dashboard for delivery and analytics teams.",
-        img: "/project-2.svg",
-        tags: ["#demo", "#analytics", "#delivery"],
+        caseStudyId: "charge-cars",
+        title: "Charge Cars - Premium EV Promo Website",
+        desc: "Launched an immersive website for an electric Ford Mustang Fastback 1967 with animation, video, and cross-device delivery.",
+        img: "/chargecars-artifacts/chargecars-main.webp",
+        tags: ["#Nerve.AI", "2021-2022", "Automotive", "3D", "Web"],
       },
     ],
     socialLinks: [
@@ -641,6 +582,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         img: "/project-2.svg",
         teaserVideo: "/evraz_video_crop.mp4",
         teaserPoster: "/video-posters/evraz-video-poster.webp",
+        techTags: ["Camunda BPM", "Kafka", "Event-Driven Architecture", "PostgreSQL", "Grafana"],
         role: "Project Manager",
         team: "Business stakeholders, IT teams, external vendors",
         timeline: "2024 -> present",
@@ -683,8 +625,8 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           scaleText:
             "A core operational layer: OMS, 1C ERP, Bitrix24, logistics and notification scenarios, the status model, monitoring, and the surrounding process layer. The work moved in several waves across an integration-heavy microservice landscape.",
           teamsText: "Business, sales, logistics, operations teams, OMS, 1C ERP, Bitrix24, and integration services.",
-          processText: "Iterative waves of work: expanding order types, increasing execution complexity, and continuously refining the release loop.",
-          toolsText: "OMS, 1C ERP, Bitrix24, logistics and notification scenarios, monitoring, alerting, and the status model.",
+          processText: "",
+          toolsText: "",
           challengesTitle: "Key constraints",
           challengesItems: [
             "Deal speed depended not only on the system, but also on the number of manual actions.",
@@ -763,33 +705,6 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
       },
       {
-        id: "kris",
-        title: "KRIS - Incident Analysis",
-        subtitle: "Workspace for high-load investigations",
-        summary:
-          "A case management interface with clear ownership, evidence tracking, and smooth handoffs between shifts.",
-        img: "/project-2.svg",
-        role: "Project Manager",
-        team: "PM, 4 engineers, QA",
-        timeline: "4 months",
-        problem: "Critical incidents stalled because data was fragmented and ownership was unclear.",
-        solution: "Introduced an investigation timeline, participant roles, and structured case statuses.",
-        impact: "The case closure cycle was reduced, and continuity between shifts improved.",
-        starBlock: {
-          situation:
-            "Investigations were running under high load, data was fragmented, and ownership between shifts was getting lost.",
-          task:
-            "Reduce the incident closure cycle and make case handoff between shifts predictable.",
-          actions: [
-            "Built a single investigation timeline and standardized case statuses.",
-            "Defined participant roles and escalation rules for critical stages.",
-            "Added structured evidence capture and shift handoff mechanics.",
-          ],
-          result:
-            "Case closure time went down, and handoff continuity between shifts became stable and transparent.",
-        },
-      },
-      {
         id: "prompter",
         title: "Pack Weight Assistant",
         subtitle: "How a digital service helped reduce wagon underloading",
@@ -838,90 +753,71 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           result:
             "We implemented a service that suggests the required pack weight to the operator. The system was embedded directly into the workplace and connected to the production environment. The operator now receives clear recommendations: how to assemble main and closing packs, and how much more product can be added while respecting weight limits. The service shows current and forecast mass, tracks wagon norm fill, and collects statistics. As a result, average wagon loading increased by 3%, helping reduce underloading and lower transportation costs. In addition, automatic deviation control helped employees follow shop-floor regulations more strictly.",
         },
-        techTags: ["React", "Python", "C#/WCF", "RabbitMQ", "REST API", "OpenShift", "MES", "Wonderware"],
+        techTags: ["Python", "C#/WCF", "RabbitMQ", "REST API", "OpenShift", "MES", "Wonderware"],
       },
       {
-        id: "atlas",
-        title: "Atlas - Compliance Control Center",
-        subtitle: "Connecting policies and evidence for audits",
+        id: "dotherapy",
+        title: "DO Therapy - Online Mental Health Service",
+        subtitle: "A psychologist marketplace with matching, booking, payments, and online sessions",
         summary:
-          "A compliance layer connecting requirements, owners, and supporting evidence.",
-        img: "/project-2.svg",
+          "A project for the Moscow Institute of Psychoanalysis: we launched the client journey from specialist matching to an online session and built the onboarding flow for psychologists.",
+        img: "/dotherapy-artifacts/dotherapy-main.webp",
+        artifactImages: ["/dotherapy-artifacts/dotherapy-main.webp"],
         role: "Project Manager",
-        team: "PM, 5 engineers",
-        timeline: "5 months",
-        problem: "Audit preparation was manual, slow, and lacked clear status visibility.",
-        solution: "Built reusable evidence templates and automated task routing to owners.",
-        impact: "Manual effort decreased, and audit preparation became more predictable.",
+        team: "Client, product team, development, QA, and integration vendors",
+        timeline: "November 2021 -> April 2022",
+        problem: "The project started with high uncertainty: the client expected a predictable launch, but payments, video calls, and SMS registration were not selected yet, and admin panel requirements appeared during delivery.",
+        solution: "I moved the work into a transparent Time & Material delivery loop: tracked how changes affected timeline and budget, helped refine scenarios, and kept the team focused on the core launch path.",
+        impact: "The service was completed against the original goals: specialist matching, booking, payments, online sessions, and psychologist registration were assembled into one working product.",
+        techTags: ["Healthcare", "Marketplace", "CloudPayments", "Voximplant", "CustDev", "Web"],
         starBlock: {
           situation:
-            "Audit preparation was handled manually: data and evidence were collected slowly and without transparent status.",
+            "The Moscow Institute of Psychoanalysis was launching DO Therapy, a mental health service where a client can find a specialist for their request, book a consultation, and receive help online.",
           task:
-            "Make audit preparation manageable, repeatable, and less dependent on manual coordination.",
+            "Build not just a website, but a working service with multi-step matching, booking, payments, video calls, chat support, specialist registration, and an admin area.",
           actions: [
-            "Connected requirements, owners, and evidence in one workflow.",
-            "Prepared artifact templates and rules for checking evidence completeness.",
-            "Automated task routing and owner status control.",
+            "Set Time & Material as the delivery model and made changes transparent: every clarification was connected to timeline, budget, and delivery risk.",
+            "Worked through the core journeys with the client: specialist matching, session booking, payment, online consultation, chat support, psychologist registration, and competency review.",
+            "Coordinated CloudPayments and Voximplant integrations and folded new admin panel requirements into the delivery plan without losing control of client expectations.",
           ],
           result:
-            "Manual workload decreased, and audit preparation became more predictable in both timing and quality.",
+            "The team brought the service to completion: core client and admin scenarios were delivered, while the client had a controlled process with clear handling of changes, risks, timeline, and budget.",
         },
       },
       {
-        id: "lumen",
-        title: "Lumen - Risk Posture Monitor",
-        subtitle: "Monitoring deviations and remediation control",
+        id: "charge-cars",
+        title: "Charge Cars - Premium EV Promo Website",
+        subtitle: "An immersive product site for a British electric Mustang with video, scroll animation, and premium storytelling",
         summary:
-          "A risk posture view with prioritized deviations and action paths for operations teams.",
-        img: "/project-1.svg",
+          "Charge Cars reimagined the 1967 Ford Mustang Fastback as a premium electric car. The project turned a finished design into a high-impact website with video-heavy storytelling, complex animation, and a strong desktop and mobile experience.",
+        img: "/chargecars-artifacts/chargecars-main.webp",
+        artifactImages: [
+          "/chargecars-artifacts/chargecars-main.webp",
+          "/chargecars-artifacts/chargecars-detail-1.webp",
+          "/chargecars-artifacts/chargecars-detail-2.webp",
+        ],
         role: "Project Manager",
-        team: "PM, 4 engineers, security expert",
-        timeline: "5 months",
-        problem: "Teams could see a snapshot of posture, but lacked clear priorities and ownership.",
-        solution: "Introduced risk buckets, priorities, and remediation workflows for resolving critical deviations.",
-        impact: "Remediation of critical risks accelerated, and management visibility improved.",
-        starBlock: {
-          situation:
-            "Teams could see posture deviations, but lacked a shared prioritization system and clear ownership.",
-          task:
-            "Give operations teams a clear sequence of actions and accelerate remediation of critical risks.",
-          actions: [
-            "Grouped deviations into risk buckets and introduced remediation priorities.",
-            "Defined remediation routes and ownership areas by risk type.",
-            "Set up monitoring of mitigation actions and progress visibility for management.",
-          ],
-          result:
-            "Critical risks started closing faster, and remediation status became transparent across all management levels.",
-        },
-      },
-      {
-        id: "pulse",
-        title: "Pulse - Demo Product Insights",
-        subtitle: "Product insights dashboard for delivery teams",
-        summary:
-          "Demo case: a single view of product metrics and release status for faster delivery bottleneck detection.",
-        img: "/project-2.svg",
-        role: "Project Manager",
-        team: "PM, analyst, 3 engineers",
-        timeline: "6 weeks",
+        team: "Client, project team, frontend development, design experts",
+        timeline: "December 2021 -> April 2022",
         problem:
-          "Teams tracked metrics across different sources and spotted funnel drops and release delays too late.",
+          "After the first screens were implemented, the client felt that the site matched the formal requirements but did not yet deliver the expected level of impact and premium perception.",
         solution:
-          "Built a single metrics layer, added deviation signals, and introduced a weekly review routine tied to actions.",
+          "I moved the project into a controlled experimentation mode: aligned timeline risk with the client, organized regular brainstorming, and coordinated design and engineering around animation, video behavior, and performance.",
         impact:
-          "Time to detect issues dropped, and decisions started from one shared set of data.",
+          "The final site met the client's expectations and gave the product a technological, elegant, and premium digital presentation.",
+        techTags: ["Automotive", "3D", "Scroll Animation", "Video", "UI/UX", "Web"],
         starBlock: {
           situation:
-            "Product and delivery metrics were spread across different tools, so problem signals arrived too late.",
+            "Charge Cars is a British startup building premium electric cars based on the classic 1967 Ford Mustang Fastback. The client needed a website based on a finished design, with animation and video inspired by Apple product pages.",
           task:
-            "Build a single overview layer and reduce the time from detecting a deviation to an aligned team action.",
+            "Build a site that feels expensive, loads quickly for users across regions, and works well on both desktop and mobile. Several video and scroll-animation mechanics required experimentation.",
           actions: [
-            "Defined one shared set of product and release metrics for weekly review.",
-            "Built a dashboard with prioritized deviations and quick drill-downs to causes.",
-            "Introduced a working rhythm: signal -> hypothesis -> action -> effect validation.",
+            "After the first screens, aligned an experimental delivery mode with the client and made delays from new assets, approvals, and hypotheses part of the project timeline logic.",
+            "Organized exploration of several animation models: scroll-bound motion, story sections that play fragments of video, and the hybrid model that was eventually accepted.",
+            "Coordinated the engineering team around custom video logic without ready-made libraries and brought in design expertise to improve navigation, emphasis, and the main page experience.",
           ],
           result:
-            "Problems started surfacing earlier, and improvement decisions are now made from one trusted data source.",
+            "The team transformed the original idea into a result that matched the client's expectations: a technological, elegant, and premium digital presence for the car.",
         },
       },
     ],

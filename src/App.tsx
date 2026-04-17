@@ -11,6 +11,7 @@ import { stripBasePath, withBasePath } from "./utils/basePath";
 const SITE_URL = "https://sokolovroman.ru";
 const PROJECTS_PATH = "/projects";
 const CV_PATH = "/cv";
+const CASE_DISPLAY_ORDER = ["evraz-oms", "prompter", "exeed"] as const;
 type Theme = "dark" | "light";
 
 function normalizePathname(pathname: string): string {
@@ -23,6 +24,29 @@ function normalizePathname(pathname: string): string {
 
 function getRoutePathname(pathname: string): string {
   return normalizePathname(stripBasePath(pathname));
+}
+
+function orderCases<T extends { caseStudyId?: string; id?: string }>(items: T[]): T[] {
+  return [...items].sort((first, second) => {
+    const firstId = first.caseStudyId ?? first.id ?? "";
+    const secondId = second.caseStudyId ?? second.id ?? "";
+    const firstIndex = CASE_DISPLAY_ORDER.indexOf(firstId as (typeof CASE_DISPLAY_ORDER)[number]);
+    const secondIndex = CASE_DISPLAY_ORDER.indexOf(secondId as (typeof CASE_DISPLAY_ORDER)[number]);
+
+    if (firstIndex === -1 && secondIndex === -1) {
+      return 0;
+    }
+
+    if (firstIndex === -1) {
+      return 1;
+    }
+
+    if (secondIndex === -1) {
+      return -1;
+    }
+
+    return firstIndex - secondIndex;
+  });
 }
 
 export default function App() {
@@ -73,6 +97,8 @@ export default function App() {
   const isCvPage = pathname === CV_PATH;
   const isHomePage = !isProjectsPage && !isCvPage;
   const content = contentByLanguage[language];
+  const orderedProjectCards = orderCases(content.projectCards);
+  const orderedCaseStudies = orderCases(content.caseStudies);
 
   useEffect(() => {
     const onProjectsPage = pathname === PROJECTS_PATH;
@@ -266,7 +292,7 @@ export default function App() {
 
         {isProjectsPage ? (
           <ProjectsPage
-            caseStudies={content.caseStudies}
+            caseStudies={orderedCaseStudies}
             ui={content.ui}
             language={language}
             profile={content.profile}
@@ -287,7 +313,7 @@ export default function App() {
             </div>
 
             <div className="right-col">
-              <ProjectsSection projects={content.projectCards} ui={content.ui} language={language} />
+              <ProjectsSection projects={orderedProjectCards} ui={content.ui} language={language} />
             </div>
           </main>
         )}

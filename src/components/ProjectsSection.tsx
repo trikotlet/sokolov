@@ -79,25 +79,27 @@ export default function ProjectsSection({ projects, ui, language }: ProjectsSect
                 ))}
               </div>
             </div>
-            {project.teaserVideo ? (
-              <ViewportVideo
-                src={project.teaserVideo}
-                poster={project.teaserPoster}
-                className="project-card-media"
-                ariaLabel={`${project.title} ${labels.teaserVideo}`}
-                rootMargin="320px 0px"
-                playOnHover
-                isHovered={hoveredCaseId === project.caseStudyId}
-              />
-            ) : imageSources ? (
-              <picture>
-                <source srcSet={imageSources.avif} type="image/avif" />
-                <source srcSet={imageSources.webp} type="image/webp" />
-                <img src={imageSources.fallback} alt={project.title} loading="lazy" />
-              </picture>
-            ) : (
-              <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
-            )}
+            <div className="project-card-media-frame">
+              {project.teaserVideo ? (
+                <ViewportVideo
+                  src={project.teaserVideo}
+                  poster={project.teaserPoster}
+                  className="project-card-media"
+                  ariaLabel={`${project.title} ${labels.teaserVideo}`}
+                  rootMargin="320px 0px"
+                  playOnHover
+                  isHovered={hoveredCaseId === project.caseStudyId}
+                />
+              ) : imageSources ? (
+                <picture>
+                  <source srcSet={imageSources.avif} type="image/avif" />
+                  <source srcSet={imageSources.webp} type="image/webp" />
+                  <img src={imageSources.fallback} alt={project.title} loading="lazy" />
+                </picture>
+              ) : (
+                <img src={toAssetUrl(project.img)} alt={project.title} loading="lazy" />
+              )}
+            </div>
           </Card>
         );
       })}
