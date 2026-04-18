@@ -1,5 +1,7 @@
-const RAW_BASE_URL = import.meta.env.BASE_URL || "/";
-const BASE_PATH = RAW_BASE_URL.endsWith("/") ? RAW_BASE_URL.slice(0, -1) : RAW_BASE_URL;
+import { normalizeBasePathForRuntime } from "../../base-path.mjs";
+
+const RAW_BASE_URL = import.meta.env.BASE_URL;
+const BASE_PATH = normalizeBasePathForRuntime(RAW_BASE_URL);
 
 export function withBasePath(path: string): string {
   if (!path.startsWith("/")) {

@@ -51,4 +51,5 @@ Notes:
 ## Current Known Behavior
 
 - `https://trikotlet.github.io/sokolov/` should return `200`.
-- Direct deep links like `/sokolov/cv` and `/sokolov/projects` can return `404` on GitHub Pages if opened directly, but in-app navigation works from the root page.
+- Direct deep links like `/sokolov/cv` and `/sokolov/projects` are handled by the generated `public/404.html`, which redirects back to the SPA and restores the intended route.
+- `VITE_BASE_PATH` is normalized through the same shared helper for Vite, runtime routing, and the generated GitHub Pages redirect page.

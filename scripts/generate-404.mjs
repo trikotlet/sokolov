@@ -1,21 +1,31 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+import { normalizeBasePathForRuntime } from "../base-path.mjs";
 
-function normalizeBasePath(rawBasePath) {
-  const value = (rawBasePath || "/").trim();
-  if (!value || value === "/") {
-    return "";
+export function render404Page(template, rawBasePath) {
+  if (!template.includes("__BASE_PATH__")) {
+    throw new Error("404 template is missing the __BASE_PATH__ token");
   }
 
-  const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
-  return withLeadingSlash.endsWith("/") ? withLeadingSlash.slice(0, -1) : withLeadingSlash;
+  return template.replaceAll("__BASE_PATH__", normalizeBasePathForRuntime(rawBasePath));
 }
 
-const basePath = normalizeBasePath(process.env.VITE_BASE_PATH);
-const templatePath = resolve("templates/404.template.html");
-const outputPath = resolve("public/404.html");
+export function generate404Page({ rawBasePath, templatePath, outputPath }) {
+  const template = readFileSync(templatePath, "utf8");
+  const output = render404Page(template, rawBasePath);
 
-const template = readFileSync(templatePath, "utf8");
-const output = template.replaceAll("__BASE_PATH__", basePath);
+  writeFileSync(outputPath, output, "utf8");
+}
 
-writeFileSync(outputPath, output, "utf8");
+const isEntrypoint = process.argv[1]
+  ? import.meta.url === pathToFileURL(process.argv[1]).href
+  : false;
+
+if (isEntrypoint) {
+  generate404Page({
+    rawBasePath: process.env.VITE_BASE_PATH,
+    templatePath: resolve("templates/404.template.html"),
+    outputPath: resolve("public/404.html"),
+  });
+}
