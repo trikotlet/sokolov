@@ -163,8 +163,8 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         caseStudyId: "exeed",
-        title: "EXEED",
-        desc: "Развитие цифровых сервисов для сайта импортера и сети из 150 дилеров",
+        title: "EXEED: цифровые сервисы для продаж и дилерской сети",
+        desc: "Запустил ряд веб-сервисов для exeed.ru и сети из 150 дилеров: трейд-ин, авто в наличии, ТО-калькулятор, сравнение комплектаций.",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
@@ -179,7 +179,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         caseStudyId: "dotherapy",
-        title: "DO Therapy - онлайн-сервис психологической помощи",
+        title: "DO Therapy: онлайн-сервис психологической помощи",
         desc: "Запустили сервис подбора психологов с записью, оплатой, онлайн-консультациями и регистрацией специалистов.",
         img: "/dotherapy-artifacts/dotherapy-main.webp",
         tags: ["#Nerve.AI", "2021-2022", "Healthcare", "CustDev", "Web"],
@@ -262,10 +262,10 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         id: "exeed",
-        title: "EXEED",
-        subtitle: "Развитие цифровых сервисов для сайта импортера и сети из 150 дилеров",
+        title: "EXEED: цифровые сервисы для продаж и дилерской сети",
+        subtitle: "Запустил ряд веб-сервисов для exeed.ru и сети из 150 дилеров: трейд-ин, авто в наличии, ТО-калькулятор, сравнение комплектаций.",
         summary:
-          "Развитие цифровых сервисов для сайта импортера и сети из 150 дилеров",
+          "Запустил ряд веб-сервисов для exeed.ru и сети из 150 дилеров: трейд-ин, авто в наличии, ТО-калькулятор, сравнение комплектаций.",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
@@ -416,7 +416,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       },
       {
         id: "dotherapy",
-        title: "DO Therapy - онлайн-сервис психологической помощи",
+        title: "DO Therapy: онлайн-сервис психологической помощи",
         subtitle: "Запуск маркетплейса психологов с подбором, записью, оплатой и онлайн-консультациями",
         summary:
           "Проект для Московского института психоанализа: мы запустили клиентский путь от подбора специалиста до онлайн-сессии и параллельно собрали контур регистрации и проверки психологов.",
