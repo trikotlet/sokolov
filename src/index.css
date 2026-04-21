@@ -353,8 +353,14 @@ button:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    --duration: 2.6s;
+    --wave-distance: -0.18em;
+    --wave-step: 0.07s;
+  }
+
   .text-wave-char {
-    animation: none;
+    animation-timing-function: ease-in-out;
   }
 }
 
