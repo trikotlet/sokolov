@@ -10,7 +10,7 @@ export default function CvPage({ language }: CvPageProps) {
 
   return (
     <main className="cv-page" id="top">
-      <TextShimmer as="h1" className="cv-title" duration={2.4} spread={2.1}>
+      <TextShimmer as="h1" className="cv-title" duration={1.8} spread={2.1}>
         {title}
       </TextShimmer>
     </main>

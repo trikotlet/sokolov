@@ -322,69 +322,70 @@ button:focus-visible,
 }
 
 .text-shimmer {
-  --spread: 120px;
-  --duration: 2s;
-  --base-color: #8e939a;
-  --base-gradient-color: #ffffff;
+  --duration: 1.8s;
+  --wave-distance: -0.32em;
+  --wave-step: 0.055s;
+  --base-color: #8291a2;
+  --wave-peak-color: #f6fbff;
   color: #d7dde4;
 }
 
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .text-shimmer {
-    background-image:
-      linear-gradient(
-        90deg,
-        transparent calc(50% - var(--spread)),
-        var(--base-gradient-color),
-        transparent calc(50% + var(--spread))
-      ),
-      linear-gradient(var(--base-color), var(--base-color));
-    background-size: 250% 100%, auto;
-    background-repeat: no-repeat, repeat;
-    background-position: 100% center, 0 0;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: text-shimmer var(--duration) linear infinite;
+.text-wave-word,
+.text-wave-char,
+.text-wave-space {
+  display: inline-block;
+}
+
+.text-wave-word {
+  white-space: nowrap;
+}
+
+.text-wave-char {
+  color: var(--base-color);
+  transform: translateY(0);
+  animation: text-wave var(--duration) cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation-delay: calc(var(--char-index) * var(--wave-step));
+  will-change: transform, color, opacity;
+}
+
+.text-wave-space {
+  white-space: pre;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-wave-char {
+    animation: none;
   }
 }
 
-@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-  .text-shimmer {
-    animation: shimmer-fallback var(--duration) ease-in-out infinite alternate;
+@keyframes text-wave {
+  0%,
+  100% {
+    color: var(--base-color);
+    opacity: 0.58;
+    text-shadow: none;
+    transform: translateY(0);
   }
-}
 
-@keyframes shimmer-fallback {
-  from {
-    opacity: 0.72;
-  }
-  to {
+  14% {
+    color: var(--wave-peak-color);
     opacity: 1;
+    text-shadow: 0 0 18px rgba(194, 222, 255, 0.42);
+    transform: translateY(var(--wave-distance));
   }
-}
 
-.text-shimmer {
-  background-image:
-    linear-gradient(
-      90deg,
-      transparent calc(50% - var(--spread)),
-      var(--base-gradient-color),
-      transparent calc(50% + var(--spread))
-    ),
-    linear-gradient(var(--base-color), var(--base-color));
-  background-size: 250% 100%, auto;
-  background-repeat: no-repeat, repeat;
-  background-position: 100% center, 0 0;
-}
-
-@keyframes text-shimmer {
-  from {
-    background-position: 100% center, 0 0;
+  28% {
+    color: #c8d8e8;
+    opacity: 0.88;
+    text-shadow: none;
+    transform: translateY(0.05em);
   }
-  to {
-    background-position: 0% center, 0 0;
+
+  44% {
+    color: var(--base-color);
+    opacity: 0.68;
+    text-shadow: none;
+    transform: translateY(0);
   }
 }
 
@@ -399,7 +400,7 @@ html[data-theme="light"] .cv-page {
 html[data-theme="light"] .text-shimmer {
   color: #2c3643;
   --base-color: #5f6977;
-  --base-gradient-color: #121418;
+  --wave-peak-color: #111827;
 }
 
 .left-col {
