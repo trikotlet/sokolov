@@ -46,7 +46,11 @@ export default function TextShimmer({
               charIndex += 1;
 
               return (
-                <span className="text-wave-char" style={{ "--char-index": index } as CSSProperties} key={`${char}-${index}`}>
+                <span
+                  className="text-wave-char"
+                  style={{ "--char-index": index } as CSSProperties}
+                  key={`${char}-${index}`}
+                >
                   {char}
                 </span>
               );

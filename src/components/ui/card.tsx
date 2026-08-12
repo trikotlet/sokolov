@@ -5,8 +5,7 @@ type CardOwnProps<C extends ElementType> = {
   as?: C;
 };
 
-type CardProps<C extends ElementType> = CardOwnProps<C> &
-  Omit<ComponentPropsWithoutRef<C>, keyof CardOwnProps<C>>;
+type CardProps<C extends ElementType> = CardOwnProps<C> & Omit<ComponentPropsWithoutRef<C>, keyof CardOwnProps<C>>;
 
 export function Card<C extends ElementType = "div">({ as, className, ...props }: CardProps<C>) {
   const Component = as ?? "div";

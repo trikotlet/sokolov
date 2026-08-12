@@ -89,4 +89,25 @@ describe("App smoke", () => {
     expect(ogUrl?.getAttribute("content")).toBe("https://sokolovroman.ru/projects");
     expect(robots?.getAttribute("content")).toBe("noindex,nofollow,noarchive");
   });
+
+  it("renders /cv route with a placeholder heading", async () => {
+    setupDom("/cv");
+    await renderApp();
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const cvTitle = document.querySelector(".cv-title");
+
+    expect(document.title).toBe("Roman Sokolov - Опыт");
+    expect(canonical?.getAttribute("href")).toBe("https://sokolovroman.ru/cv");
+    expect(cvTitle?.getAttribute("aria-label")).toBe("Разработка в процессе…");
+  });
+
+  it("restores the route from the GitHub Pages ?p= redirect", async () => {
+    setupDom("/?p=%2Fprojects");
+    await renderApp();
+
+    expect(window.location.pathname).toBe("/projects");
+    expect(window.location.search).toBe("");
+    expect(document.title).toBe("Roman Sokolov - Проекты");
+  });
 });

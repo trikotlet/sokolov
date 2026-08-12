@@ -18,9 +18,7 @@ export function generate404Page({ rawBasePath, templatePath, outputPath }) {
   writeFileSync(outputPath, output, "utf8");
 }
 
-const isEntrypoint = process.argv[1]
-  ? import.meta.url === pathToFileURL(process.argv[1]).href
-  : false;
+const isEntrypoint = process.argv[1] ? import.meta.url === pathToFileURL(process.argv[1]).href : false;
 
 if (isEntrypoint) {
   generate404Page({

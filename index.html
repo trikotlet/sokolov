@@ -2,6 +2,20 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var theme = window.localStorage.getItem("portfolio-theme");
+          document.documentElement.setAttribute("data-theme", theme === "light" ? "light" : "dark");
+          var language = window.localStorage.getItem("portfolio-language");
+          if (language === "ru" || language === "en") {
+            document.documentElement.setAttribute("lang", language);
+          }
+        } catch (error) {
+          /* storage unavailable: keep defaults */
+        }
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta

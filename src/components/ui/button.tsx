@@ -22,10 +22,5 @@ export default function Button<C extends ElementType = "button">({
 }: ButtonProps<C>) {
   const Component = as ?? "button";
 
-  return (
-    <Component
-      className={cn("ui-button", `ui-button--${variant}`, `ui-button--${size}`, className)}
-      {...props}
-    />
-  );
+  return <Component className={cn("ui-button", `ui-button--${variant}`, `ui-button--${size}`, className)} {...props} />;
 }

@@ -220,8 +220,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         starBlock: {
           situation:
             "OMS уже был внедрён, но значимая часть исполнения заказов всё ещё жила в ручном контуре и логике 1С. Из-за этого скорость сделки зависела не только от системы, но и от количества ручных действий, качества статусной модели и согласованности между продажами, логистикой и операционными командами. Проекту нужен был переход от наблюдающей модели к реально исполняющей.",
-          task:
-            "Моя задача была не просто доделать OMS, а увеличить долю заказов, которые система способна доводить до результата без постоянного участия менеджера. Параллельно нужно было снизить нагрузку на 1С, сократить ручные касания и ускорить цикл исполнения заказа без поломки действующего бизнес-процесса.",
+          task: "Моя задача была не просто доделать OMS, а увеличить долю заказов, которые система способна доводить до результата без постоянного участия менеджера. Параллельно нужно было снизить нагрузку на 1С, сократить ручные касания и ускорить цикл исполнения заказа без поломки действующего бизнес-процесса.",
           actions: [
             "Сначала договорились, что считать успехом: какое исполнение называть автоматическим, какие статусы брать за эталон и как мерить эффект.",
             "Разделили заказы на сценарии, выбрали приоритетные для бизнеса и шаг за шагом дорабатывали логику OMS. Одновременно настроили мониторинг и оповещения, навели порядок в статусах и подготовили систему к росту нагрузки.",
@@ -232,8 +231,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
         resultBlock: {
           title: "Что сделали",
-          intro:
-            "Сфокусировались на бизнес-эффекте, автоисполнении и устойчивой эксплуатации под рост нагрузки.",
+          intro: "Сфокусировались на бизнес-эффекте, автоисполнении и устойчивой эксплуатации под рост нагрузки.",
           roleText:
             "Я отвечал за то, чтобы проект давал результат в бизнесе: цели и KPI, roadmap по сценариям, синхронизацию бизнеса и ИТ, управление приоритетами, статусами, релизами и интеграционными рисками.",
           contextText:
@@ -241,15 +239,28 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           goalText:
             "Увеличить долю автоисполнения, сократить ручные касания, снизить нагрузку на 1С и ускорить цикл исполнения без поломки действующего бизнес-процесса.",
           items: [
-            { label: "Зафиксировали критерии успеха: что считаем автоисполнением, какие статусы являются источником истины и какими метриками меряем эффект." },
-            { label: "Разложили поток заказов на сценарии, приоритизировали их по влиянию на бизнес и последовательно расширяли исполнительную модель OMS." },
-            { label: "Усилили релизный контур: управление изменениями, контроль интеграционных рисков и предсказуемый вывод изменений в прод." },
+            {
+              label:
+                "Зафиксировали критерии успеха: что считаем автоисполнением, какие статусы являются источником истины и какими метриками меряем эффект.",
+            },
+            {
+              label:
+                "Разложили поток заказов на сценарии, приоритизировали их по влиянию на бизнес и последовательно расширяли исполнительную модель OMS.",
+            },
+            {
+              label:
+                "Усилили релизный контур: управление изменениями, контроль интеграционных рисков и предсказуемый вывод изменений в прод.",
+            },
             { label: "Усилили эксплуатацию: мониторинг, алерты, наблюдаемость и работу со статусной моделью." },
-            { label: "Стабилизировали интеграционный контур под рост нагрузки, чтобы ошибка в одном звене не ломала операционный поток целиком." },
+            {
+              label:
+                "Стабилизировали интеграционный контур под рост нагрузки, чтобы ошибка в одном звене не ломала операционный поток целиком.",
+            },
           ],
           scaleText:
             "Ключевой операционный слой: OMS, 1С ERP, Bitrix24, логистические и уведомительные сценарии, статусная модель, мониторинг и процессный контур. Работа шла итерационно, несколькими волнами, в интеграционном и микросервисном ландшафте.",
-          teamsText: "Бизнес, продажи, логистика, операционные команды, OMS, 1С ERP, Bitrix24 и интеграционные сервисы.",
+          teamsText:
+            "Бизнес, продажи, логистика, операционные команды, OMS, 1С ERP, Bitrix24 и интеграционные сервисы.",
           processText: "",
           toolsText: "",
           challengesTitle: "Ключевые ограничения",
@@ -263,16 +274,14 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         id: "exeed",
         title: "EXEED: цифровые сервисы для продаж и дилерской сети",
-        subtitle: "Запустил ряд веб-сервисов для exeed.ru и сети из 150 дилеров: трейд-ин, авто в наличии, ТО-калькулятор, сравнение комплектаций.",
+        subtitle:
+          "Запустил ряд веб-сервисов для exeed.ru и сети из 150 дилеров: трейд-ин, авто в наличии, ТО-калькулятор, сравнение комплектаций.",
         summary:
           "Запустил ряд веб-сервисов для exeed.ru и сети из 150 дилеров: трейд-ин, авто в наличии, ТО-калькулятор, сравнение комплектаций.",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        artifactImages: [
-          "/exeed-artifacts/trade-in-calculator.png",
-          "/exeed-artifacts/model-comparison.png",
-        ],
+        artifactImages: ["/exeed-artifacts/trade-in-calculator.png", "/exeed-artifacts/model-comparison.png"],
         role: "Руководитель проекта",
         team: "Команда импортера и дилерская сеть",
         timeline: "Несколько релизов",
@@ -282,8 +291,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         starBlock: {
           situation:
             "Сайт импортера EXEED уже приводил клиентов, но их путь к покупке был разрозненным. Некоторые сценарии — от выбора машины и оценки трейд-ин до записи на сервис — работали плохо или не были связаны между собой. Бизнесу требовались не просто новые страницы, а рабочие цифровые сервисы, которые помогают пользователю быстрее определиться с выбором, собирают заявки, поддерживают дилеров и легко встраиваются в текущую ИТ-инфраструктуру.",
-          task:
-            "Запускать новые сервисы для exeed.ru и дилерской сети, координировать внутреннюю команду и подрядчиков, интегрироваться с внешними платформами и API и держать под контролем требования, сроки и качество сразу по нескольким проектам в параллели.",
+          task: "Запускать новые сервисы для exeed.ru и дилерской сети, координировать внутреннюю команду и подрядчиков, интегрироваться с внешними платформами и API и держать под контролем требования, сроки и качество сразу по нескольким проектам в параллели.",
           taskIntro:
             "Моей задачей было не просто выпускать отдельные веб-фичи, а последовательно собирать на сайте импортера рабочий сервисный слой, который поддерживает продажи и послепродажный сценарий. Нужно было одновременно:",
           taskItems: [
@@ -328,10 +336,8 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
         resultBlock: {
           title: "Что сделал",
-          roleText:
-            "Отвечал за весь цикл ведения проектов как менеджер и аналитик.",
-          roleIntro:
-            "Отвечал за весь цикл ведения проектов как менеджер и аналитик:",
+          roleText: "Отвечал за весь цикл ведения проектов как менеджер и аналитик.",
+          roleIntro: "Отвечал за весь цикл ведения проектов как менеджер и аналитик:",
           roleItems: [
             "собирал требования и писал ТЗ;",
             "управлял бюджетом и распределял ресурсы;",
@@ -342,7 +348,11 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           items: [
             { label: "Трейд-ин калькулятор", href: "https://exeed.ru/calculate-trade-in/", note: "совместно с Авито" },
             { label: "Сервис лидогенерации из форм", href: "https://autocrm.ru/", note: "совместно с Autocrm.ru" },
-            { label: "Сервис «Автомобили в наличии»", href: "https://exeed.ru/cars/", note: "на базе фидов по стандарту Auto.ru" },
+            {
+              label: "Сервис «Автомобили в наличии»",
+              href: "https://exeed.ru/cars/",
+              note: "на базе фидов по стандарту Auto.ru",
+            },
             { label: "Калькулятор технического обслуживания", href: "https://exeed.ru/maintenance_calculator/" },
             { label: "Виджет сравнения комплектаций", href: "https://exeed.ru/compare/" },
             { label: "Виджет «Model Range»", href: "https://services.platform.prod.exeed.perx.ru/widgets/modelrange/" },
@@ -396,14 +406,16 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         ],
         team: "Бизнес-заказчики, операторы, ИТ-команда",
         timeline: "Проектная поставка",
-        problem: "Операторам было сложно вручную подобрать комбинацию пачек, слоев и веса так, чтобы точно закрыть вагонную норму без недогруза.",
-        solution: "Внедрили подсказчик, который рассчитывает рекомендуемую конфигурацию погрузки и помогает оператору быстрее принять решение в рабочем процессе.",
-        impact: "Средняя загрузка вагонов выросла на 3%, что помогло сократить недогруз и снизить транспортные расходы.",
+        problem:
+          "Операторам было сложно вручную подобрать комбинацию пачек, слоев и веса так, чтобы точно закрыть вагонную норму без недогруза.",
+        solution:
+          "Внедрили подсказчик, который рассчитывает рекомендуемую конфигурацию погрузки и помогает оператору быстрее принять решение в рабочем процессе.",
+        impact:
+          "Средняя загрузка вагонов выросла на 3%, что помогло сократить недогруз и снизить транспортные расходы.",
         starBlock: {
           situation:
             "На участке упаковки и отгрузки металлопроката операторы полагались на ручной расчет и личный опыт. Из-за этого вагоны в среднем загружались только на 94% от целевой нормы: возникал недогруз, требовалось больше подвижного состава, росли транспортные затраты. Бизнесу нужен был инструмент, который помогал бы добирать вагонную норму прямо в процессе погрузки, а не разбирать отклонения уже после.",
-          task:
-            "Нужно было внедрить сервис-подсказчик, который в реальном времени показывает оператору, сколько полных пачек осталось собрать, сколько слоев и штанг должно быть в пачке, какой должна быть закрывающая пачка, какой вес уже набран и какой результат получится при выполнении инструкции. Дополнительно требовалось предупреждать пользователя при попытке закрытия вагонной нормы с отклонением и дать справочную информацию по схемам погрузки.",
+          task: "Нужно было внедрить сервис-подсказчик, который в реальном времени показывает оператору, сколько полных пачек осталось собрать, сколько слоев и штанг должно быть в пачке, какой должна быть закрывающая пачка, какой вес уже набран и какой результат получится при выполнении инструкции. Дополнительно требовалось предупреждать пользователя при попытке закрытия вагонной нормы с отклонением и дать справочную информацию по схемам погрузки.",
           actions: [
             "Мы начали с разбора реального сценария работы оператора на текущем экране погрузки и собрали CJM: в какой момент принимается решение, каких данных не хватает и где ручной расчет чаще всего дает ошибку. На этой основе спроектировали логику подсказчика и подготовили алгоритм расчета количества пачек, слоев, штанг и целевого веса для закрытия вагонной нормы. С технической стороны это был не виджет, а полноценный интеграционный сервис.",
             "Подсказчик встроили в интерфейс текущего экрана оператора, чтобы рекомендации появлялись прямо в рабочем контуре, без переключения между окнами. Дополнительно интегрировали решение с данными участка упаковки и сигналами от перекладывающих устройств, добавили предупреждения.",
@@ -425,15 +437,17 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         role: "Руководитель проекта",
         team: "Заказчик, продуктовая команда, разработка, QA и интеграционные подрядчики",
         timeline: "Ноябрь 2021 -> апрель 2022",
-        problem: "Проект стартовал с высокой неопределенностью: клиент ожидал предсказуемый запуск, но не были выбраны платежи, видеосвязь и SMS-регистрация, а требования к административной панели появились уже по ходу работы.",
-        solution: "Перевел работу в прозрачный Time & Material-контур: фиксировал влияние изменений на сроки и бюджет, помогал доуточнять сценарии и держал команду сфокусированной на запуске ключевого пользовательского пути.",
-        impact: "Сервис довели до завершения по первоначальным целям: подбор специалиста, запись, оплата, онлайн-консультации и регистрация психологов были собраны в один рабочий продукт.",
+        problem:
+          "Проект стартовал с высокой неопределенностью: клиент ожидал предсказуемый запуск, но не были выбраны платежи, видеосвязь и SMS-регистрация, а требования к административной панели появились уже по ходу работы.",
+        solution:
+          "Перевел работу в прозрачный Time & Material-контур: фиксировал влияние изменений на сроки и бюджет, помогал доуточнять сценарии и держал команду сфокусированной на запуске ключевого пользовательского пути.",
+        impact:
+          "Сервис довели до завершения по первоначальным целям: подбор специалиста, запись, оплата, онлайн-консультации и регистрация психологов были собраны в один рабочий продукт.",
         techTags: ["Healthcare", "Marketplace", "CloudPayments", "Voximplant", "CustDev", "Web"],
         starBlock: {
           situation:
             "Московский институт психоанализа запускал DO Therapy - сервис психологической помощи, где клиент подбирает специалиста под свой запрос, записывается на консультацию и получает помощь онлайн.",
-          task:
-            "Нужно было собрать не просто сайт, а рабочий сервис с многоступенчатым подбором, бронированием, оплатой, видеосвязью, чат-поддержкой, регистрацией специалистов и административной частью.",
+          task: "Нужно было собрать не просто сайт, а рабочий сервис с многоступенчатым подбором, бронированием, оплатой, видеосвязью, чат-поддержкой, регистрацией специалистов и административной частью.",
           actions: [
             "Зафиксировал Time & Material как управленческую модель проекта и сделал изменения прозрачными: каждое уточнение связывали со сроками, бюджетом и рисками.",
             "Разобрал с заказчиком ключевые сценарии: подбор специалиста, запись на сеанс, оплата, онлайн-консультация, чат-поддержка, регистрация и проверка психологов.",
@@ -446,7 +460,8 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         id: "charge-cars",
         title: "Charge Cars - промо-сайт премиум электрокаров",
-        subtitle: "Иммерсивный сайт для британского электрокара с видео, scroll-анимацией и премиальной подачей продукта",
+        subtitle:
+          "Иммерсивный сайт для британского электрокара с видео, scroll-анимацией и премиальной подачей продукта",
         summary:
           "Charge Cars переосмыслил Ford Mustang Fastback 1967 как премиальный электрокар. Команде нужно было превратить готовый дизайн в технологичный промо-сайт с большим количеством видео, сложной анимации и одинаково сильным впечатлением на desktop и mobile.",
         img: "/chargecars-artifacts/chargecars-main.webp",
@@ -468,8 +483,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         starBlock: {
           situation:
             "Charge Cars - британский стартап, выпускающий премиальные электрокары на базе классического Ford Mustang Fastback 1967. Для запуска нужен был промо-сайт по готовому дизайну, с анимацией и видео в духе продуктовых страниц Apple.",
-          task:
-            "Нужно было реализовать сайт, который выглядит дорого, быстро загружается для пользователей из разных регионов и одинаково хорошо работает на desktop и mobile. При этом часть технических решений по видео и scroll-анимации требовала экспериментов.",
+          task: "Нужно было реализовать сайт, который выглядит дорого, быстро загружается для пользователей из разных регионов и одинаково хорошо работает на desktop и mobile. При этом часть технических решений по видео и scroll-анимации требовала экспериментов.",
           actions: [
             "После первых экранов согласовал с клиентом переход в экспериментальный режим и зафиксировал, что задержки по новым материалам, согласованиям и гипотезам продлевают сроки проекта.",
             "Организовал проработку нескольких моделей анимации: привязка к скроллу, секции-истории с проигрыванием фрагментов видео и гибридный сценарий, который в итоге приняли.",
@@ -595,8 +609,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         starBlock: {
           situation:
             "OMS had already been implemented, but a significant part of order execution still lived in a manual workflow and in 1C logic. Deal speed depended not only on the system, but also on manual steps, status quality, and alignment across sales, logistics, and operations teams. The project needed to shift from a monitoring layer to a true execution engine.",
-          task:
-            "My task was not just to finish OMS, but to increase the share of orders the system could complete without constant manager involvement. In parallel, we had to reduce the load on 1C, cut manual touchpoints, and speed up execution without breaking the existing business process.",
+          task: "My task was not just to finish OMS, but to increase the share of orders the system could complete without constant manager involvement. In parallel, we had to reduce the load on 1C, cut manual touchpoints, and speed up execution without breaking the existing business process.",
           actions: [
             "First, we defined the success criteria: what exactly counts as auto-execution, which statuses are the source of truth, and which metrics we use to measure impact.",
             "Then we broke the order flow down into scenarios, prioritized them by business impact, and expanded the OMS execution model step by step.",
@@ -607,8 +620,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         },
         resultBlock: {
           title: "What we did",
-          intro:
-            "We focused on business impact, auto-execution, and stable operations under growing load.",
+          intro: "We focused on business impact, auto-execution, and stable operations under growing load.",
           roleText:
             "I was responsible for business outcomes: goals and KPIs, the scenario roadmap, business and IT alignment, priority management, status model decisions, releases, and integration risks.",
           contextText:
@@ -616,11 +628,23 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           goalText:
             "Increase the share of auto-execution, cut manual touchpoints, reduce the load on 1C, and accelerate execution without breaking the existing business process.",
           items: [
-            { label: "Defined success criteria: what counts as auto-execution, which statuses are the source of truth, and which metrics are used to measure impact." },
-            { label: "Mapped the order flow into scenarios, prioritized them by business impact, and step by step expanded the OMS execution model." },
-            { label: "Strengthened the release loop: change management, control of integration risks, and predictable production rollout." },
+            {
+              label:
+                "Defined success criteria: what counts as auto-execution, which statuses are the source of truth, and which metrics are used to measure impact.",
+            },
+            {
+              label:
+                "Mapped the order flow into scenarios, prioritized them by business impact, and step by step expanded the OMS execution model.",
+            },
+            {
+              label:
+                "Strengthened the release loop: change management, control of integration risks, and predictable production rollout.",
+            },
             { label: "Strengthened operations: monitoring, alerts, observability, and work on the status model." },
-            { label: "Stabilized the integration layer under higher load so that one weak point would not break the whole operational flow." },
+            {
+              label:
+                "Stabilized the integration layer under higher load so that one weak point would not break the whole operational flow.",
+            },
           ],
           scaleText:
             "A core operational layer: OMS, 1C ERP, Bitrix24, logistics and notification scenarios, the status model, monitoring, and the surrounding process layer. The work moved in several waves across an integration-heavy microservice landscape.",
@@ -639,26 +663,23 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         id: "exeed",
         title: "EXEED",
         subtitle: "Digital services for the importer website and a 150-dealer network",
-        summary:
-          "Delivered 7 projects for exeed.ru and its 150-dealer network.",
+        summary: "Delivered 7 projects for exeed.ru and its 150-dealer network.",
         img: "/project-1.svg",
         teaserVideo: "/exeed-banner-video-desktop.mp4",
         teaserPoster: "/video-posters/exeed-video-poster.webp",
-        artifactImages: [
-          "/exeed-artifacts/trade-in-calculator.png",
-          "/exeed-artifacts/model-comparison.png",
-        ],
+        artifactImages: ["/exeed-artifacts/trade-in-calculator.png", "/exeed-artifacts/model-comparison.png"],
         role: "Project Manager",
         team: "Importer team and dealer network",
         timeline: "Multiple releases",
-        problem: "Initiatives of different scale and complexity had to be launched for both the central website and dealers.",
-        solution: "Built a delivery flow from initiative to release with coordination of teams, requirements, and deadlines.",
+        problem:
+          "Initiatives of different scale and complexity had to be launched for both the central website and dealers.",
+        solution:
+          "Built a delivery flow from initiative to release with coordination of teams, requirements, and deadlines.",
         impact: "7 delivered projects and faster rollout of changes across the entire dealer network.",
         starBlock: {
           situation:
             "The importer website and a network of about 150 dealers needed coordinated launches of initiatives of different complexity.",
-          task:
-            "Ensure predictable delivery of digital services and integrations without slipping on schedule or quality.",
+          task: "Ensure predictable delivery of digital services and integrations without slipping on schedule or quality.",
           actions: [
             "Organized the delivery flow: requirements, task setup, team synchronization, and delivery control.",
             "Aligned the integration work for feeds, APIs, and lead generation and reduced release risks.",
@@ -724,7 +745,9 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
           {
             items: [
               { text: "The implementation covered four weighing lines and operator workplaces." },
-              { text: "The service was embedded into the existing operator interface and connected to MES/Wonderware." },
+              {
+                text: "The service was embedded into the existing operator interface and connected to MES/Wonderware.",
+              },
               { text: "The project required IT infrastructure changes and direct equipment connection to the system." },
             ],
           },
@@ -737,14 +760,15 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         ],
         team: "Business stakeholders, operators, IT team",
         timeline: "Project delivery",
-        problem: "Operators had to manually choose a combination of packs, layers, and weight to close the wagon loading norm, which increased the risk of underloading.",
-        solution: "We implemented an assistant that calculates the recommended loading configuration and helps the operator make a faster decision in the working process.",
+        problem:
+          "Operators had to manually choose a combination of packs, layers, and weight to close the wagon loading norm, which increased the risk of underloading.",
+        solution:
+          "We implemented an assistant that calculates the recommended loading configuration and helps the operator make a faster decision in the working process.",
         impact: "Average wagon loading increased by 3%, helping reduce underloading and lower transportation costs.",
         starBlock: {
           situation:
             "At the metal products packing and shipment area, operators relied on manual calculation and personal experience. As a result, wagons were loaded to only 94% of the target norm on average: underloading occurred, more rolling stock was required, and transportation costs increased. The business needed a tool that would help reach the wagon norm during loading, instead of analyzing deviations after the fact.",
-          task:
-            "The task was to implement an assistant service that shows the operator in real time how many full packs still need to be assembled, how many layers and bars should be in a pack, what the closing pack should look like, what weight has already been accumulated, and what result will be reached if the instruction is followed. The service also had to warn the user when they tried to close the wagon loading norm with a deviation and provide reference information on loading schemes.",
+          task: "The task was to implement an assistant service that shows the operator in real time how many full packs still need to be assembled, how many layers and bars should be in a pack, what the closing pack should look like, what weight has already been accumulated, and what result will be reached if the instruction is followed. The service also had to warn the user when they tried to close the wagon loading norm with a deviation and provide reference information on loading schemes.",
           actions: [
             "We started by analyzing the operator's real workflow on the current loading screen and mapped the CJM: when the decision is made, which data is missing, and where manual calculation most often creates errors. Based on this, we designed the assistant logic and prepared the algorithm for calculating the number of packs, layers, bars, and target weight needed to close the wagon loading norm. Technically, this was not a widget, but a full integration service.",
             "We embedded the assistant into the current operator screen so recommendations appeared directly in the working flow, without switching between windows. We also integrated it with packing area data and signals from transfer equipment, and added warnings.",
@@ -766,15 +790,17 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         role: "Project Manager",
         team: "Client, product team, development, QA, and integration vendors",
         timeline: "November 2021 -> April 2022",
-        problem: "The project started with high uncertainty: the client expected a predictable launch, but payments, video calls, and SMS registration were not selected yet, and admin panel requirements appeared during delivery.",
-        solution: "I moved the work into a transparent Time & Material delivery loop: tracked how changes affected timeline and budget, helped refine scenarios, and kept the team focused on the core launch path.",
-        impact: "The service was completed against the original goals: specialist matching, booking, payments, online sessions, and psychologist registration were assembled into one working product.",
+        problem:
+          "The project started with high uncertainty: the client expected a predictable launch, but payments, video calls, and SMS registration were not selected yet, and admin panel requirements appeared during delivery.",
+        solution:
+          "I moved the work into a transparent Time & Material delivery loop: tracked how changes affected timeline and budget, helped refine scenarios, and kept the team focused on the core launch path.",
+        impact:
+          "The service was completed against the original goals: specialist matching, booking, payments, online sessions, and psychologist registration were assembled into one working product.",
         techTags: ["Healthcare", "Marketplace", "CloudPayments", "Voximplant", "CustDev", "Web"],
         starBlock: {
           situation:
             "The Moscow Institute of Psychoanalysis was launching DO Therapy, a mental health service where a client can find a specialist for their request, book a consultation, and receive help online.",
-          task:
-            "Build not just a website, but a working service with multi-step matching, booking, payments, video calls, chat support, specialist registration, and an admin area.",
+          task: "Build not just a website, but a working service with multi-step matching, booking, payments, video calls, chat support, specialist registration, and an admin area.",
           actions: [
             "Set Time & Material as the delivery model and made changes transparent: every clarification was connected to timeline, budget, and delivery risk.",
             "Worked through the core journeys with the client: specialist matching, session booking, payment, online consultation, chat support, psychologist registration, and competency review.",
@@ -787,7 +813,8 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
       {
         id: "charge-cars",
         title: "Charge Cars - Premium EV Promo Website",
-        subtitle: "An immersive product site for a British electric Mustang with video, scroll animation, and premium storytelling",
+        subtitle:
+          "An immersive product site for a British electric Mustang with video, scroll animation, and premium storytelling",
         summary:
           "Charge Cars reimagined the 1967 Ford Mustang Fastback as a premium electric car. The project turned a finished design into a high-impact website with video-heavy storytelling, complex animation, and a strong desktop and mobile experience.",
         img: "/chargecars-artifacts/chargecars-main.webp",
@@ -809,8 +836,7 @@ export const contentByLanguage: Record<Language, PortfolioContent> = {
         starBlock: {
           situation:
             "Charge Cars is a British startup building premium electric cars based on the classic 1967 Ford Mustang Fastback. The client needed a website based on a finished design, with animation and video inspired by Apple product pages.",
-          task:
-            "Build a site that feels expensive, loads quickly for users across regions, and works well on both desktop and mobile. Several video and scroll-animation mechanics required experimentation.",
+          task: "Build a site that feels expensive, loads quickly for users across regions, and works well on both desktop and mobile. Several video and scroll-animation mechanics required experimentation.",
           actions: [
             "After the first screens, aligned an experimental delivery mode with the client and made delays from new assets, approvals, and hypotheses part of the project timeline logic.",
             "Organized exploration of several animation models: scroll-bound motion, story sections that play fragments of video, and the hybrid model that was eventually accepted.",

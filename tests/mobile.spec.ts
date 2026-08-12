@@ -6,6 +6,10 @@ function ensureMobileProject(projectName: string) {
 
 function ensureIPhoneSnapshots(projectName: string) {
   test.skip(projectName !== "iphone-12", "Snapshot coverage is stored for a single canonical mobile viewport");
+  test.skip(
+    process.platform !== "darwin",
+    "Snapshot baselines are authored on macOS; regenerate them locally with --update-snapshots on other platforms",
+  );
 }
 
 async function stabilizeVisualState(page: Page) {
@@ -109,9 +113,7 @@ test.describe("mobile layout", () => {
 
     await page.getByRole("button", { name: "Закрыть меню" }).click();
     await expect(dialog).toBeHidden();
-    await expect
-      .poll(() => page.evaluate(() => window.getComputedStyle(document.body).overflow))
-      .toBe("visible");
+    await expect.poll(() => page.evaluate(() => window.getComputedStyle(document.body).overflow)).toBe("visible");
   });
 
   test("tapping the first project card opens the anchored project details", async ({ page }) => {

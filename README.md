@@ -1,5 +1,8 @@
 # sokolov
 
+**Статус:** 🟢 Рабочий
+**Тип:** Код
+
 Portfolio site on Vite + React, deployed to GitHub Pages.
 
 ## Run In Docker

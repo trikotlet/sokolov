@@ -18,7 +18,8 @@ export default function ProjectsSection({ projects, ui, language }: ProjectsSect
     language === "ru"
       ? {
           section: "\u041f\u0440\u043e\u0435\u043a\u0442\u044b",
-          openProjectsPage: "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
+          openProjectsPage:
+            "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
           projectTags: "\u0422\u0435\u0433\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u0430",
           teaserVideo: "\u0442\u0438\u0437\u0435\u0440-\u0432\u0438\u0434\u0435\u043e",
         }

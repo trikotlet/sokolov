@@ -11,6 +11,10 @@ const RASTER_EXTENSION = /\.(png|jpe?g)$/i;
 export function getResponsiveImageSources(src: string): ResponsiveImageSources | null {
   const resolvedSrc = toAssetUrl(src);
 
+  if (!resolvedSrc.startsWith("/")) {
+    return null;
+  }
+
   if (!RASTER_EXTENSION.test(resolvedSrc)) {
     return null;
   }

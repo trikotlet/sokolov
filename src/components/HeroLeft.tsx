@@ -16,7 +16,8 @@ export default function HeroLeft({ profile, experience, outcomes, socialLinks, u
     language === "ru"
       ? {
           intro: "\u0418\u043d\u0442\u0440\u043e",
-          socialLinks: "\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438",
+          socialLinks:
+            "\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u0441\u0441\u044b\u043b\u043a\u0438",
           experience: "\u041e\u043f\u044b\u0442",
         }
       : {
@@ -33,7 +34,7 @@ export default function HeroLeft({ profile, experience, outcomes, socialLinks, u
       <div className="meta" id="contact" aria-label={labels.socialLinks} tabIndex={-1}>
         {socialLinks.map((social, index) => (
           <span key={social.label}>
-            {index > 0 && <span className="dot">|</span>} {" "}
+            {index > 0 && <span className="dot">|</span>}{" "}
             <a
               href={social.href}
               target={social.href.startsWith("http") ? "_blank" : undefined}
@@ -45,7 +46,15 @@ export default function HeroLeft({ profile, experience, outcomes, socialLinks, u
         ))}
       </div>
 
-      <Button as="a" className="cta" variant="outline" size="lg" href={profile.callLink} target="_blank" rel="noreferrer noopener">
+      <Button
+        as="a"
+        className="cta"
+        variant="outline"
+        size="lg"
+        href={profile.callLink}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
         <span>{profile.callToAction}</span>
         <ArrowIcon direction="up-right" />
       </Button>

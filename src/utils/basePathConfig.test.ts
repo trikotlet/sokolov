@@ -38,8 +38,6 @@ describe("base path config", () => {
   });
 
   it("fails fast when the 404 template token is missing", () => {
-    expect(() => render404Page("<html></html>", "/sokolov")).toThrow(
-      "404 template is missing the __BASE_PATH__ token",
-    );
+    expect(() => render404Page("<html></html>", "/sokolov")).toThrow("404 template is missing the __BASE_PATH__ token");
   });
 });

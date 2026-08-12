@@ -68,7 +68,7 @@ export default function ViewportVideo({
           setShouldLoad(true);
         }
       },
-      { rootMargin, threshold: 0.2 }
+      { rootMargin, threshold: 0.2 },
     );
 
     observer.observe(node);

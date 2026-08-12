@@ -1,4 +1,4 @@
-import { useEffect, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useId, useRef, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import Button from "./button";
 
@@ -21,24 +21,78 @@ export default function Dialog({
   footer,
   closeLabel = "Close dialog",
 }: DialogProps) {
+  const titleId = useId();
+  const descriptionId = useId();
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (!open) {
       return;
     }
 
+    restoreFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
+    const getFocusableElements = () => {
+      const dialog = dialogRef.current;
+      if (!dialog) {
+        return [];
+      }
+
+      return Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), video[controls], [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+    };
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onOpenChange(false);
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusable = getFocusableElements();
+      if (focusable.length === 0) {
+        event.preventDefault();
+        dialogRef.current?.focus();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      const insideDialog = dialogRef.current?.contains(active) ?? false;
+
+      if (event.shiftKey) {
+        if (!insideDialog || active === first || active === dialogRef.current) {
+          event.preventDefault();
+          last.focus();
+        }
+        return;
+      }
+
+      if (!insideDialog || active === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
     window.addEventListener("keydown", onKeyDown);
+    dialogRef.current?.focus();
+
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
+      restoreFocusRef.current?.focus();
+      restoreFocusRef.current = null;
     };
   }, [open, onOpenChange]);
 
@@ -55,19 +109,21 @@ export default function Dialog({
   return createPortal(
     <div className="ui-overlay" onClick={onOverlayClick}>
       <div
+        ref={dialogRef}
         className="ui-dialog"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="dialog-title"
-        aria-describedby={description ? "dialog-description" : undefined}
+        tabIndex={-1}
+        aria-labelledby={titleId}
+        aria-describedby={description ? descriptionId : undefined}
       >
         <div className="ui-dialog__header">
           <div className="ui-dialog__copy">
-            <h2 id="dialog-title" className="ui-dialog__title">
+            <h2 id={titleId} className="ui-dialog__title">
               {title}
             </h2>
             {description ? (
-              <p id="dialog-description" className="ui-dialog__description">
+              <p id={descriptionId} className="ui-dialog__description">
                 {description}
               </p>
             ) : null}
@@ -96,6 +152,6 @@ export default function Dialog({
         {footer ? <div className="ui-dialog__footer">{footer}</div> : null}
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }

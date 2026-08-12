@@ -206,8 +206,7 @@ export default function App() {
       }
 
       const prefersReducedMotion =
-        typeof window.matchMedia === "function" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       target.scrollIntoView({
         block: "start",
@@ -251,9 +250,7 @@ export default function App() {
       const fillDistance = Math.max(footerTop - window.innerHeight, 1);
       const nextProgress = Math.max(0, Math.min(1, window.scrollY / fillDistance));
 
-      setHomeScrollProgress((current) =>
-        Math.abs(current - nextProgress) > 0.002 ? nextProgress : current,
-      );
+      setHomeScrollProgress((current) => (Math.abs(current - nextProgress) > 0.002 ? nextProgress : current));
     };
 
     const requestUpdate = () => {

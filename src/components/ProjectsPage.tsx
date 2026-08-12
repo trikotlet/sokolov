@@ -70,7 +70,8 @@ function StoryCanvas({ project, isRu, ui }: StoryCanvasProps) {
       };
 
   const roleText = project.resultBlock?.roleText || project.role;
-  const roleParagraphs = project.roleDetails ?? (project.resultBlock?.roleIntro ? [project.resultBlock.roleIntro] : [roleText]);
+  const roleParagraphs =
+    project.roleDetails ?? (project.resultBlock?.roleIntro ? [project.resultBlock.roleIntro] : [roleText]);
   const scopeText = project.resultBlock
     ? project.resultBlock.scaleText
     : `${ui.metaTeam}: ${project.team}. ${ui.metaTimeline}: ${project.timeline}.`;
@@ -225,18 +226,22 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
       isRu
         ? {
             overview: "\u041e\u0431\u0437\u043e\u0440 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
-            expandedCards: "\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044b\u0435 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
+            expandedCards:
+              "\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044b\u0435 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
             artifacts: "\u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u044b",
             teaserVideo: "\u0442\u0438\u0437\u0435\u0440-\u0432\u0438\u0434\u0435\u043e",
             image: "\u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435",
             openArtifact: "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442",
-            artifactGallery: "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u0430",
-            closeArtifact: "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u0430",
+            artifactGallery:
+              "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u0430",
+            closeArtifact:
+              "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0430\u0440\u0442\u0435\u0444\u0430\u043a\u0442\u0430",
             previous: "\u041d\u0430\u0437\u0430\u0434",
             next: "\u0414\u0430\u043b\u0435\u0435",
             item: "\u042d\u043b\u0435\u043c\u0435\u043d\u0442",
             of: "\u0438\u0437",
-            starSummary: "\u041a\u0440\u0430\u0442\u043a\u043e\u0435 STAR-\u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u0435\u0439\u0441\u0430",
+            starSummary:
+              "\u041a\u0440\u0430\u0442\u043a\u043e\u0435 STAR-\u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u0435\u0439\u0441\u0430",
             technologies: "\u0422\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438",
             toTop: "\u041d\u0430\u0432\u0435\u0440\u0445",
             role: "\u0420\u043e\u043b\u044c",
@@ -279,7 +284,7 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
             process: "Process",
             tools: "Tools",
           },
-    [isRu]
+    [isRu],
   );
 
   const openArtifactDialog = (projectTitle: string, artifacts: Artifact[], index: number) => {
@@ -353,7 +358,10 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
 
             return (
               <article className="project-expanded card" id={getProjectAnchor(project.id)} key={project.id}>
-                <div className="project-expanded-artifacts artifact-cars" aria-label={`${project.title} ${labels.artifacts}`}>
+                <div
+                  className="project-expanded-artifacts artifact-cars"
+                  aria-label={`${project.title} ${labels.artifacts}`}
+                >
                   {project.teaserVideo ? (
                     <button
                       type="button"
@@ -383,10 +391,18 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                           <picture>
                             <source srcSet={primaryImageSources.avif} type="image/avif" />
                             <source srcSet={primaryImageSources.webp} type="image/webp" />
-                            <img src={primaryImageSources.fallback} alt={`${project.title} ${labels.image} 1`} loading="lazy" />
+                            <img
+                              src={primaryImageSources.fallback}
+                              alt={`${project.title} ${labels.image} 1`}
+                              loading="lazy"
+                            />
                           </picture>
                         ) : (
-                          <img src={toAssetUrl(primaryArtifactImage)} alt={`${project.title} ${labels.image} 1`} loading="lazy" />
+                          <img
+                            src={toAssetUrl(primaryArtifactImage)}
+                            alt={`${project.title} ${labels.image} 1`}
+                            loading="lazy"
+                          />
                         );
                       })()}
                     </button>
@@ -676,7 +692,8 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                   muted
                   playsInline
                 />
-              ) : (() => {
+              ) : (
+                (() => {
                   const imageSources = getResponsiveImageSources(currentArtifact.src);
 
                   return imageSources ? (
@@ -686,9 +703,14 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
                       <img className="artifact-dialog__media" src={imageSources.fallback} alt={currentArtifact.alt} />
                     </picture>
                   ) : (
-                    <img className="artifact-dialog__media" src={toAssetUrl(currentArtifact.src)} alt={currentArtifact.alt} />
+                    <img
+                      className="artifact-dialog__media"
+                      src={toAssetUrl(currentArtifact.src)}
+                      alt={currentArtifact.alt}
+                    />
                   );
-                })()}
+                })()
+              )}
             </div>
             {selectedArtifact && selectedArtifact.artifacts.length > 1 ? (
               <div className="artifact-dialog__thumbs" aria-label={labels.artifactGallery}>
@@ -723,4 +745,3 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
     </>
   );
 }
-
