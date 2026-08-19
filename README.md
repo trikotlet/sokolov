@@ -56,3 +56,10 @@ Notes:
 - `https://trikotlet.github.io/sokolov/` should return `200`.
 - Direct deep links like `/sokolov/cv` and `/sokolov/projects` are handled by the generated `public/404.html`, which redirects back to the SPA and restores the intended route.
 - `VITE_BASE_PATH` is normalized through the same shared helper for Vite, runtime routing, and the generated GitHub Pages redirect page.
+
+## Quality checks
+
+```powershell
+npm run check
+npm run test:e2e
+```

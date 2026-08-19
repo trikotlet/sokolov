@@ -30,8 +30,11 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Typecheck
+      - name: Lint (ESLint)
         run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Format check
         run: npm run format:check
