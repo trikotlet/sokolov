@@ -5,13 +5,12 @@ import HeroLeft from "./components/HeroLeft";
 import CvPage from "./components/CvPage";
 import ProjectsPage from "./components/ProjectsPage";
 import ProjectsSection from "./components/ProjectsSection";
-import { contentByLanguage, defaultLanguage, type Language } from "./data/portfolio";
+import { contentByLanguage, defaultLanguage, orderCases, type Language } from "./data/portfolio";
 import { stripBasePath, withBasePath } from "./utils/basePath";
 
 const SITE_URL = "https://sokolovroman.ru";
 const PROJECTS_PATH = "/projects";
 const CV_PATH = "/cv";
-const CASE_DISPLAY_ORDER = ["evraz-oms", "prompter", "exeed"] as const;
 type Theme = "dark" | "light";
 
 function normalizePathname(pathname: string): string {
@@ -24,29 +23,6 @@ function normalizePathname(pathname: string): string {
 
 function getRoutePathname(pathname: string): string {
   return normalizePathname(stripBasePath(pathname));
-}
-
-function orderCases<T extends { caseStudyId?: string; id?: string }>(items: T[]): T[] {
-  return [...items].sort((first, second) => {
-    const firstId = first.caseStudyId ?? first.id ?? "";
-    const secondId = second.caseStudyId ?? second.id ?? "";
-    const firstIndex = CASE_DISPLAY_ORDER.indexOf(firstId as (typeof CASE_DISPLAY_ORDER)[number]);
-    const secondIndex = CASE_DISPLAY_ORDER.indexOf(secondId as (typeof CASE_DISPLAY_ORDER)[number]);
-
-    if (firstIndex === -1 && secondIndex === -1) {
-      return 0;
-    }
-
-    if (firstIndex === -1) {
-      return 1;
-    }
-
-    if (secondIndex === -1) {
-      return -1;
-    }
-
-    return firstIndex - secondIndex;
-  });
 }
 
 export default function App() {
@@ -74,11 +50,16 @@ export default function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const redirectedPath = params.get("p");
-    if (!redirectedPath) {
+    if (!redirectedPath || !redirectedPath.startsWith("/") || redirectedPath.startsWith("//")) {
       return;
     }
 
-    const targetPath = redirectedPath.startsWith("/") ? redirectedPath : `/${redirectedPath}`;
+    const redirectedSearch = params.get("s") ?? "";
+    const redirectedHash = params.get("h") ?? "";
+    const isLegacyCombinedRedirect = redirectedPath.includes("?") || redirectedPath.includes("#");
+    const targetPath = isLegacyCombinedRedirect
+      ? redirectedPath
+      : `${redirectedPath}${redirectedSearch}${redirectedHash}`;
     window.history.replaceState({}, "", withBasePath(targetPath));
     setPathname(getRoutePathname(window.location.pathname));
   }, []);

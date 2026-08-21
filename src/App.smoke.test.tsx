@@ -61,6 +61,8 @@ if (!HTMLMediaElement.prototype.play) {
 
 HTMLMediaElement.prototype.pause = () => undefined;
 
+Element.prototype.scrollIntoView = () => undefined;
+
 describe("App smoke", () => {
   it("renders root route and updates base metadata", async () => {
     setupDom("/");
@@ -109,5 +111,32 @@ describe("App smoke", () => {
     expect(window.location.pathname).toBe("/projects");
     expect(window.location.search).toBe("");
     expect(document.title).toBe("Roman Sokolov - Проекты");
+  });
+
+  it("restores the route with search and hash from separate redirect params", async () => {
+    setupDom("/?p=%2Fprojects&s=%3Futm%3Dtest&h=%23evraz-oms");
+    await renderApp();
+
+    expect(window.location.pathname).toBe("/projects");
+    expect(window.location.search).toBe("?utm=test");
+    expect(window.location.hash).toBe("#evraz-oms");
+    expect(document.title).toBe("Roman Sokolov - Проекты");
+  });
+
+  it("supports the legacy combined ?p= redirect format", async () => {
+    setupDom("/?p=%2Fprojects%3Futm%3Dlegacy%23anchor");
+    await renderApp();
+
+    expect(window.location.pathname).toBe("/projects");
+    expect(window.location.search).toBe("?utm=legacy");
+    expect(window.location.hash).toBe("#anchor");
+  });
+
+  it("ignores protocol-relative redirect targets", async () => {
+    setupDom("/?p=%2F%2Fevil.com");
+    await renderApp();
+
+    expect(window.location.pathname).toBe("/");
+    expect(window.location.search).toBe("?p=%2F%2Fevil.com");
   });
 });

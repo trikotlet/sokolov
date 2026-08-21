@@ -127,6 +127,31 @@ export type PortfolioContent = {
 
 export const defaultLanguage: Language = "ru";
 
+export const caseDisplayOrder = ["evraz-oms", "prompter", "exeed"] as const;
+
+export function orderCases<T extends { caseStudyId?: string; id?: string }>(items: T[]): T[] {
+  return [...items].sort((first, second) => {
+    const firstId = first.caseStudyId ?? first.id ?? "";
+    const secondId = second.caseStudyId ?? second.id ?? "";
+    const firstIndex = caseDisplayOrder.indexOf(firstId as (typeof caseDisplayOrder)[number]);
+    const secondIndex = caseDisplayOrder.indexOf(secondId as (typeof caseDisplayOrder)[number]);
+
+    if (firstIndex === -1 && secondIndex === -1) {
+      return 0;
+    }
+
+    if (firstIndex === -1) {
+      return 1;
+    }
+
+    if (secondIndex === -1) {
+      return -1;
+    }
+
+    return firstIndex - secondIndex;
+  });
+}
+
 export const contentByLanguage: Record<Language, PortfolioContent> = {
   ru: {
     profile: {

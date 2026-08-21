@@ -12,7 +12,14 @@
         var path = window.location.pathname.startsWith(repoBase)
           ? window.location.pathname.slice(repoBase.length)
           : window.location.pathname;
-        var target = repoBase + "/?p=" + encodeURIComponent(path + window.location.search + window.location.hash);
+        var target =
+          repoBase +
+          "/?p=" +
+          encodeURIComponent(path) +
+          "&s=" +
+          encodeURIComponent(window.location.search) +
+          "&h=" +
+          encodeURIComponent(window.location.hash);
         window.location.replace(window.location.origin + target);
       })();
     </script>

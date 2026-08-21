@@ -4,6 +4,7 @@ dist
 .codex
 .DS_Store
 gpt.3pro.md
+QWEN.md
 BRIEF.md
 playwright-report/
 test-results/
