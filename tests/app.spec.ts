@@ -97,4 +97,30 @@ test.describe("portfolio smoke", () => {
     await expect(page).toHaveTitle("Roman Sokolov - Проекты");
     await expect(page.getByRole("heading", { name: "Система управления заказами (OMS)" })).toBeVisible();
   });
+
+  test("keeps focus on artifact controls while switching EXEED artifacts", async ({ page }) => {
+    await page.goto("/projects");
+
+    const project = page.locator("#exeed");
+    const trigger = project.locator(".artifact-card-main");
+    await trigger.focus();
+    await trigger.press("Enter");
+
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+
+    const secondThumbnail = dialog.locator(".artifact-dialog__thumb").nth(1);
+    await secondThumbnail.focus();
+    await secondThumbnail.press("Enter");
+    await expect(secondThumbnail).toBeFocused();
+
+    const nextButton = dialog.getByRole("button", { name: "Далее" });
+    await nextButton.focus();
+    await nextButton.press("Enter");
+    await expect(nextButton).toBeFocused();
+
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+    await expect(trigger).toBeFocused();
+  });
 });

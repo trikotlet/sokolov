@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from "react";
+﻿import { useCallback, useMemo, useState } from "react";
 import type { CaseStudy, Language, Profile, UiText } from "../data/portfolio";
 import { toAssetUrl } from "../utils/basePath";
 import { getProjectAnchor } from "../utils/projectAnchor";
@@ -291,7 +291,11 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
     setSelectedArtifact({ projectTitle, artifacts, index });
   };
 
-  const closeArtifactDialog = () => setSelectedArtifact(null);
+  const handleArtifactDialogOpenChange = useCallback((open: boolean) => {
+    if (!open) {
+      setSelectedArtifact(null);
+    }
+  }, []);
 
   const showAdjacentArtifact = (direction: -1 | 1) => {
     setSelectedArtifact((current) => {
@@ -640,11 +644,7 @@ export default function ProjectsPage({ caseStudies, ui, language, profile }: Pro
 
       <Dialog
         open={Boolean(currentArtifact)}
-        onOpenChange={(open) => {
-          if (!open) {
-            closeArtifactDialog();
-          }
-        }}
+        onOpenChange={handleArtifactDialogOpenChange}
         title={currentArtifact?.title || labels.artifactGallery}
         description={
           currentArtifact && selectedArtifact

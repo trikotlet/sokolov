@@ -6,6 +6,7 @@
   --card: #1b1c1e;
   --card-2: #141516;
   --stroke: #2a2c2e;
+  --hairline: #242628;
   --text: #d9d9d9;
   --muted: #8a8f94;
   --accent: #f2f2f2;
@@ -18,6 +19,7 @@ html[data-theme="light"] {
   --card: #ffffff;
   --card-2: #f4f7fb;
   --stroke: #d7dfeb;
+  --hairline: #d3dce9;
   --text: #1f2630;
   --muted: #435063;
   --accent: #11151d;
@@ -969,7 +971,7 @@ h1 {
 }
 
 .experience {
-  border-top: 1px solid #242628;
+  border-top: 1px solid var(--hairline);
   padding-top: 10px;
   display: flex;
   flex-direction: column;
@@ -981,7 +983,7 @@ h1 {
   flex-direction: column;
   gap: 8px;
   padding: 16px 0;
-  border-bottom: 1px solid #242628;
+  border-bottom: 1px solid var(--hairline);
   color: var(--muted);
   font-size: 14px;
 }
@@ -1015,7 +1017,7 @@ h1 {
 }
 
 .outcomes {
-  border-top: 1px solid #242628;
+  border-top: 1px solid var(--hairline);
   padding-top: 16px;
   display: flex;
   flex-direction: column;
