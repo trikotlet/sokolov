@@ -28,6 +28,31 @@ test.describe("portfolio smoke", () => {
     await expect(page).toHaveTitle("Roman Sokolov - Portfolio");
     await expect(page.getByRole("button", { name: "Switch to Russian" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Open projects page" })).toContainText("Selected projects");
+
+    await page.reload();
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  });
+
+  test("renders when localStorage is unavailable", async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(window, "localStorage", {
+        get() {
+          throw new DOMException("Storage is disabled", "SecurityError");
+        },
+      });
+    });
+
+    await page.goto("/");
+    await expect(page.getByRole("link", { name: "Роман Соколов" })).toBeVisible();
+  });
+
+  test("serves route-specific HTML on direct requests", async ({ page }) => {
+    const response = await page.goto("/projects/");
+    expect(response?.status()).toBe(200);
+    const html = await response?.text();
+    expect(html).toContain('<meta property="og:url" content="https://sokolovroman.ru/projects"');
+    expect(html).toContain("<title>Roman Sokolov - Проекты</title>");
+    await expect(page.getByRole("heading", { name: "Избранные проекты" })).toBeVisible();
   });
 
   test("opens the projects route from the homepage", async ({ page }) => {

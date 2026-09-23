@@ -5,13 +5,13 @@ import HeroLeft from "./components/HeroLeft";
 import CvPage from "./components/CvPage";
 import ProjectsPage from "./components/ProjectsPage";
 import ProjectsSection from "./components/ProjectsSection";
-import { contentByLanguage, defaultLanguage, orderCases, type Language } from "./data/portfolio";
+import { contentByLanguage, orderCases, type Language } from "./data/portfolio";
 import { stripBasePath, withBasePath } from "./utils/basePath";
+import { readLanguage, readTheme, savePreference, type Theme } from "./utils/preferences";
 
 const SITE_URL = "https://sokolovroman.ru";
 const PROJECTS_PATH = "/projects";
 const CV_PATH = "/cv";
-type Theme = "dark" | "light";
 
 function normalizePathname(pathname: string): string {
   if (!pathname || pathname === "/") {
@@ -27,17 +27,8 @@ function getRoutePathname(pathname: string): string {
 
 export default function App() {
   const [pathname, setPathname] = useState(() => getRoutePathname(window.location.pathname));
-  const [language, setLanguage] = useState<Language>(() => {
-    const saved = window.localStorage.getItem("portfolio-language");
-    return saved === "ru" || saved === "en" ? saved : defaultLanguage;
-  });
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = window.localStorage.getItem("portfolio-theme");
-    if (saved === "dark" || saved === "light") {
-      return saved;
-    }
-    return "dark";
-  });
+  const [language, setLanguage] = useState<Language>(readLanguage);
+  const [theme, setTheme] = useState<Theme>(readTheme);
   const [homeScrollProgress, setHomeScrollProgress] = useState(0);
   const footerRef = useRef<HTMLDivElement>(null);
 
@@ -65,12 +56,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("portfolio-language", language);
+    savePreference("portfolio-language", language);
     document.documentElement.lang = language;
   }, [language]);
 
   useEffect(() => {
-    window.localStorage.setItem("portfolio-theme", theme);
+    savePreference("portfolio-theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
