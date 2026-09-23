@@ -41,7 +41,12 @@ export default function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const redirectedPath = params.get("p");
-    if (!redirectedPath || !redirectedPath.startsWith("/") || redirectedPath.startsWith("//")) {
+    if (
+      !redirectedPath ||
+      !redirectedPath.startsWith("/") ||
+      redirectedPath.startsWith("//") ||
+      redirectedPath.includes("\\")
+    ) {
       return;
     }
 

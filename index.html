@@ -4,9 +4,14 @@
     <meta charset="UTF-8" />
     <script>
       (function () {
-        var cookies = document.cookie.split(";").map(function (cookie) {
-          return cookie.trim();
-        });
+        var cookies = [];
+        try {
+          cookies = document.cookie.split(";").map(function (cookie) {
+            return cookie.trim();
+          });
+        } catch (error) {
+          // Use the default theme and language when cookies are unavailable.
+        }
         var theme = cookies.find(function (cookie) {
           return cookie.startsWith("portfolio-theme=");
         });

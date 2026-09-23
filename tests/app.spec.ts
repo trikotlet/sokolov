@@ -46,6 +46,39 @@ test.describe("portfolio smoke", () => {
     await expect(page.getByRole("link", { name: "Роман Соколов" })).toBeVisible();
   });
 
+  test("renders and switches theme when cookies are unavailable", async ({ page }) => {
+    const errors: Error[] = [];
+    page.on("pageerror", (error) => errors.push(error));
+    await page.addInitScript(() => {
+      Object.defineProperty(Document.prototype, "cookie", {
+        configurable: true,
+        get() {
+          throw new DOMException("Cookies are disabled", "SecurityError");
+        },
+        set() {
+          throw new DOMException("Cookies are disabled", "SecurityError");
+        },
+      });
+    });
+
+    await page.goto("/");
+    await expect(page.getByRole("link", { name: "Роман Соколов" })).toBeVisible();
+    await openMobileMenuIfNeeded(test.info().project.name, page);
+    await page.getByRole("button", { name: /светлую тему/i }).click();
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    expect(errors).toEqual([]);
+  });
+
+  test("ignores redirect paths containing a backslash", async ({ page }) => {
+    const errors: Error[] = [];
+    page.on("pageerror", (error) => errors.push(error));
+
+    await page.goto("/?p=%2F%5Cevil.com");
+    await expect(page.getByRole("link", { name: "Роман Соколов" })).toBeVisible();
+    await expect(page).toHaveURL(/\?p=%2F%5Cevil\.com$/i);
+    expect(errors).toEqual([]);
+  });
+
   test("serves route-specific HTML on direct requests", async ({ page }) => {
     const response = await page.goto("/projects/");
     expect(response?.status()).toBe(200);
