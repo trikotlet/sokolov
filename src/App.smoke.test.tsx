@@ -22,7 +22,8 @@ let mountNode: HTMLDivElement | null = null;
 function setupDom(pathname: string) {
   document.head.innerHTML = DEFAULT_HEAD;
   document.body.innerHTML = '<div id="root"></div>';
-  localStorage.clear();
+  document.cookie = "portfolio-language=; Path=/; Max-Age=0";
+  document.cookie = "portfolio-theme=; Path=/; Max-Age=0";
   window.history.replaceState({}, "", pathname);
 
   mountNode = document.getElementById("root") as HTMLDivElement;

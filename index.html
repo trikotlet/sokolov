@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <script>
       (function () {
-        try {
-          var theme = window.localStorage.getItem("portfolio-theme");
-          document.documentElement.setAttribute("data-theme", theme === "light" ? "light" : "dark");
-          var language = window.localStorage.getItem("portfolio-language");
-          if (language === "ru" || language === "en") {
-            document.documentElement.setAttribute("lang", language);
-          }
-        } catch (error) {
-          /* storage unavailable: keep defaults */
+        var cookies = document.cookie.split(";").map(function (cookie) {
+          return cookie.trim();
+        });
+        var theme = cookies.find(function (cookie) {
+          return cookie.startsWith("portfolio-theme=");
+        });
+        document.documentElement.setAttribute("data-theme", theme === "portfolio-theme=light" ? "light" : "dark");
+        var language = cookies.find(function (cookie) {
+          return cookie.startsWith("portfolio-language=");
+        });
+        if (language === "portfolio-language=ru" || language === "portfolio-language=en") {
+          document.documentElement.setAttribute("lang", language.slice("portfolio-language=".length));
         }
       })();
     </script>
@@ -20,18 +23,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Roman Sokolov portfolio. Project Manager delivering digital B2B products in cybersecurity, analytics, and operations."
+      content="Портфолио Романа Соколова. Управление цифровыми B2B-проектами в кибербезопасности, аналитике и операционных продуктах."
     />
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <meta name="theme-color" content="#0e0f10" />
     <meta property="og:title" content="Roman Sokolov - Portfolio" />
     <meta
       property="og:description"
-      content="Project management case studies and outcomes for digital B2B products in cybersecurity and analytics."
+      content="Портфолио Романа Соколова. Управление цифровыми B2B-проектами в кибербезопасности, аналитике и операционных продуктах."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Roman Sokolov Portfolio" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="ru_RU" />
     <meta property="og:url" content="https://sokolovroman.ru/" />
     <meta property="og:image" content="https://sokolovroman.ru/hero.svg" />
     <meta property="og:image:alt" content="Roman Sokolov portfolio preview" />
@@ -39,7 +42,7 @@
     <meta name="twitter:title" content="Roman Sokolov - Portfolio" />
     <meta
       name="twitter:description"
-      content="Project management case studies and outcomes for digital B2B products in cybersecurity and analytics."
+      content="Портфолио Романа Соколова. Управление цифровыми B2B-проектами в кибербезопасности, аналитике и операционных продуктах."
     />
     <meta name="twitter:image" content="https://sokolovroman.ru/hero.svg" />
     <link rel="canonical" href="https://sokolovroman.ru/" />

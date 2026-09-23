@@ -1,7 +1,7 @@
 # sokolov
 
-**Статус:** 🟢 Рабочий
-**Тип:** Код
+**Status:** Active
+**Type:** Code
 
 Portfolio site on Vite + React, deployed to GitHub Pages.
 
@@ -54,8 +54,10 @@ Notes:
 ## Current Known Behavior
 
 - `https://trikotlet.github.io/sokolov/` should return `200`.
-- Direct deep links like `/sokolov/cv` and `/sokolov/projects` are handled by the generated `public/404.html`, which redirects back to the SPA and restores the intended route.
+- Direct deep links like `/sokolov/cv/` and `/sokolov/projects/` serve route-specific HTML with a `200` response and server-rendered social metadata.
+- The generated `public/404.html` remains available for unknown paths and legacy links.
 - `VITE_BASE_PATH` is normalized through the same shared helper for Vite, runtime routing, and the generated GitHub Pages redirect page.
+- The `sokolovroman.ru` redirect is configured at REG.RU. Its destination must start with `https://`; verify the full redirect chain after changing it.
 
 ## Quality checks
 
