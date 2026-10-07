@@ -65,3 +65,13 @@ Notes:
 npm run check
 npm run test:e2e
 ```
+
+Browser tests use `VITE_BASE_PATH` for both the build and the test URL. To test the GitHub Pages configuration in PowerShell:
+
+```powershell
+$env:VITE_BASE_PATH = "/sokolov"
+npm run test:e2e
+Remove-Item Env:VITE_BASE_PATH
+```
+
+CI runs functional browser tests on Linux for both `/` and `/sokolov`. A separate macOS job compares the iPhone screenshots against the committed macOS baselines; deployment requires both jobs to pass. On Linux, run functional tests with `npm run test:e2e -- --grep-invert "mobile snapshot"`. Run screenshot comparisons on macOS with `npm run test:e2e -- --project=iphone-12 --grep "mobile snapshot"`.

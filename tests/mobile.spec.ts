@@ -6,10 +6,6 @@ function ensureMobileProject(projectName: string) {
 
 function ensureIPhoneSnapshots(projectName: string) {
   test.skip(projectName !== "iphone-12", "Snapshot coverage is stored for a single canonical mobile viewport");
-  test.skip(
-    process.platform !== "darwin",
-    "Snapshot baselines are authored on macOS; regenerate them locally with --update-snapshots on other platforms",
-  );
 }
 
 async function stabilizeVisualState(page: Page) {
@@ -45,7 +41,7 @@ async function stabilizeVisualState(page: Page) {
 test.describe("mobile layout", () => {
   test("home page fits the viewport and exposes mobile navigation", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
-    await page.goto("/");
+    await page.goto("./");
 
     await expect(page.getByRole("button", { name: "Открыть меню" })).toBeVisible();
 
@@ -64,7 +60,7 @@ test.describe("mobile layout", () => {
 
   test("mobile menu navigates to cv page", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
-    await page.goto("/");
+    await page.goto("./");
 
     await page.getByRole("button", { name: "Открыть меню" }).click();
     await page.getByRole("link", { name: "Опыт" }).click();
@@ -75,7 +71,7 @@ test.describe("mobile layout", () => {
 
   test("projects page stays within the viewport on mobile", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
-    await page.goto("/projects");
+    await page.goto("./projects");
 
     const hasHorizontalOverflow = await page.evaluate(() => {
       const root = document.documentElement;
@@ -89,7 +85,7 @@ test.describe("mobile layout", () => {
 
   test("mobile menu locks scroll and keeps the dialog inside the safe area", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
-    await page.goto("/");
+    await page.goto("./");
 
     await page.getByRole("button", { name: "Открыть меню" }).click();
     const dialog = page.getByRole("dialog", { name: "Меню" });
@@ -118,7 +114,7 @@ test.describe("mobile layout", () => {
 
   test("tapping the first project card opens the anchored project details", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
-    await page.goto("/");
+    await page.goto("./");
 
     await page.getByRole("link", { name: /Система управления заказами \(OMS\)/ }).click();
 
@@ -130,7 +126,7 @@ test.describe("mobile layout", () => {
   test("home page matches the mobile snapshot", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
     ensureIPhoneSnapshots(test.info().project.name);
-    await page.goto("/");
+    await page.goto("./");
     await stabilizeVisualState(page);
 
     await expect(page).toHaveScreenshot("mobile-home.png", {
@@ -141,7 +137,7 @@ test.describe("mobile layout", () => {
   test("projects page matches the mobile snapshot", async ({ page }) => {
     ensureMobileProject(test.info().project.name);
     ensureIPhoneSnapshots(test.info().project.name);
-    await page.goto("/projects");
+    await page.goto("./projects");
     await stabilizeVisualState(page);
 
     await expect(page).toHaveScreenshot("mobile-projects.png", {

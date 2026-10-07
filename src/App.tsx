@@ -56,7 +56,12 @@ export default function App() {
     const targetPath = isLegacyCombinedRedirect
       ? redirectedPath
       : `${redirectedPath}${redirectedSearch}${redirectedHash}`;
-    window.history.replaceState({}, "", withBasePath(targetPath));
+    const targetUrl = URL.parse(withBasePath(targetPath), window.location.origin);
+    if (!targetUrl || targetUrl.origin !== window.location.origin) {
+      console.warn({ event: "invalid_redirect_target", reason: "invalid_or_cross_origin_url" });
+      return;
+    }
+    window.history.replaceState({}, "", targetUrl.href);
     setPathname(getRoutePathname(window.location.pathname));
   }, []);
 

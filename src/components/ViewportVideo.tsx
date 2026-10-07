@@ -25,6 +25,19 @@ export default function ViewportVideo({
   const [shouldLoad, setShouldLoad] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [supportsHoverPlayback, setSupportsHoverPlayback] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
+    () => typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") {
+      return;
+    }
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setPrefersReducedMotion(query.matches);
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     if (!playOnHover || typeof window === "undefined" || typeof window.matchMedia !== "function") {
@@ -45,7 +58,7 @@ export default function ViewportVideo({
     return () => query.removeListener(update);
   }, [playOnHover]);
 
-  const allowPlayback = !playOnHover || supportsHoverPlayback;
+  const allowPlayback = !prefersReducedMotion && (!playOnHover || supportsHoverPlayback);
 
   useEffect(() => {
     const node = videoRef.current;

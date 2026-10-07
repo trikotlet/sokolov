@@ -48,5 +48,8 @@ export function toAssetUrl(src: string): string {
 export function navigateTo(path: string): void {
   const href = withBasePath(path);
   window.history.pushState({}, "", href);
+  if (!window.location.hash) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
   window.dispatchEvent(new PopStateEvent("popstate"));
 }

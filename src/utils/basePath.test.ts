@@ -40,6 +40,7 @@ describe("basePath helpers with root base", () => {
   });
 
   it("navigateTo pushes history entry and emits popstate", () => {
+    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => undefined);
     const onPopState = vi.fn();
     window.addEventListener("popstate", onPopState);
 
@@ -47,7 +48,9 @@ describe("basePath helpers with root base", () => {
 
     expect(window.location.pathname).toBe("/projects");
     expect(onPopState).toHaveBeenCalledTimes(1);
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "instant" });
 
     window.removeEventListener("popstate", onPopState);
+    scrollTo.mockRestore();
   });
 });
