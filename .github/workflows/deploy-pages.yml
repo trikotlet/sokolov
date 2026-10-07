@@ -69,7 +69,7 @@ jobs:
         run: npm run test:e2e -- --grep-invert "mobile snapshot"
 
   visual:
-    runs-on: macos-14
+    runs-on: macos-15
     env:
       VITE_BASE_PATH: /sokolov
     steps:
